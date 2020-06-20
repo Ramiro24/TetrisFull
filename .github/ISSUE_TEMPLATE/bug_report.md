@@ -1,7 +1,7 @@
 ---
 name: Descripción del test
 about: Tests de prueba del proyecto
-labels: test de prueba
+labels: test
 ---
 ### Descripción
 -
