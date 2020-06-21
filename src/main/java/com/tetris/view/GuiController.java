@@ -66,6 +66,8 @@ public class GuiController implements Initializable {
     private final BooleanProperty isPause = new SimpleBooleanProperty();
 
     private final BooleanProperty isGameOver = new SimpleBooleanProperty();
+    
+    private int t;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -148,15 +150,19 @@ public class GuiController implements Initializable {
 
         generatePreviewPanel(brick.getNextBrickData());
 
-
         timeLine = new Timeline(new KeyFrame(
                 Duration.millis(400),
                 ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
         ));
         timeLine.setCycleCount(Timeline.INDEFINITE);
         timeLine.play();
+        
     }
-
+    
+    public void settime(int t) {
+    	this.t = t;
+    }
+    
     private Paint getFillColor(int i) {
         Paint returnPaint;
         switch (i) {
