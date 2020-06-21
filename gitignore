@@ -119,6 +119,7 @@ cmake-build-*/
 
 # IntelliJ
 out/
+tetris.iml
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -171,7 +172,5 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 .flattened-pom.xml
-
-tetris.iml
 
 # End of https://www.gitignore.io/api/maven,eclipse,intellij
