@@ -2,6 +2,12 @@ package com.tetris.view;
 
 import com.tetris.model.logic.DownData;
 import com.tetris.model.logic.ViewData;
+//import com.quirko.gui.GameOverPanel;
+//import com.quirko.gui.NotificationPanel;
+//import com.quirko.logic.events.EventSource;
+//import com.quirko.logic.events.EventType;
+//import com.quirko.logic.events.InputEventListener;
+//import com.quirko.logic.events.MoveEvent;
 import com.tetris.model.events.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -25,8 +31,10 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -34,9 +42,11 @@ public class GuiController implements Initializable {
 
     private static final int BRICK_SIZE = 20;
 
+	private static final Boolean Boolean = null;
+
     @FXML
     private GridPane gamePanel;
-
+    
     @FXML
     private Text scoreValue;
 
@@ -54,6 +64,12 @@ public class GuiController implements Initializable {
 
     @FXML
     private GameOverPanel gameOverPanel;
+    
+    //@FXML
+  // private MenuItem close; //
+    
+    //@FXML
+   // private Button estadistica; // agregado para agregar una nueva ventana
 
     private Rectangle[][] displayMatrix;
 
@@ -62,11 +78,13 @@ public class GuiController implements Initializable {
     private Rectangle[][] rectangles;
 
     private Timeline timeLine;
+    
+    private Stage grafico;
 
     private final BooleanProperty isPause = new SimpleBooleanProperty();
 
     private final BooleanProperty isGameOver = new SimpleBooleanProperty();
-
+   
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Font.loadFont(getClass().getClassLoader().getResource("digital.ttf").toExternalForm(), 38);
@@ -93,12 +111,16 @@ public class GuiController implements Initializable {
                         keyEvent.consume();
                     }
                 }
+                
                 if (keyEvent.getCode() == KeyCode.N) {
                     newGame(null);
                 }
                 if (keyEvent.getCode() == KeyCode.P) {
                     pauseButton.selectedProperty().setValue(!pauseButton.selectedProperty().getValue());
                 }
+             //   if (keyEvent.getCode() == KeyCode.P) {
+               //     close.selectedProperty().setValue(!close.selectedProperty().getValue());
+                //}
 
             }
         });
@@ -123,7 +145,8 @@ public class GuiController implements Initializable {
         scoreValue.setEffect(reflection);
     }
 
-    public void initGameView(int[][] boardMatrix, ViewData brick) {
+    public void initGameView(int[][] boardMatrix, ViewData brick ,int Dificultad) {
+    	System.out.println("init " +Dificultad);
         displayMatrix = new Rectangle[boardMatrix.length][boardMatrix[0].length];
         for (int i = 2; i < boardMatrix.length; i++) {
             for (int j = 0; j < boardMatrix[i].length; j++) {
@@ -147,14 +170,18 @@ public class GuiController implements Initializable {
         brickPanel.setLayoutY(-42 + gamePanel.getLayoutY() + brick.getyPosition() * brickPanel.getHgap() + brick.getyPosition() * BRICK_SIZE);
 
         generatePreviewPanel(brick.getNextBrickData());
-
-
+       
+// timeline crea una linea de tiempo 
+        
         timeLine = new Timeline(new KeyFrame(
                 Duration.millis(400),
                 ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
         ));
+/*Define el número de ciclos en esta animación. 
+ * El cycleCount puede haber INDEFINITEpara las animaciones que se repiten indefinidamente, sino que debe ser de otro modo> 0.
+ */
         timeLine.setCycleCount(Timeline.INDEFINITE);
-        timeLine.play();
+        timeLine.play(); 
     }
 
     private Paint getFillColor(int i) {
@@ -203,7 +230,9 @@ public class GuiController implements Initializable {
             }
         }
     }
-
+/* 
+ * refresca el bloque en la nueva posicion
+ */
     private void refreshBrick(ViewData brick) {
         if (isPause.getValue() == Boolean.FALSE) {
             brickPanel.setLayoutX(gamePanel.getLayoutX() + brick.getxPosition() * brickPanel.getVgap() + brick.getxPosition() * BRICK_SIZE);
@@ -241,6 +270,7 @@ public class GuiController implements Initializable {
             }
             refreshBrick(downData.getViewData());
         }
+   //usado para poder mover el panel 
         gamePanel.requestFocus();
     }
 
@@ -270,6 +300,35 @@ public class GuiController implements Initializable {
     }
 
     public void pauseGame(ActionEvent actionEvent) {
+    	/// 
         gamePanel.requestFocus();
     }
+    @FXML
+    public void close(ActionEvent actionEvent) throws IOException {
+    	/// 
+     //  System.exit(0);
+       isPause.setValue(Boolean.TRUE);
+       //eventListener.nuevaVentana();
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    public void Grafico(Stage g){
+    	grafico = g;
+    }
+    @FXML
+   public void Puntuacion(ActionEvent event) {
+    grafico.show();
+    }
+
+    @FXML
+   public void PuntuacionTotal(ActionEvent event) {
+    }
+
+   public void setDificultad(int dificultad) {
+	//  System.out.println("setDificultada "+dificultad);
+	//  Dificultad = dificultad;
+	 
+	   
+   }
+ 
+    
 }

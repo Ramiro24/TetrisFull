@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="Ayuda" minHeight="620.0" prefWidth="450.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.tetris.view.GuiAyuda">
+  <!-- TODO Add Nodes -->
+  <children>
+    <TextArea layoutX="75.0" layoutY="43.0" prefWidth="200.0" text="Ayuda para el juego" wrapText="true" />
+  </children>
+</AnchorPane>
