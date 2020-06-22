@@ -1,6 +1,7 @@
 package com.tetris.view;
 
 import com.tetris.model.logic.DownData;
+import com.tetris.model.logic.SimpleBoard;
 import com.tetris.model.logic.ViewData;
 //import com.quirko.gui.GameOverPanel;
 //import com.quirko.gui.NotificationPanel;
@@ -37,12 +38,24 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.ResourceBundle;
+import java.util.Scanner;
+
 
 public class GuiController implements Initializable {
 
     private static final int BRICK_SIZE = 20;
 
-	private static final Boolean Boolean = null;
+    private static final Boolean Boolean = null;
 
     @FXML
     private GridPane gamePanel;
@@ -64,9 +77,15 @@ public class GuiController implements Initializable {
 
     @FXML
     private GameOverPanel gameOverPanel;
-    
+
+    @FXML
+    private HighScorePanel highScorePanel;
+
+
     private Stage puntuacion;
-    
+
+
+
     //@FXML
   // private MenuItem close; //
     
@@ -80,13 +99,15 @@ public class GuiController implements Initializable {
     private Rectangle[][] rectangles;
 
     private Timeline timeLine;
-    
+
     private Stage grafico;
 
     private final BooleanProperty isPause = new SimpleBooleanProperty();
 
     private final BooleanProperty isGameOver = new SimpleBooleanProperty();
-   
+
+    private ArrayList<Integer> highScore = new ArrayList<Integer>();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Font.loadFont(getClass().getClassLoader().getResource("digital.ttf").toExternalForm(), 38);
@@ -97,36 +118,34 @@ public class GuiController implements Initializable {
             public void handle(KeyEvent keyEvent){
                 if (isPause.getValue() == Boolean.FALSE && isGameOver.getValue() == Boolean.FALSE) {
                     if (keyEvent.getCode() == KeyCode.LEFT || keyEvent.getCode() == KeyCode.A) {
-                        refreshBrick(eventListener.onLeftEvent(new MoveEvent(EventType.LEFT, EventSource.USER)));
+                        leftKey();
                         keyEvent.consume();
                     }
                     if (keyEvent.getCode() == KeyCode.RIGHT || keyEvent.getCode() == KeyCode.D) {
-                        refreshBrick(eventListener.onRightEvent(new MoveEvent(EventType.RIGHT, EventSource.USER)));
+                        rightKey();
                         keyEvent.consume();
                     }
                     if (keyEvent.getCode() == KeyCode.UP || keyEvent.getCode() == KeyCode.W) {
-                        refreshBrick(eventListener.onRotateEvent(new MoveEvent(EventType.ROTATE, EventSource.USER)));
+                        upKey();
                         keyEvent.consume();
+
                     }
                     if (keyEvent.getCode() == KeyCode.DOWN || keyEvent.getCode() == KeyCode.S) {
-                        moveDown(new MoveEvent(EventType.DOWN, EventSource.USER));
+                        downKey();
                         keyEvent.consume();
                     }
                 }
-                
+
                 if (keyEvent.getCode() == KeyCode.N) {
                     newGame(null);
                 }
                 if (keyEvent.getCode() == KeyCode.P) {
                     pauseButton.selectedProperty().setValue(!pauseButton.selectedProperty().getValue());
                 }
-             //   if (keyEvent.getCode() == KeyCode.P) {
-               //     close.selectedProperty().setValue(!close.selectedProperty().getValue());
-                //}
-
             }
         });
         gameOverPanel.setVisible(false);
+        highScorePanel.setVisible(false);
         pauseButton.selectedProperty().bindBidirectional(isPause);
         pauseButton.selectedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
@@ -172,18 +191,18 @@ public class GuiController implements Initializable {
         brickPanel.setLayoutY(-42 + gamePanel.getLayoutY() + brick.getyPosition() * brickPanel.getHgap() + brick.getyPosition() * BRICK_SIZE);
 
         generatePreviewPanel(brick.getNextBrickData());
-       
+
 // timeline crea una linea de tiempo 
         
         timeLine = new Timeline(new KeyFrame(
                 Duration.millis(400),
                 ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
         ));
-/*Define el número de ciclos en esta animación. 
- * El cycleCount puede haber INDEFINITEpara las animaciones que se repiten indefinidamente, sino que debe ser de otro modo> 0.
- */
+        /*Define el número de ciclos en esta animación.
+         * El cycleCount puede haber INDEFINITEpara las animaciones que se repiten indefinidamente, sino que debe ser de otro modo> 0.
+         */
         timeLine.setCycleCount(Timeline.INDEFINITE);
-        timeLine.play(); 
+        timeLine.play();
     }
 
     private Paint getFillColor(int i) {
@@ -272,7 +291,7 @@ public class GuiController implements Initializable {
             }
             refreshBrick(downData.getViewData());
         }
-   //usado para poder mover el panel 
+        //usado para poder mover el panel
         gamePanel.requestFocus();
     }
 
@@ -289,12 +308,20 @@ public class GuiController implements Initializable {
         timeLine.stop();
         gameOverPanel.setVisible(true);
         isGameOver.setValue(Boolean.TRUE);
+        int i = Integer.parseInt(scoreValue.textProperty().getValue());
+        saveData(scoreValue.textProperty().getValue());
+        readData();
+        isMax(highScore);
+        if(i>=isMax(highScore)){
+        	highScorePanel.setVisible(true);
+        }
 
     }
 
     public void newGame(ActionEvent actionEvent) {
         timeLine.stop();
         gameOverPanel.setVisible(false);
+        highScorePanel.setVisible(false);
         eventListener.createNewGame();
         gamePanel.requestFocus();
         timeLine.play();
@@ -308,36 +335,119 @@ public class GuiController implements Initializable {
     }
     @FXML
     public void close(ActionEvent actionEvent) throws IOException {
-    	/// 
-     //  System.exit(0);
-       isPause.setValue(Boolean.TRUE);
-       //eventListener.nuevaVentana();
+        ///
+        //  System.exit(0);
+        isPause.setValue(Boolean.TRUE);
+        //eventListener.nuevaVentana();
     }
+
     //////////////////////////////////////////////////////////////////////////////////////////////
     public void Grafico(Stage g){
-    	grafico = g;
+        grafico = g;
     }
     @FXML
-   public void Puntuacion(ActionEvent event) {
+//<<<<<<< HEAD
+  // public void Puntuacion(ActionEvent event) {
+//=======
+    public void Puntuacion(ActionEvent event) {
+///>>>>>>> f9e4a3f01ed480285b308815d74e304a2c33199a
         grafico.show();
     }
-
     @FXML
-   public void PuntuacionTotal(ActionEvent event) {
-    	puntuacion.show();
+    public void PuntuacionTotal(ActionEvent event) {
+        puntuacion.show();
+    }
+    @FXML
+    public void setDificultad(int dificultad) {
+        //  System.out.println("setDificultada "+dificultad);
+        //  Dificultad = dificultad;
+
+
     }
 
-   public void setDificultad(int dificultad) {
-	//  System.out.println("setDificultada "+dificultad);
-	//  Dificultad = dificultad;
-	 
-	   
-   }
-   
-   public void Puntuacion(Stage g){
-       puntuacion= g;
+    public void Puntuacion(Stage g){
+        puntuacion= g;
+    }
+
+
+
+    public void upKey() {
+        refreshBrick(eventListener.onRotateEvent(new MoveEvent(EventType.ROTATE, EventSource.USER)));
+
+    }
+
+
+    public void downKey() {
+        moveDown(new MoveEvent(EventType.DOWN, EventSource.USER));
+
+
+    }
+    public void leftKey() {
+        refreshBrick(eventListener.onLeftEvent(new MoveEvent(EventType.LEFT, EventSource.USER)));
+    }
+
+
+    public void rightKey() {
+        refreshBrick(eventListener.onRightEvent(new MoveEvent(EventType.RIGHT, EventSource.USER)));
+
+    }
+
+
+
+
+
+
+   public void saveData(String value) {
+       String filepath = "log.txt";
+       try {
+           FileWriter fw = new FileWriter(filepath, true);
+           BufferedWriter bw = new BufferedWriter(fw);
+           PrintWriter pw = new PrintWriter(bw);
+           pw.println(value);
+           pw.flush();
+           pw.close();
+
+       } catch (
+               IOException e) {
+           e.printStackTrace();
        }
-   
-  
-    
+   }
+   public ArrayList<Integer> readData(){
+       Scanner INPUT_STREAM;
+
+       try {
+
+           File file = new File("log.txt");
+           INPUT_STREAM = new Scanner(file);
+
+           while (INPUT_STREAM.hasNext()) {
+
+
+               String line = INPUT_STREAM.next();
+               String[] temp= line.split("\n");
+               StringBuffer cadena = new StringBuffer();
+               for (int x=0;x<temp.length;x++){
+                   cadena =cadena.append(temp[x]);
+               }
+               String str = cadena.toString();
+               int i = Integer.parseInt(str);
+               highScore.add(i);
+
+
+           }
+           INPUT_STREAM.close();
+       } catch (FileNotFoundException e) {
+           e.printStackTrace();
+       }
+
+
+       return highScore;
+   }
+
+   public int isMax(ArrayList<Integer> v) {
+   	Integer i = Collections.max(v);
+   	return i;
+   }
+
+
 }

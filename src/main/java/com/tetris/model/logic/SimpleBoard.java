@@ -8,8 +8,6 @@ import com.tetris.model.rotator.BrickRotator;
 import com.tetris.model.rotator.NextShapeInfo;
 
 
-
-
 import java.awt.*;
 
 public class SimpleBoard implements Board {
@@ -18,8 +16,9 @@ public class SimpleBoard implements Board {
     private final int height;
     private final BrickGenerator brickGenerator;
     private final BrickRotator brickRotator;
-    private int[][] currentGameMatrix;
-    private Point currentOffset;
+    private static int[][] currentGameMatrix;
+    private Point
+            currentOffset;
     private final Score score;
 
     public SimpleBoard(int width, int height) {
@@ -129,5 +128,13 @@ public class SimpleBoard implements Board {
         currentGameMatrix = new int[width][height];
         score.reset();
         createNewBrick();
+    }
+
+    public static void setCurrentStaticMatrix(int[][] now) {
+        currentGameMatrix = now;
+    }
+
+    public static int[][] getBoardMatrix2() {
+        return currentGameMatrix;
     }
 }
