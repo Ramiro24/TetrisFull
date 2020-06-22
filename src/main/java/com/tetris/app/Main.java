@@ -56,7 +56,7 @@ public class Main extends Application {
                 GuiPuntuacionTotalObservador puntuacion = fxmlLoaderPuntuacionTotal.getController();
 
                 ///////////////////////////////////////////////INTERFAZ MENU////////////////////////////////////////////////////////
-
+             //   Stage StageMenu = new Stage();
                 StageMenu.setTitle("Menu");
                 Scene sceneMenu = new Scene(rootMenu, 620, 450);
                 StageMenu.setScene(sceneMenu);
