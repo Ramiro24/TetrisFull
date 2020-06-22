@@ -33,6 +33,7 @@ public class GameController implements InputEventListener { //clase que envia ac
 
     private Board board = new SimpleBoard(25, 10);
 
+
     private final GuiController viewGuiController;
 
     public GameController(GuiController c, DatosObservados observador) {
@@ -42,6 +43,7 @@ public class GameController implements InputEventListener { //clase que envia ac
         viewGuiController.setEventListener(this);
         viewGuiController.initGameView(board.getBoardMatrix(), board.getViewData(), Dificultad);
         viewGuiController.bindScore(board.getScore().scoreProperty());
+
     }
 
     /* public void inicia() {

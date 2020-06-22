@@ -18,6 +18,9 @@ public class DatosObservados implements Subject{ //CLASE A OBSERVAR
 	private	ArrayList<Observer> observadores;
 	private int estado;
 	
+	GuiPuntuacionTotalObservador puntuacionobjeto;
+	GuiStatsObservador statobjeto;
+	
 	
 	public DatosObservados() {
 		
@@ -39,12 +42,15 @@ public class DatosObservados implements Subject{ //CLASE A OBSERVAR
 		notifyObservers();
 	}
 	@Override
-	public void registerObserver(GuiStatsObservador observador) {
-		
-		observadores.add(observador);
+	public void registerObserver(Observer observador) {
+	
+		if(observador instanceof  GuiPuntuacionTotalObservador){observadores.add((GuiPuntuacionTotalObservador)observador);}
+	    if(observador instanceof  GuiStatsObservador){observadores.add((GuiStatsObservador)observador);}
+	    System.out.println("soy observador " + observadores.size());
 	}
+	
 	@Override
-	public void removeObserver(GuiStatsObservador o) {
+	public void removeObserver(Observer o) {
 	 
 	}
 	@Override

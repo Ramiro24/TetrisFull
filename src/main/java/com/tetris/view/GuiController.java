@@ -66,6 +66,9 @@ public class GuiController implements Initializable, Keys {
     @FXML
     private GameOverPanel gameOverPanel;
 
+    private Stage puntuacion;
+
+
     //@FXML
     // private MenuItem close; //
 
@@ -324,14 +327,9 @@ public class GuiController implements Initializable, Keys {
 
     @FXML
     public void PuntuacionTotal(ActionEvent event) {
+        puntuacion.show();
     }
 
-    public void setDificultad(int dificultad) {
-        //  System.out.println("setDificultada "+dificultad);
-        //  Dificultad = dificultad;
-
-
-    }
 
     @Override
     public void upKey() {
@@ -342,7 +340,6 @@ public class GuiController implements Initializable, Keys {
     @Override
     public void downKey() {
         moveDown(new MoveEvent(EventType.DOWN, EventSource.USER));
-
 
 
     }
@@ -357,4 +354,18 @@ public class GuiController implements Initializable, Keys {
         refreshBrick(eventListener.onRightEvent(new MoveEvent(EventType.RIGHT, EventSource.USER)));
 
     }
+
+    public void setDificultad(int dificultad) {
+        //  System.out.println("setDificultada "+dificultad);
+        //  Dificultad = dificultad;
+
+
+    }
+
+    public void Puntuacion(Stage g) {
+        puntuacion = g;
+    }
+
+
 }
+
