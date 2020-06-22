@@ -47,7 +47,7 @@ public class GuiController implements Initializable, Keys {
 
     @FXML
     private GridPane gamePanel;
-
+    
     @FXML
     private Text scoreValue;
 
@@ -69,11 +69,12 @@ public class GuiController implements Initializable, Keys {
     private Stage puntuacion;
 
 
-    //@FXML
-    // private MenuItem close; //
 
     //@FXML
-    // private Button estadistica; // agregado para agregar una nueva ventana
+  // private MenuItem close; //
+    
+    //@FXML
+   // private Button estadistica; // agregado para agregar una nueva ventana
 
     private Rectangle[][] displayMatrix;
 
@@ -96,7 +97,7 @@ public class GuiController implements Initializable, Keys {
         gamePanel.requestFocus();
         gamePanel.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
-            public void handle(KeyEvent keyEvent) {
+            public void handle(KeyEvent keyEvent){
                 if (isPause.getValue() == Boolean.FALSE && isGameOver.getValue() == Boolean.FALSE) {
                     if (keyEvent.getCode() == KeyCode.LEFT || keyEvent.getCode() == KeyCode.A) {
                         leftKey();
@@ -147,8 +148,8 @@ public class GuiController implements Initializable, Keys {
         scoreValue.setEffect(reflection);
     }
 
-    public void initGameView(int[][] boardMatrix, ViewData brick, int Dificultad) {
-        System.out.println("init " + Dificultad);
+    public void initGameView(int[][] boardMatrix, ViewData brick ,int Dificultad) {
+
         displayMatrix = new Rectangle[boardMatrix.length][boardMatrix[0].length];
         for (int i = 2; i < boardMatrix.length; i++) {
             for (int j = 0; j < boardMatrix[i].length; j++) {
@@ -316,18 +317,29 @@ public class GuiController implements Initializable, Keys {
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////
-    public void Grafico(Stage g) {
+    public void Grafico(Stage g){
         grafico = g;
     }
-
     @FXML
     public void Puntuacion(ActionEvent event) {
         grafico.show();
     }
-
     @FXML
     public void PuntuacionTotal(ActionEvent event) {
         puntuacion.show();
+    }
+    @FXML
+
+
+    public void setDificultad(int dificultad) {
+        //  System.out.println("setDificultada "+dificultad);
+        //  Dificultad = dificultad;
+
+
+    }
+
+    public void Puntuacion(Stage g){
+        puntuacion= g;
     }
 
 
@@ -355,17 +367,6 @@ public class GuiController implements Initializable, Keys {
 
     }
 
-    public void setDificultad(int dificultad) {
-        //  System.out.println("setDificultada "+dificultad);
-        //  Dificultad = dificultad;
-
-
-    }
-
-    public void Puntuacion(Stage g) {
-        puntuacion = g;
-    }
-
-
+ 
+    
 }
-

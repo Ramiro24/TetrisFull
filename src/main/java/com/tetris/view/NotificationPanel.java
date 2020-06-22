@@ -23,7 +23,7 @@ public class NotificationPanel extends BorderPane {
         score.getStyleClass().add("bonusStyle");
         final Effect glow = new Glow(0.6);
         score.setEffect(glow);
-        score.setTextFill(Color.WHITE);
+        score.setTextFill(Color.RED);
         setCenter(score);
 
     }
