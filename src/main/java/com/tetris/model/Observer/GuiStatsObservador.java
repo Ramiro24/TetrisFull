@@ -34,7 +34,7 @@ public class GuiStatsObservador implements Observer, Initializable { //DISPLAY G
 	  
 	  public GuiStatsObservador(Subject datosObservados, GuiStatsObservador s) {
 			 this.datosObservados = datosObservados;
-			 datosObservados.registerObserver(s); //agrego controlador a la lista del observable
+			 datosObservados.registerObserver((Observer)s); //agrego controlador a la lista del observable
 	  }
 	 
 	 public void initialize(URL location, ResourceBundle resources) {

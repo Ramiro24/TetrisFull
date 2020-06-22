@@ -39,12 +39,12 @@ public class DatosObservados implements Subject{ //CLASE A OBSERVAR
 		notifyObservers();
 	}
 	@Override
-	public void registerObserver(GuiStatsObservador observador) {
+	public void registerObserver(Observer observador) {
 		
-		observadores.add(observador);
+		observadores.add((GuiStatsObservador)observador);
 	}
 	@Override
-	public void removeObserver(GuiStatsObservador o) {
+	public void removeObserver(Observer o) {
 	 
 	}
 	@Override
