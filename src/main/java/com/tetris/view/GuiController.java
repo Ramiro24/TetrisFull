@@ -279,11 +279,12 @@ public class GuiController implements Initializable {
     public void setEventListener(InputEventListener eventListener) {
         this.eventListener = eventListener;
     }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void bindScore(IntegerProperty integerProperty) {
-        scoreValue.textProperty().bind(integerProperty.asString());
+    	
+    	scoreValue.textProperty().bind(integerProperty.asString());
     }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void gameOver() {
         timeLine.stop();
         gameOverPanel.setVisible(true);
@@ -318,7 +319,7 @@ public class GuiController implements Initializable {
     }
     @FXML
    public void Puntuacion(ActionEvent event) {
-    grafico.show();
+        grafico.show();
     }
 
     @FXML
