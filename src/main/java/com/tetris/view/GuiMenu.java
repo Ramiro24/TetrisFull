@@ -71,7 +71,7 @@ public class GuiMenu implements Initializable {
     	ayuda.close();
 //        GameController game = new GameController(gui);
     	primarystage.show();
-    	System.out.println("-->"+ dificultad);
+
     
     }
 
