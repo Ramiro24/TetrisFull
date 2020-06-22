@@ -95,18 +95,22 @@ public class GuiController implements Initializable {
             public void handle(KeyEvent keyEvent) {
                 if (isPause.getValue() == Boolean.FALSE && isGameOver.getValue() == Boolean.FALSE) {
                     if (keyEvent.getCode() == KeyCode.LEFT || keyEvent.getCode() == KeyCode.A) {
-                        leftKey(keyEvent);
+                        leftKey();
+                        keyEvent.consume();
 
                     }
                     if (keyEvent.getCode() == KeyCode.RIGHT || keyEvent.getCode() == KeyCode.D) {
-                        rightKey(keyEvent);
+                        rightKey();
+                        keyEvent.consume();
                     }
                     if (keyEvent.getCode() == KeyCode.UP || keyEvent.getCode() == KeyCode.W) {
-                        upKey(keyEvent);
+                        upKey();
+                        keyEvent.consume();
 
                     }
                     if (keyEvent.getCode() == KeyCode.DOWN || keyEvent.getCode() == KeyCode.S) {
-                        downKey(keyEvent);
+                        downKey();
+                        keyEvent.consume();
                     }
                 }
 
@@ -328,23 +332,22 @@ public class GuiController implements Initializable {
 
     }
 
-    public void upKey(KeyEvent keyEvent) {
+    public void upKey() {
         refreshBrick(eventListener.onRotateEvent(new MoveEvent(EventType.ROTATE, EventSource.USER)));
-        keyEvent.consume();
+
     }
 
-    public void downKey(KeyEvent keyEvent) {
+    public void downKey() {
         moveDown(new MoveEvent(EventType.DOWN, EventSource.USER));
-        keyEvent.consume();
+
     }
 
-    public void leftKey(KeyEvent keyEvent) {
+    public void leftKey() {
         refreshBrick(eventListener.onLeftEvent(new MoveEvent(EventType.LEFT, EventSource.USER)));
-        keyEvent.consume();
     }
 
-    public void rightKey(KeyEvent keyEvent) {
+    public void rightKey() {
         refreshBrick(eventListener.onRightEvent(new MoveEvent(EventType.RIGHT, EventSource.USER)));
-        keyEvent.consume();
+
     }
 }
