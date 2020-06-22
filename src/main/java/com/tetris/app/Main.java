@@ -58,7 +58,7 @@ public class Main extends Application {
         ///////////////////////////////////////////////INTERFAZ MENU////////////////////////////////////////////////////////
        
         StageMenu.setTitle("Menu");
-        Scene sceneMenu = new Scene(rootMenu, 620, 450);
+        Scene sceneMenu = new Scene(rootMenu, 625, 493);
         StageMenu.setScene(sceneMenu);
         StageMenu.show();
        	
@@ -68,7 +68,7 @@ public class Main extends Application {
         StageTetris.setTitle("TetrisFULL");
         Scene SceneTetris = new Scene(rootTetris, 800, 610);                    
         StageTetris.setScene(SceneTetris);                                       
-      
+        
        //////////////////////////////////////////////INTERFAZ GRAFICA (Observador)////////////////////////////////////////////
    
         Stage StageGrafico = new Stage();                                         
