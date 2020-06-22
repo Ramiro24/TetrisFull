@@ -46,7 +46,7 @@ public class DatosObservados implements Subject{ //CLASE A OBSERVAR
 	
 		if(observador instanceof  GuiPuntuacionTotalObservador){observadores.add((GuiPuntuacionTotalObservador)observador);}
 	    if(observador instanceof  GuiStatsObservador){observadores.add((GuiStatsObservador)observador);}
-	    System.out.println("soy observador " + observadores.size());
+	 //   System.out.println("soy observador " + observadores.size());
 	}
 	
 	@Override
