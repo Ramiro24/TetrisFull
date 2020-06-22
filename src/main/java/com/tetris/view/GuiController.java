@@ -65,6 +65,8 @@ public class GuiController implements Initializable {
     @FXML
     private GameOverPanel gameOverPanel;
     
+    private Stage puntuacion;
+    
     //@FXML
   // private MenuItem close; //
     
@@ -146,7 +148,7 @@ public class GuiController implements Initializable {
     }
 
     public void initGameView(int[][] boardMatrix, ViewData brick ,int Dificultad) {
-    	System.out.println("init " +Dificultad);
+ 
         displayMatrix = new Rectangle[boardMatrix.length][boardMatrix[0].length];
         for (int i = 2; i < boardMatrix.length; i++) {
             for (int j = 0; j < boardMatrix[i].length; j++) {
@@ -321,6 +323,7 @@ public class GuiController implements Initializable {
 
     @FXML
    public void PuntuacionTotal(ActionEvent event) {
+    	puntuacion.show();
     }
 
    public void setDificultad(int dificultad) {
@@ -329,6 +332,11 @@ public class GuiController implements Initializable {
 	 
 	   
    }
- 
+   
+   public void Puntuacion(Stage g){
+       puntuacion= g;
+       }
+   
+  
     
 }

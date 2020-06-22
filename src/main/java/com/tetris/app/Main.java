@@ -4,6 +4,7 @@ import com.tetris.view.GuiAyuda;
 import com.tetris.view.GuiMenu;
 import com.tetris.controller.GameController;
 import com.tetris.model.Observer.DatosObservados;
+import com.tetris.model.Observer.GuiPuntuacionTotalObservador;
 import com.tetris.model.Observer.GuiStatsObservador;
 import com.tetris.view.GuiController;
 import javafx.application.Application;
@@ -30,6 +31,7 @@ public class Main extends Application {
     	URL locationTetris = getClass().getClassLoader().getResource("gameLayout.fxml");
         URL locationGrafica = getClass().getClassLoader().getResource("NuevaVentana.fxml");
         URL locationAyuda = getClass().getClassLoader().getResource("Ayuda.fxml");
+        URL locationPuntuacionTotal = getClass().getClassLoader().getResource("PuntuacionTotal.fxml");
         ResourceBundle resources = null; //recurso de lenguaje null para todos
         
         //objetos FXML
@@ -37,18 +39,21 @@ public class Main extends Application {
         FXMLLoader fxmlLoaderTetris = new FXMLLoader(locationTetris, resources);
         FXMLLoader fxmlLoaderGrafica = new FXMLLoader(locationGrafica, resources);
         FXMLLoader fxmlLoaderAyuda = new FXMLLoader(locationAyuda, resources);
+        FXMLLoader fxmlLoaderPuntuacionTotal = new FXMLLoader(locationPuntuacionTotal, resources);
         
         //Root
         Parent rootMenu = fxmlLoaderMenu.load();
         Parent rootTetris = fxmlLoaderTetris.load();
         Parent rootGrafica = fxmlLoaderGrafica.load();    
         Parent rootAyuda = fxmlLoaderAyuda.load();
+        Parent rootPuntuacionTotal = fxmlLoaderPuntuacionTotal.load();
         
         //Controladores de Fxml
         GuiMenu menu = fxmlLoaderMenu.getController();
         GuiController c = fxmlLoaderTetris.getController();                      
         GuiStatsObservador s = fxmlLoaderGrafica.getController();                   
         GuiAyuda ayuda = fxmlLoaderAyuda.getController();
+        GuiPuntuacionTotalObservador puntuacion = fxmlLoaderPuntuacionTotal.getController();
         
         ///////////////////////////////////////////////INTERFAZ MENU////////////////////////////////////////////////////////
        
@@ -81,8 +86,19 @@ public class Main extends Application {
         Stage Stagehelp = new Stage();
         Stagehelp.setTitle("Ayuda");
         Stagehelp.setScene(new Scene(rootAyuda, 620, 450));
-    
+        
+        
+        /////////////////////////////////////////////////INTERFAZ GRAFICA PUNTUACION (Observador)////////////////////////////////////
+        
+        Stage puntos = new Stage();
+        puntos.setTitle("Puntuacion");
+        puntos.setScene(new Scene(rootPuntuacionTotal, 620, 450));
+        c.Puntuacion(puntos);  
+        
+        GuiPuntuacionTotalObservador ObservadorDisplayTotal = new  GuiPuntuacionTotalObservador(statObservador, puntuacion);
+        
        //////////////////////////////////////////////////////INICIO MENU//////////////////////////////////////////////////////////
+      
         
         menu.GUI(c , StageMenu ,StageTetris, Stagehelp); // inicio menu con los stage que puede iniciar y el controller tetris
     }
