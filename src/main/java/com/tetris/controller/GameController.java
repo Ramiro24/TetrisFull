@@ -44,6 +44,7 @@ public class GameController implements InputEventListener { //clase que envia ac
         viewGuiController.initGameView(board.getBoardMatrix(), board.getViewData(), Dificultad);
         viewGuiController.bindScore(board.getScore().scoreProperty());
 
+
     }
 
     /* public void inicia() {

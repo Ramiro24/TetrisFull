@@ -38,8 +38,20 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.ResourceBundle;
+import java.util.Scanner;
 
-public class GuiController implements Initializable, Keys {
+
+public class GuiController implements Initializable {
 
     private static final int BRICK_SIZE = 20;
 
@@ -66,6 +78,10 @@ public class GuiController implements Initializable, Keys {
     @FXML
     private GameOverPanel gameOverPanel;
 
+    @FXML
+    private HighScorePanel highScorePanel;
+
+
     private Stage puntuacion;
 
 
@@ -90,6 +106,8 @@ public class GuiController implements Initializable, Keys {
 
     private final BooleanProperty isGameOver = new SimpleBooleanProperty();
 
+    private ArrayList<Integer> highScore = new ArrayList<Integer>();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Font.loadFont(getClass().getClassLoader().getResource("digital.ttf").toExternalForm(), 38);
@@ -102,7 +120,6 @@ public class GuiController implements Initializable, Keys {
                     if (keyEvent.getCode() == KeyCode.LEFT || keyEvent.getCode() == KeyCode.A) {
                         leftKey();
                         keyEvent.consume();
-
                     }
                     if (keyEvent.getCode() == KeyCode.RIGHT || keyEvent.getCode() == KeyCode.D) {
                         rightKey();
@@ -128,6 +145,7 @@ public class GuiController implements Initializable, Keys {
             }
         });
         gameOverPanel.setVisible(false);
+        highScorePanel.setVisible(false);
         pauseButton.selectedProperty().bindBidirectional(isPause);
         pauseButton.selectedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
@@ -149,7 +167,7 @@ public class GuiController implements Initializable, Keys {
     }
 
     public void initGameView(int[][] boardMatrix, ViewData brick ,int Dificultad) {
-
+ 
         displayMatrix = new Rectangle[boardMatrix.length][boardMatrix[0].length];
         for (int i = 2; i < boardMatrix.length; i++) {
             for (int j = 0; j < boardMatrix[i].length; j++) {
@@ -175,7 +193,7 @@ public class GuiController implements Initializable, Keys {
         generatePreviewPanel(brick.getNextBrickData());
 
 // timeline crea una linea de tiempo 
-
+        
         timeLine = new Timeline(new KeyFrame(
                 Duration.millis(400),
                 ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
@@ -233,10 +251,9 @@ public class GuiController implements Initializable, Keys {
             }
         }
     }
-
-    /*
-     * refresca el bloque en la nueva posicion
-     */
+/* 
+ * refresca el bloque en la nueva posicion
+ */
     private void refreshBrick(ViewData brick) {
         if (isPause.getValue() == Boolean.FALSE) {
             brickPanel.setLayoutX(gamePanel.getLayoutX() + brick.getxPosition() * brickPanel.getVgap() + brick.getxPosition() * BRICK_SIZE);
@@ -290,12 +307,20 @@ public class GuiController implements Initializable, Keys {
         timeLine.stop();
         gameOverPanel.setVisible(true);
         isGameOver.setValue(Boolean.TRUE);
+        int i = Integer.parseInt(scoreValue.textProperty().getValue());
+        saveData(scoreValue.textProperty().getValue());
+        readData();
+        isMax(highScore);
+        if(i>=isMax(highScore)){
+        	highScorePanel.setVisible(true);
+        }
 
     }
 
     public void newGame(ActionEvent actionEvent) {
         timeLine.stop();
         gameOverPanel.setVisible(false);
+        highScorePanel.setVisible(false);
         eventListener.createNewGame();
         gamePanel.requestFocus();
         timeLine.play();
@@ -304,10 +329,9 @@ public class GuiController implements Initializable, Keys {
     }
 
     public void pauseGame(ActionEvent actionEvent) {
-        ///
+    	/// 
         gamePanel.requestFocus();
     }
-
     @FXML
     public void close(ActionEvent actionEvent) throws IOException {
         ///
@@ -329,8 +353,6 @@ public class GuiController implements Initializable, Keys {
         puntuacion.show();
     }
     @FXML
-
-
     public void setDificultad(int dificultad) {
         //  System.out.println("setDificultada "+dificultad);
         //  Dificultad = dificultad;
@@ -343,30 +365,84 @@ public class GuiController implements Initializable, Keys {
     }
 
 
-    @Override
+
     public void upKey() {
         refreshBrick(eventListener.onRotateEvent(new MoveEvent(EventType.ROTATE, EventSource.USER)));
 
     }
 
-    @Override
+
     public void downKey() {
         moveDown(new MoveEvent(EventType.DOWN, EventSource.USER));
 
 
     }
-
-    @Override
     public void leftKey() {
         refreshBrick(eventListener.onLeftEvent(new MoveEvent(EventType.LEFT, EventSource.USER)));
     }
 
-    @Override
+
     public void rightKey() {
         refreshBrick(eventListener.onRightEvent(new MoveEvent(EventType.RIGHT, EventSource.USER)));
 
     }
 
- 
-    
+
+
+
+
+
+   public void saveData(String value) {
+       String filepath = "log.txt";
+       try {
+           FileWriter fw = new FileWriter(filepath, true);
+           BufferedWriter bw = new BufferedWriter(fw);
+           PrintWriter pw = new PrintWriter(bw);
+           pw.println(value);
+           pw.flush();
+           pw.close();
+
+       } catch (
+               IOException e) {
+           e.printStackTrace();
+       }
+   }
+   public ArrayList<Integer> readData(){
+       Scanner INPUT_STREAM;
+
+       try {
+
+           File file = new File("log.txt");
+           INPUT_STREAM = new Scanner(file);
+
+           while (INPUT_STREAM.hasNext()) {
+
+
+               String line = INPUT_STREAM.next();
+               String[] temp= line.split("\n");
+               StringBuffer cadena = new StringBuffer();
+               for (int x=0;x<temp.length;x++){
+                   cadena =cadena.append(temp[x]);
+               }
+               String str = cadena.toString();
+               int i = Integer.parseInt(str);
+               highScore.add(i);
+
+
+           }
+           INPUT_STREAM.close();
+       } catch (FileNotFoundException e) {
+           e.printStackTrace();
+       }
+
+
+       return highScore;
+   }
+
+   public int isMax(ArrayList<Integer> v) {
+   	Integer i = Collections.max(v);
+   	return i;
+   }
+
+
 }
