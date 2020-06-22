@@ -59,7 +59,7 @@ public class GuiController implements Initializable {
 
     @FXML
     private GridPane gamePanel;
-    
+
     @FXML
     private Text scoreValue;
 
@@ -83,15 +83,15 @@ public class GuiController implements Initializable {
 
 
     private Stage puntuacion;
- 
+
     public int Dificultad;
 
 
     //@FXML
-  // private MenuItem close; //
-    
+    // private MenuItem close; //
+
     //@FXML
-   // private Button estadistica; // agregado para agregar una nueva ventana
+    // private Button estadistica; // agregado para agregar una nueva ventana
 
     private Rectangle[][] displayMatrix;
 
@@ -116,7 +116,7 @@ public class GuiController implements Initializable {
         gamePanel.requestFocus();
         gamePanel.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
-            public void handle(KeyEvent keyEvent){
+            public void handle(KeyEvent keyEvent) {
                 if (isPause.getValue() == Boolean.FALSE && isGameOver.getValue() == Boolean.FALSE) {
                     if (keyEvent.getCode() == KeyCode.LEFT || keyEvent.getCode() == KeyCode.A) {
                         leftKey();
@@ -167,8 +167,8 @@ public class GuiController implements Initializable {
         scoreValue.setEffect(reflection);
     }
 
-    public void initGameView(int[][] boardMatrix, ViewData brick ,int Dificultad) {
- 
+    public void initGameView(int[][] boardMatrix, ViewData brick, int Dificultad) {
+
         displayMatrix = new Rectangle[boardMatrix.length][boardMatrix[0].length];
         for (int i = 2; i < boardMatrix.length; i++) {
             for (int j = 0; j < boardMatrix[i].length; j++) {
@@ -192,20 +192,9 @@ public class GuiController implements Initializable {
         brickPanel.setLayoutY(-42 + gamePanel.getLayoutY() + brick.getyPosition() * brickPanel.getHgap() + brick.getyPosition() * BRICK_SIZE);
 
         generatePreviewPanel(brick.getNextBrickData());
-/////////////////////////////////////////////////////////////////////////////////// REEMPLAZADO
-// timeline crea una linea de tiempo 
-        
-        /*timeLine = new Timeline(new KeyFrame(
-                Duration.millis(400),
-                ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
-        ));
-        /*Define el número de ciclos en esta animación.
-         * El cycleCount puede haber INDEFINITEpara las animaciones que se repiten indefinidamente, sino que debe ser de otro modo> 0.
-       
-        timeLine.setCycleCount(Timeline.INDEFINITE);
-        timeLine.play();*/
     }
-//////////////////////////////////////////////////////////////////////////////////////
+
+
     private Paint getFillColor(int i) {
         Paint returnPaint;
         switch (i) {
@@ -252,9 +241,10 @@ public class GuiController implements Initializable {
             }
         }
     }
-/* 
- * refresca el bloque en la nueva posicion
- */
+
+    /*
+     * refresca el bloque en la nueva posicion
+     */
     private void refreshBrick(ViewData brick) {
         if (isPause.getValue() == Boolean.FALSE) {
             brickPanel.setLayoutX(gamePanel.getLayoutX() + brick.getxPosition() * brickPanel.getVgap() + brick.getxPosition() * BRICK_SIZE);
@@ -299,12 +289,14 @@ public class GuiController implements Initializable {
     public void setEventListener(InputEventListener eventListener) {
         this.eventListener = eventListener;
     }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void bindScore(IntegerProperty integerProperty) {
-    	
-    	scoreValue.textProperty().bind(integerProperty.asString());
+
+        scoreValue.textProperty().bind(integerProperty.asString());
     }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void gameOver() {
         timeLine.stop();
         gameOverPanel.setVisible(true);
@@ -313,8 +305,8 @@ public class GuiController implements Initializable {
         saveData(scoreValue.textProperty().getValue());
         readData();
         isMax(highScore);
-        if(i>=isMax(highScore)){
-        	highScorePanel.setVisible(true);
+        if (i >= isMax(highScore)) {
+            highScorePanel.setVisible(true);
         }
 
     }
@@ -331,10 +323,10 @@ public class GuiController implements Initializable {
     }
 
     public void pauseGame(ActionEvent actionEvent) {
-    	/// 
+        ///
         gamePanel.requestFocus();
     }
-   
+
     @FXML
     public void close(ActionEvent actionEvent) throws IOException {
         ///
@@ -343,38 +335,50 @@ public class GuiController implements Initializable {
         //eventListener.nuevaVentana();
     }
 
-    public void Grafico(Stage g){
+    public void Grafico(Stage g) {
         grafico = g;
     }
-   
+
     @FXML
     public void Puntuacion(ActionEvent event) {
 
         grafico.show();
     }
+
     @FXML
     public void PuntuacionTotal(ActionEvent event) {
         puntuacion.show();
     }
+
     @FXML
     public void setDificultad(int dificultad) { //tomo evento de teclado para la dificultad
-        
-          Dificultad = dificultad;
-          System.out.println("la dificultad que manejo es: " + Dificultad);
-          
-          timeLine = new Timeline(new KeyFrame(
-                  Duration.millis(Dificultad),
-                  ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
-          ));
-          timeLine.setCycleCount(Timeline.INDEFINITE);
+
+        Dificultad = dificultad;
+        System.out.println("la dificultad que manejo es: " + Dificultad);
+
+        timeLine = new Timeline(new KeyFrame(
+                Duration.millis(Dificultad),
+                ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
+        ));
+        timeLine.setCycleCount(Timeline.INDEFINITE);
     }
 
-    public void Puntuacion(Stage g){
-        puntuacion= g;
+    @FXML
+    public void velocityLess(){
+        System.out.println("less");
+    }
+    @FXML
+    public void velocityMore(){
+        System.out.println("more");
+    }
+
+    public void Puntuacion(Stage g) {
+        puntuacion = g;
     }
 
     public void upKey() {
-        refreshBrick(eventListener.onRotateEvent(new MoveEvent(EventType.ROTATE, EventSource.USER)));}
+        refreshBrick(eventListener.onRotateEvent(new MoveEvent(EventType.ROTATE, EventSource.USER)));
+    }
 
 
     public void downKey() {
@@ -382,6 +386,7 @@ public class GuiController implements Initializable {
 
 
     }
+
     public void leftKey() {
         refreshBrick(eventListener.onLeftEvent(new MoveEvent(EventType.LEFT, EventSource.USER)));
     }
@@ -393,56 +398,57 @@ public class GuiController implements Initializable {
     }
 
     public void saveData(String value) {
-       String filepath = "log.txt";
-       try {
-           FileWriter fw = new FileWriter(filepath, true);
-           BufferedWriter bw = new BufferedWriter(fw);
-           PrintWriter pw = new PrintWriter(bw);
-           pw.println(value);
-           pw.flush();
-           pw.close();
+        String filepath = "log.txt";
+        try {
+            FileWriter fw = new FileWriter(filepath, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            pw.println(value);
+            pw.flush();
+            pw.close();
 
-       } catch (
-               IOException e) {
-           e.printStackTrace();
-       }
-   }
-   public ArrayList<Integer> readData(){
-       Scanner INPUT_STREAM;
+        } catch (
+                IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-       try {
+    public ArrayList<Integer> readData() {
+        Scanner INPUT_STREAM;
 
-           File file = new File("log.txt");
-           INPUT_STREAM = new Scanner(file);
+        try {
 
-           while (INPUT_STREAM.hasNext()) {
+            File file = new File("log.txt");
+            INPUT_STREAM = new Scanner(file);
 
-
-               String line = INPUT_STREAM.next();
-               String[] temp= line.split("\n");
-               StringBuffer cadena = new StringBuffer();
-               for (int x=0;x<temp.length;x++){
-                   cadena =cadena.append(temp[x]);
-               }
-               String str = cadena.toString();
-               int i = Integer.parseInt(str);
-               highScore.add(i);
+            while (INPUT_STREAM.hasNext()) {
 
 
-           }
-           INPUT_STREAM.close();
-       } catch (FileNotFoundException e) {
-           e.printStackTrace();
-       }
+                String line = INPUT_STREAM.next();
+                String[] temp = line.split("\n");
+                StringBuffer cadena = new StringBuffer();
+                for (int x = 0; x < temp.length; x++) {
+                    cadena = cadena.append(temp[x]);
+                }
+                String str = cadena.toString();
+                int i = Integer.parseInt(str);
+                highScore.add(i);
 
 
-       return highScore;
-   }
+            }
+            INPUT_STREAM.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
-   public int isMax(ArrayList<Integer> v) {
-   	Integer i = Collections.max(v);
-   	return i;
-   }
+
+        return highScore;
+    }
+
+    public int isMax(ArrayList<Integer> v) {
+        Integer i = Collections.max(v);
+        return i;
+    }
 
 
 }

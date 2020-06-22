@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import com.tetris.view.HighScorePanel?>
 <?import com.tetris.view.GameOverPanel?>
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.net.URL?>
 <?import javafx.scene.Group?>
+
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.scene.text.Text?>
 
-<Pane prefHeight="588.0000999999975" prefWidth="638.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.tetris.view.GuiController">
-  <GridPane fx:id="brickPanel" vgap="1" hgap="1"/>
+<Pane prefHeight="588.0000999999975" prefWidth="638.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tetris.view.GuiController">
+  <GridPane fx:id="brickPanel" hgap="1" vgap="1" />
   <BorderPane fx:id="gameBoard" styleClass="gameBoard">
     <center>
       <GridPane fx:id="gamePanel" hgap="1.0" vgap="1.0" />
@@ -41,15 +37,17 @@
     </VBox>
     <Text fx:id="scoreValue" styleClass="scoreClass" text="Text" />
   </VBox>
-    <Group fx:id="groupNotification" layoutX="14" layoutY="203">
-       <VBox alignment="CENTER">
-            <GameOverPanel fx:id="gameOverPanel"/>
-            <HighScorePanel fx:id="highScorePanel"/>
-        </VBox>
-    </Group>
+  <Button fx:id="Puntuacion" layoutX="379.0" layoutY="12.0" mnemonicParsing="false" onAction="#Puntuacion" prefHeight="46.0" prefWidth="126.0" text="Púntuacion" />
+  <Button fx:id="PuntuacionTotal" layoutX="379.0" layoutY="94.0" mnemonicParsing="false" onAction="#PuntuacionTotal" prefHeight="46.0" prefWidth="213.0" text="Puntuacion Total" />
+   <Button fx:id="velocityMore" layoutX="416.0" layoutY="168.0" mnemonicParsing="false" onAction="#velocityMore" text="Mas" />
+   <Button fx:id="velocityLess" layoutX="416.0" layoutY="221.0" mnemonicParsing="false" onAction="#velocityLess" text="Menos" />
+  <Group fx:id="groupNotification" layoutX="14" layoutY="203">
+    <VBox alignment="CENTER">
+      <GameOverPanel fx:id="gameOverPanel"/>
+      <HighScorePanel fx:id="highScorePanel"/>
+    </VBox>
+  </Group>
   <stylesheets>
     <URL value="@window_style.css" />
   </stylesheets>
-  <Button fx:id="Puntuacion" layoutX="379.0" layoutY="12.0" mnemonicParsing="false" onAction="#Puntuacion" prefHeight="46.0" prefWidth="126.0" text="Púntuacion" />
-  <Button fx:id="PuntuacionTotal" layoutX="379.0" layoutY="94.0" mnemonicParsing="false" onAction="#PuntuacionTotal" prefHeight="46.0" prefWidth="213.0" text="Puntuacion Total" />
 </Pane>
