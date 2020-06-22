@@ -17,39 +17,38 @@ import com.tetris.model.events.InputEventListener;
 import com.tetris.model.events.MoveEvent;
 
 
+public class GameController implements InputEventListener { //clase que envia actualizaciones a DatosObservados mediante el objeto observador
+    /*
+     * Posiblemente se crea en tiempo de ejecucion
+     * Este es el sujeto a observar deberia tener una lista de observadores
+     */
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-public class GameController implements InputEventListener{ //clase que envia actualizaciones a DatosObservados mediante el objeto observador
-/*
- * Posiblemente se crea en tiempo de ejecucion
- * Este es el sujeto a observar deberia tener una lista de observadores
- */
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	 private int Dificultad;
-	 DatosObservados observador;
-	
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    private int Dificultad;
+    DatosObservados observador;
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private Board board = new SimpleBoard(25, 10);
 
     private final GuiController viewGuiController;
-    
-    public GameController(GuiController c,  DatosObservados observador) {
+
+    public GameController(GuiController c, DatosObservados observador) {
         this.observador = observador;
-    	viewGuiController = c;
+        viewGuiController = c;
         board.createNewBrick();
         viewGuiController.setEventListener(this);
-        viewGuiController.initGameView(board.getBoardMatrix(), board.getViewData(),Dificultad);
+        viewGuiController.initGameView(board.getBoardMatrix(), board.getViewData(), Dificultad);
         viewGuiController.bindScore(board.getScore().scoreProperty());
     }
-  /* public void inicia() {
-	viewGuiController.setEventListener(this);
-    viewGuiController.initGameView(board.getBoardMatrix(), board.getViewData(),Dificultad);
-    viewGuiController.bindScore(board.getScore().scoreProperty());
-   }*/
+
+    /* public void inicia() {
+      viewGuiController.setEventListener(this);
+      viewGuiController.initGameView(board.getBoardMatrix(), board.getViewData(),Dificultad);
+      viewGuiController.bindScore(board.getScore().scoreProperty());
+     }*/
     @Override
     public DownData onDownEvent(MoveEvent event) {
         boolean canMove = board.moveBrickDown();
@@ -64,15 +63,12 @@ public class GameController implements InputEventListener{ //clase que envia act
             if (board.createNewBrick()) {
                 viewGuiController.gameOver();
             }
-
             viewGuiController.refreshGameBackground(board.getBoardMatrix());
-
         } else {
             if (event.getEventSource() == EventSource.USER) {
                 board.getScore().add(1);
                 // probando si cambia el estado en el que observa
                 observador.setEstado();
-           
             }
         }
         return new DownData(clearRow, board.getViewData());
@@ -95,8 +91,8 @@ public class GameController implements InputEventListener{ //clase que envia act
         board.rotateLeftBrick();
         return board.getViewData();
     }
-    
-  //  @Override
+
+    //  @Override
     //public void nuevaVentana() throws IOException {
     
     
@@ -114,27 +110,27 @@ public class GameController implements InputEventListener{ //clase que envia act
         catch (IOException e) {
             e.printStackTrace();
         }*/
- //---------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------
 
-            // Set the persons into the controller.
-        //   BirthdayStatisticsController controller = Loader.getController();
-         //   controller.setPersonData(personData);
+    // Set the persons into the controller.
+    //   BirthdayStatisticsController controller = Loader.getController();
+    //   controller.setPersonData(personData);
 
-            // Set the dialog icon.
-       //     dialogStage.getIcons().add(new Image("file:resources/images/calendar.png"));
-            
-         //   dialogStage.show();
+    // Set the dialog icon.
+    //     dialogStage.getIcons().add(new Image("file:resources/images/calendar.png"));
+
+    //   dialogStage.show();
 
       /*  } catch (IOException e) {
             e.printStackTrace();
         }*/
-        
-       
-   // }
+
+
+    // }
     public void setDificultad(int d) {
-    	Dificultad = d;
+        Dificultad = d;
     }
-    
+
     @Override
     public void createNewGame() {
         board.newGame();
