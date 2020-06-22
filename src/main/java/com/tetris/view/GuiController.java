@@ -37,6 +37,18 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.ResourceBundle;
+import java.util.Scanner;
+
 
 public class GuiController implements Initializable {
 
@@ -65,6 +77,10 @@ public class GuiController implements Initializable {
     @FXML
     private GameOverPanel gameOverPanel;
     
+    @FXML
+    private HighScorePanel highScorePanel;
+
+    
     private Stage puntuacion;
     
     //@FXML
@@ -86,6 +102,8 @@ public class GuiController implements Initializable {
     private final BooleanProperty isPause = new SimpleBooleanProperty();
 
     private final BooleanProperty isGameOver = new SimpleBooleanProperty();
+    
+    private ArrayList<Integer> highScore = new ArrayList<Integer>(); 
    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -127,6 +145,7 @@ public class GuiController implements Initializable {
             }
         });
         gameOverPanel.setVisible(false);
+        highScorePanel.setVisible(false);
         pauseButton.selectedProperty().bindBidirectional(isPause);
         pauseButton.selectedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
@@ -288,12 +307,20 @@ public class GuiController implements Initializable {
         timeLine.stop();
         gameOverPanel.setVisible(true);
         isGameOver.setValue(Boolean.TRUE);
+        int i = Integer.parseInt(scoreValue.textProperty().getValue());
+        saveData(scoreValue.textProperty().getValue());
+        readData();
+        isMax(highScore);        
+        if(i>=isMax(highScore)){
+        	highScorePanel.setVisible(true);
+        }
 
     }
 
     public void newGame(ActionEvent actionEvent) {
         timeLine.stop();
         gameOverPanel.setVisible(false);
+        highScorePanel.setVisible(false);
         eventListener.createNewGame();
         gamePanel.requestFocus();
         timeLine.play();
@@ -337,6 +364,59 @@ public class GuiController implements Initializable {
        puntuacion= g;
        }
    
-  
+
+
+   public void saveData(String value) {
+       String filepath = "log.txt";
+       try {
+           FileWriter fw = new FileWriter(filepath, true);
+           BufferedWriter bw = new BufferedWriter(fw);
+           PrintWriter pw = new PrintWriter(bw);
+           pw.println(value);
+           pw.flush();
+           pw.close();
+
+       } catch (
+               IOException e) {
+           e.printStackTrace();
+       }
+   }
+   public ArrayList<Integer> readData(){
+       Scanner INPUT_STREAM;
+
+       try {
+
+           File file = new File("log.txt");
+           INPUT_STREAM = new Scanner(file);
+
+           while (INPUT_STREAM.hasNext()) {
+
+
+               String line = INPUT_STREAM.next();
+               String[] temp= line.split("\n");
+               StringBuffer cadena = new StringBuffer();
+               for (int x=0;x<temp.length;x++){
+                   cadena =cadena.append(temp[x]);
+               }               
+               String str = cadena.toString();
+               int i = Integer.parseInt(str);
+               highScore.add(i);
+                          
+               
+           }
+           INPUT_STREAM.close();
+       } catch (FileNotFoundException e) {
+           e.printStackTrace();
+       }
+       
+       
+       return highScore;
+   }
+   
+   public int isMax(ArrayList<Integer> v) {
+   	Integer i = Collections.max(v);
+   	return i;
+   }
+
     
 }

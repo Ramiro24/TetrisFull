@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<?import com.tetris.view.HighScorePanel?>
 <?import com.tetris.view.GameOverPanel?>
 <?import java.lang.*?>
 <?import java.net.*?>
@@ -42,8 +42,9 @@
     <Text fx:id="scoreValue" styleClass="scoreClass" text="Text" />
   </VBox>
     <Group fx:id="groupNotification" layoutX="14" layoutY="203">
-        <VBox alignment="CENTER">
+       <VBox alignment="CENTER">
             <GameOverPanel fx:id="gameOverPanel"/>
+            <HighScorePanel fx:id="highScorePanel"/>
         </VBox>
     </Group>
   <stylesheets>
