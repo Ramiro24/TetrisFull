@@ -1,6 +1,7 @@
 package com.tetris.view;
 
 import com.tetris.model.logic.DownData;
+import com.tetris.model.logic.SimpleBoard;
 import com.tetris.model.logic.ViewData;
 //import com.quirko.gui.GameOverPanel;
 //import com.quirko.gui.NotificationPanel;
@@ -38,7 +39,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class GuiController implements Initializable {
+public class GuiController implements Initializable, Keys {
 
     private static final int BRICK_SIZE = 20;
 
@@ -332,20 +333,26 @@ public class GuiController implements Initializable {
 
     }
 
+    @Override
     public void upKey() {
         refreshBrick(eventListener.onRotateEvent(new MoveEvent(EventType.ROTATE, EventSource.USER)));
 
     }
 
+    @Override
     public void downKey() {
         moveDown(new MoveEvent(EventType.DOWN, EventSource.USER));
 
+
+
     }
 
+    @Override
     public void leftKey() {
         refreshBrick(eventListener.onLeftEvent(new MoveEvent(EventType.LEFT, EventSource.USER)));
     }
 
+    @Override
     public void rightKey() {
         refreshBrick(eventListener.onRightEvent(new MoveEvent(EventType.RIGHT, EventSource.USER)));
 

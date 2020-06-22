@@ -2,8 +2,10 @@ package InitTest.keys;
 
 import com.tetris.controller.GameController;
 import com.tetris.model.Observer.DatosObservados;
+import com.tetris.model.logic.SimpleBoard;
 import com.tetris.view.GuiController;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 import org.junit.Test;
@@ -13,9 +15,9 @@ import org.testfx.framework.junit.ApplicationTest;
 import java.io.IOException;
 import java.net.URL;
 
-public class KeyDown  extends ApplicationTest {
+public class KeyDown  extends ApplicationTest  {
 
-    @Override public void start(Stage stage) throws IOException {
+    /*@Override public void start(Stage stage) throws IOException {
         URL location = getClass().getClassLoader().getResource("gameLayout.fxml"); //llama a gamelayut y guardar su direccion
 
         FXMLLoader fxmlLoader = new FXMLLoader(location);
@@ -28,7 +30,7 @@ public class KeyDown  extends ApplicationTest {
         stage.show();
 
 
-    }
+    }*/
 
     @Test
     public void testDownPressKey() throws Exception {
@@ -41,6 +43,37 @@ public class KeyDown  extends ApplicationTest {
         GuiController c = fxmlLoader.getController(); // no deberia ir esto aca
         DatosObservados statObservador = new DatosObservados();
         GameController controladorTetris = new GameController(c, statObservador);
+        int[][] matrix = new int[][]{
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,1,1,1,1,0,0,0,0},
+                {0,0,1,0,0,1,0,0,0,0},
+                {0,0,1,0,0,1,0,0,0,0},
+                {0,0,1,1,1,1,0,0,0,0},
+                {0,0,1,0,0,0,0,0,0,0},
+                {0,0,1,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0},
+        };
+        SimpleBoard.setCurrentStaticMatrix(matrix);
+
+
 
 
 
