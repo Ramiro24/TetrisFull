@@ -159,6 +159,7 @@ public class GameController implements InputEventListener { //clase que envia ac
 
     @Override
     public void createNewGame() {
+ //   	observador.BorrarEstado();
         board.newGame();
         viewGuiController.refreshGameBackground(board.getBoardMatrix());
     }

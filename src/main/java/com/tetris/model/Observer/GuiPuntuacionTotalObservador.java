@@ -63,7 +63,7 @@ public class GuiPuntuacionTotalObservador implements  Observer , Initializable{ 
 	//@Override
 	public void Update(int valor) {
 		// TODO Auto-generated method stub
-			System.out.println(valor);
+			
 	}
 }
 	

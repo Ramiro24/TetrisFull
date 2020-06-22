@@ -31,6 +31,11 @@ public class DatosObservados implements Subject{ //CLASE A OBSERVAR
 		
 		return estado;
     }
+	
+	public void BorrarEstado() {
+		estado = 0;
+	}
+	
 	public void setEstado() {
 		
 		estado++;

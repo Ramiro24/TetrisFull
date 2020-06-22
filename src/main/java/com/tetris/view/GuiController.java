@@ -83,7 +83,8 @@ public class GuiController implements Initializable {
 
 
     private Stage puntuacion;
-
+ 
+    public int Dificultad;
 
 
     //@FXML
@@ -191,20 +192,20 @@ public class GuiController implements Initializable {
         brickPanel.setLayoutY(-42 + gamePanel.getLayoutY() + brick.getyPosition() * brickPanel.getHgap() + brick.getyPosition() * BRICK_SIZE);
 
         generatePreviewPanel(brick.getNextBrickData());
-
+/////////////////////////////////////////////////////////////////////////////////// REEMPLAZADO
 // timeline crea una linea de tiempo 
         
-        timeLine = new Timeline(new KeyFrame(
+        /*timeLine = new Timeline(new KeyFrame(
                 Duration.millis(400),
                 ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
         ));
         /*Define el número de ciclos en esta animación.
          * El cycleCount puede haber INDEFINITEpara las animaciones que se repiten indefinidamente, sino que debe ser de otro modo> 0.
-         */
+       
         timeLine.setCycleCount(Timeline.INDEFINITE);
-        timeLine.play();
+        timeLine.play();*/
     }
-
+//////////////////////////////////////////////////////////////////////////////////////
     private Paint getFillColor(int i) {
         Paint returnPaint;
         switch (i) {
@@ -333,6 +334,7 @@ public class GuiController implements Initializable {
     	/// 
         gamePanel.requestFocus();
     }
+   
     @FXML
     public void close(ActionEvent actionEvent) throws IOException {
         ///
@@ -341,16 +343,13 @@ public class GuiController implements Initializable {
         //eventListener.nuevaVentana();
     }
 
-    //////////////////////////////////////////////////////////////////////////////////////////////
     public void Grafico(Stage g){
         grafico = g;
     }
+   
     @FXML
-//<<<<<<< HEAD
-  // public void Puntuacion(ActionEvent event) {
-//=======
     public void Puntuacion(ActionEvent event) {
-///>>>>>>> f9e4a3f01ed480285b308815d74e304a2c33199a
+
         grafico.show();
     }
     @FXML
@@ -358,23 +357,24 @@ public class GuiController implements Initializable {
         puntuacion.show();
     }
     @FXML
-    public void setDificultad(int dificultad) {
-        //  System.out.println("setDificultada "+dificultad);
-        //  Dificultad = dificultad;
-
-
+    public void setDificultad(int dificultad) { //tomo evento de teclado para la dificultad
+        
+          Dificultad = dificultad;
+          System.out.println("la dificultad que manejo es: " + Dificultad);
+          
+          timeLine = new Timeline(new KeyFrame(
+                  Duration.millis(Dificultad),
+                  ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
+          ));
+          timeLine.setCycleCount(Timeline.INDEFINITE);
     }
 
     public void Puntuacion(Stage g){
         puntuacion= g;
     }
 
-
-
     public void upKey() {
-        refreshBrick(eventListener.onRotateEvent(new MoveEvent(EventType.ROTATE, EventSource.USER)));
-
-    }
+        refreshBrick(eventListener.onRotateEvent(new MoveEvent(EventType.ROTATE, EventSource.USER)));}
 
 
     public void downKey() {
@@ -392,12 +392,7 @@ public class GuiController implements Initializable {
 
     }
 
-
-
-
-
-
-   public void saveData(String value) {
+    public void saveData(String value) {
        String filepath = "log.txt";
        try {
            FileWriter fw = new FileWriter(filepath, true);
