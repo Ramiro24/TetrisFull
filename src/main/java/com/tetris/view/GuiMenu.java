@@ -67,7 +67,7 @@ public class GuiMenu implements Initializable {
 
     @FXML
     public void Comenzar(ActionEvent event) {
-    	 audio.Fx(0);
+    	 audio.Fx(3);
     	gui.setDificultad(dificultad);
     	gui.newGame(event);
         stage.close();
