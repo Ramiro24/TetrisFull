@@ -1,5 +1,8 @@
 package com.tetris.controller;
 
+import com.tetris.controller.Strategy.Buttons;
+import com.tetris.controller.Strategy.LevelVel;
+import com.tetris.controller.Strategy.VelocityMore;
 import com.tetris.view.GuiController;
 import com.tetris.model.logic.*;
 import com.tetris.model.music.ReproduceAudio;
@@ -20,24 +23,27 @@ import com.tetris.model.events.MoveEvent;
 
 public class GameController implements InputEventListener { //clase que envia actualizaciones a DatosObservados mediante el objeto observador
 
-	 private int Dificultad;
-	 DatosObservados observador;
-	 ReproduceAudio ReproAudio;
+    private int Dificultad;
+    private DatosObservados observador;
+    private ReproduceAudio ReproAudio;
+    private Buttons velBonus;
 
     private Board board = new SimpleBoard(25, 10);
 
 
     private final GuiController viewGuiController;
 
-    public GameController(GuiController c, DatosObservados observador,  ReproduceAudio ReproAudio) {
+    public GameController(GuiController c, DatosObservados observador, ReproduceAudio ReproAudio) {
         this.ReproAudio = ReproAudio;
-    	this.observador = observador;
+        this.observador = observador;
         viewGuiController = c;
         board.createNewBrick();
         viewGuiController.setEventListener(this);
         viewGuiController.initGameView(board.getBoardMatrix(), board.getViewData(), Dificultad);
         viewGuiController.bindScore(board.getScore().scoreProperty());
+        velBonus = new LevelVel();
     }
+
     @Override
     public DownData onDownEvent(MoveEvent event) {
         boolean canMove = board.moveBrickDown();
@@ -48,6 +54,9 @@ public class GameController implements InputEventListener { //clase que envia ac
             if (clearRow.getLinesRemoved() > 0) {
                 board.getScore().add(clearRow.getScoreBonus());
                 observador.setEstadoBonus(clearRow.getScoreBonus());
+                viewGuiController.Dificultad-=1000;
+                velBonus.changeVelocity(viewGuiController);
+
                 ReproAudio.Fx(1);
             }
             if (board.createNewBrick()) {
@@ -125,7 +134,7 @@ public class GameController implements InputEventListener { //clase que envia ac
 
     @Override
     public void createNewGame() {
- //   	observador.BorrarEstado();
+        //   	observador.BorrarEstado();
         board.newGame();
         viewGuiController.refreshGameBackground(board.getBoardMatrix());
     }

@@ -211,8 +211,8 @@ public class GuiController implements Initializable {
 				+ brick.getyPosition() * BRICK_SIZE);
 
 		generatePreviewPanel(brick.getNextBrickData());
-		less = new ButtonLess(this);
-		more = new ButtonAdd(this);
+		less = new ButtonLess();
+		more = new ButtonAdd();
 	}
 
 	private Paint getFillColor(int i) {
