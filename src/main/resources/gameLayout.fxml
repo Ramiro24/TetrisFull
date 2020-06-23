@@ -25,22 +25,20 @@
       <children>
         <Label layoutX="52.0" layoutY="0.0" styleClass="scoreClass" text="Puntos:" />
         <Text fx:id="scoreValue" layoutX="95.0" layoutY="85.0" styleClass="scoreClass" text="Text" />
-        <Pane layoutX="0.0" layoutY="95.0" prefHeight="200.0" prefWidth="200.0">
+        <Pane layoutX="0.0" layoutY="95.0" prefHeight="99.0" prefWidth="199.99990000000253">
           <children>
-            <Label layoutX="72.0" layoutY="0" styleClass="nextBrickLabel" text="Siguiente" />
+            <Label layoutX="72.0" layoutY="0.0" styleClass="nextBrickLabel" text="Siguiente" />
             <BorderPane layoutX="58.0" layoutY="42.0" maxWidth="101.9998779296875" prefHeight="47.0" prefWidth="101.9998779296875" styleClass="nextBrick">
               <top>
                 <GridPane fx:id="nextBrick" alignment="CENTER" hgap="1.0" vgap="1.0" />
               </top>
             </BorderPane>
-          <!--   <Button fx:id="newGame" layoutX="38.0" layoutY="114.0" onAction="#newGame" prefWidth="140.0" styleClass="ipad-dark-grey" text="Jugar" />-->
-            <ToggleButton fx:id="newGame" onAction="#newGame"  prefWidth="38.0"  styleClass="ipad-dark-grey" text="jugar" />
           </children>
         </Pane>
       </children>
     </Pane>
-    <VBox alignment="CENTER" prefHeight="106.0" prefWidth="150.0" />
-    <VBox alignment="CENTER" />
+    <VBox alignment="CENTER" prefHeight="74.0" prefWidth="31.0" />
+    <Button onAction="#newGame" prefWidth="140.0" styleClass="ipad-dark-grey" text="Jugar" />
     <ToggleButton fx:id="pauseButton" onAction="#pauseGame" prefWidth="140.0" styleClass="ipad-dark-grey" text="Pausa" />
     <Button fx:id="Puntuacion" mnemonicParsing="false" onAction="#Puntuacion" prefHeight="46.0" prefWidth="145.0" styleClass="ipad-dark-grey" text="Puntuacion" />
     <Pane prefHeight="200.0" prefWidth="200.0">
