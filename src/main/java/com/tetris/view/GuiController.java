@@ -125,6 +125,7 @@ public class GuiController implements Initializable {
 
 	private Buttons more;
 	private Buttons less;
+	boolean flag = false;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -320,6 +321,7 @@ public class GuiController implements Initializable {
 
 	public void gameOver() {
 		timeLine.stop();
+		audio.DetenerMusica();
 		gameOverPanel.setVisible(true);
 		isGameOver.setValue(Boolean.TRUE);
 		int i = Integer.parseInt(scoreValue.textProperty().getValue());
@@ -334,6 +336,9 @@ public class GuiController implements Initializable {
 
 	public void newGame(ActionEvent actionEvent) {
 		timeLine.stop();
+		
+		if(flag) {audio.ReproduceMusic(0);flag=false;}
+		if(!flag) {flag=true;}
 
 		timeLine = new Timeline(new KeyFrame(Duration.millis(Dificultad),
 				ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))));
