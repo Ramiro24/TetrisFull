@@ -376,7 +376,7 @@ public class GuiController implements Initializable {
             timeLine.setCycleCount(Timeline.INDEFINITE);
             timeLine.play();
         }*/
-        less = new ButtonLess(timeLine, Dificultad, this);
+        less = new ButtonLess(timeLine, this);
         less.changeVelocity();
     }
 
@@ -393,7 +393,7 @@ public class GuiController implements Initializable {
             timeLine.setCycleCount(Timeline.INDEFINITE);
             timeLine.play();
         }*/
-        more = new ButtonAdd(timeLine, Dificultad, this);
+        more = new ButtonAdd(timeLine, this);
         more.changeVelocity();
     }
 
