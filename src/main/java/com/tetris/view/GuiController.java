@@ -398,10 +398,8 @@ public class GuiController implements Initializable {
             timeLine.play();
         }*/
 
-        if (isPause.getValue() == Boolean.FALSE && isGameOver.getValue() == Boolean.FALSE){
-            more.changeVelocity(this);
-        }
-
+        if (isPause.getValue() == Boolean.FALSE && isGameOver.getValue() == Boolean.FALSE){}
+        more.changeVelocity(this);
     }
 
     public Timeline getTimeLine() {
