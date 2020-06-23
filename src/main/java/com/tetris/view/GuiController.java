@@ -194,8 +194,8 @@ public class GuiController implements Initializable {
         brickPanel.setLayoutY(-42 + gamePanel.getLayoutY() + brick.getyPosition() * brickPanel.getHgap() + brick.getyPosition() * BRICK_SIZE);
 
         generatePreviewPanel(brick.getNextBrickData());
-        less=new ButtonLess(this);
-        more=new ButtonAdd(this);
+        less = new ButtonLess(this);
+        more = new ButtonAdd(this);
     }
 
 
@@ -367,41 +367,19 @@ public class GuiController implements Initializable {
 
     @FXML
     public void velocityLess() {
-
-      /* if (Dificultad <= 500) {
-            timeLine.stop();
-            Dificultad = Dificultad + 20;
-            timeLine = new Timeline(new KeyFrame(
-                    Duration.millis(Dificultad),
-                    ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
-            ));
-            timeLine.setCycleCount(Timeline.INDEFINITE);
-            timeLine.play();
-        }*/
-       if (isPause.getValue() == Boolean.FALSE && isGameOver.getValue() == Boolean.FALSE){
-           less.changeVelocity(this);
+        Dificultad = Dificultad + 10;
+        if (isPause.getValue() == Boolean.FALSE && isGameOver.getValue() == Boolean.FALSE) {
+            less.changeVelocity(this);
         }
-
     }
 
 
     @FXML
     public void velocityMore() {
-       /* if (Dificultad >= 40) {
-            timeLine.stop();
-            Dificultad = Dificultad - 20;
-            timeLine = new Timeline(new KeyFrame(
-                    Duration.millis(Dificultad),
-                    ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
-            ));
-            timeLine.setCycleCount(Timeline.INDEFINITE);
-            timeLine.play();
-        }*/
-
-        if (isPause.getValue() == Boolean.FALSE && isGameOver.getValue() == Boolean.FALSE){}{
+        Dificultad = Dificultad - 10;
+        if (isPause.getValue() == Boolean.FALSE && isGameOver.getValue() == Boolean.FALSE) {
             more.changeVelocity(this);
         }
-
     }
 
     public Timeline getTimeLine() {
