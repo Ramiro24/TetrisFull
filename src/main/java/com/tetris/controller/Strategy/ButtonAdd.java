@@ -4,10 +4,10 @@ import com.tetris.view.GuiController;
 import javafx.animation.Timeline;
 
 public class ButtonAdd extends Buttons {
-    public ButtonAdd(Timeline timeline, double dificultad, GuiController guiController) {
+    public ButtonAdd(Timeline timeline, GuiController guiController) {
         velocityInterface=new VelocityMore();
         this.timeline=timeline;
-        this.duration=dificultad;
+
         this.guiController=guiController;
     }
 

@@ -4,5 +4,5 @@ import com.tetris.view.GuiController;
 import javafx.animation.Timeline;
 
 public interface VelocityInterface {
-    void pushEvent(Timeline timeline, double dificultad, GuiController guiController);
+    void pushEvent(Timeline timeline, GuiController guiController);
 }
