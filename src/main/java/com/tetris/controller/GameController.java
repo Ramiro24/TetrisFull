@@ -1,13 +1,10 @@
 package com.tetris.controller;
 
-import com.tetris.controller.Strategy.Buttons;
+import com.tetris.controller.Strategy.Velocity;
 import com.tetris.controller.Strategy.LevelVel;
-import com.tetris.controller.Strategy.VelocityMore;
 import com.tetris.view.GuiController;
 import com.tetris.model.logic.*;
 import com.tetris.model.music.ReproduceAudio;
-
-import java.io.IOException;
 
 import com.tetris.model.Observer.DatosObservados;
 //import com.quirko.app.DatosObservados;
@@ -26,7 +23,7 @@ public class GameController implements InputEventListener { //clase que envia ac
     private int Dificultad;
     private DatosObservados observador;
     private ReproduceAudio ReproAudio;
-    private Buttons velBonus;
+    private Velocity velBonus;
 
     private Board board = new SimpleBoard(25, 10);
 

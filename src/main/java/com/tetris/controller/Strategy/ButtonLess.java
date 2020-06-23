@@ -1,9 +1,6 @@
 package com.tetris.controller.Strategy;
 
-import com.tetris.view.GuiController;
-import javafx.animation.Timeline;
-
-public class ButtonLess extends Buttons {
+public class ButtonLess extends Velocity {
 
     public ButtonLess( ) {
         velocityInterface = new VelocityDecrease();

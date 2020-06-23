@@ -2,9 +2,8 @@ package com.tetris.view;
 
 import com.tetris.controller.Strategy.ButtonAdd;
 import com.tetris.controller.Strategy.ButtonLess;
-import com.tetris.controller.Strategy.Buttons;
+import com.tetris.controller.Strategy.Velocity;
 import com.tetris.model.logic.DownData;
-import com.tetris.model.logic.SimpleBoard;
 import com.tetris.model.logic.ViewData;
 import com.tetris.model.music.ReproduceAudio;
 import com.tetris.model.music.ReproduceMusic;
@@ -43,17 +42,13 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.awt.Button;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.ResourceBundle;
 import java.util.Scanner;
 
 
@@ -123,8 +118,8 @@ public class GuiController implements Initializable {
 
 	private ArrayList<Integer> highScore = new ArrayList<Integer>();
 
-	private Buttons more;
-	private Buttons less;
+	private Velocity more;
+	private Velocity less;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
