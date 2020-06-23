@@ -11,6 +11,7 @@ import com.tetris.model.music.ReproduceAudio;
 import com.tetris.model.music.ReproduceMusic;
 import com.tetris.view.GuiController;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -119,7 +120,7 @@ public class Main extends Application {
         
         menu.GUI(c , StageMenu ,StageTetris, Stagehelp, ReproMusic, ReproAudio); // inicio menu con los stage que puede iniciar y el controller tetris
        
-     
+        StageTetris.setOnCloseRequest(e -> Platform.exit());
     }
 	
 	 @Override
