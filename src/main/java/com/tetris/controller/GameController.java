@@ -54,7 +54,7 @@ public class GameController implements InputEventListener { //clase que envia ac
             if (clearRow.getLinesRemoved() > 0) {
                 board.getScore().add(clearRow.getScoreBonus());
                 observador.setEstadoBonus(clearRow.getScoreBonus());
-                viewGuiController.Dificultad-=50;
+                viewGuiController.Dificultad-=30;
                 velBonus.changeVelocity(viewGuiController);
 
                 ReproAudio.Fx(1);
