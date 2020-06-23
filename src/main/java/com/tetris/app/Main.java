@@ -67,7 +67,7 @@ public class Main extends Application {
        
         Stage StageTetris = new Stage();                                       
         StageTetris.setTitle("TetrisFULL");
-        Scene SceneTetris = new Scene(rootTetris, 800, 610);                    
+        Scene SceneTetris = new Scene(rootTetris, 420, 508);                    
         StageTetris.setScene(SceneTetris);                                       
         
        //////////////////////////////////////////////INTERFAZ GRAFICA (Observador)////////////////////////////////////////////

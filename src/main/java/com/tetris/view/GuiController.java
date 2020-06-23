@@ -153,10 +153,10 @@ public class GuiController implements Initializable {
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if (newValue) {
                     timeLine.pause();
-                    pauseButton.setText("Resume");
+                    pauseButton.setText("Reanudar");
                 } else {
                     timeLine.play();
-                    pauseButton.setText("Pause");
+                    pauseButton.setText("Pausa");
                 }
             }
         });
