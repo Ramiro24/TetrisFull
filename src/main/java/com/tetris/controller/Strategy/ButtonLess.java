@@ -5,9 +5,9 @@ import javafx.animation.Timeline;
 
 public class ButtonLess extends Buttons {
 
-    public ButtonLess(Timeline timeline,  GuiController guiController) {
+    public ButtonLess( GuiController guiController) {
         velocityInterface = new VelocityDecrease();
-        this.timeline=timeline;
+        //this.timeline=timeline;
         this.guiController=guiController;
     }
 

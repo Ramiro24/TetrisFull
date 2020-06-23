@@ -19,8 +19,8 @@ public abstract class Buttons {
 
     abstract void display();
 
-    public void changeVelocity() {
-        velocityInterface.pushEvent(timeline, guiController);
+    public void changeVelocity(GuiController guiController) {
+        velocityInterface.pushEvent(guiController);
     }
 
 }

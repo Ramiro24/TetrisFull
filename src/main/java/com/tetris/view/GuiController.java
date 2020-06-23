@@ -98,7 +98,7 @@ public class GuiController implements Initializable {
 
     private Rectangle[][] rectangles;
 
-    private Timeline timeLine;
+    public Timeline timeLine;
 
     private Stage grafico;
 
@@ -194,6 +194,8 @@ public class GuiController implements Initializable {
         brickPanel.setLayoutY(-42 + gamePanel.getLayoutY() + brick.getyPosition() * brickPanel.getHgap() + brick.getyPosition() * BRICK_SIZE);
 
         generatePreviewPanel(brick.getNextBrickData());
+        less=new ButtonLess(this);
+        more=new ButtonAdd(this);
     }
 
 
@@ -376,8 +378,10 @@ public class GuiController implements Initializable {
             timeLine.setCycleCount(Timeline.INDEFINITE);
             timeLine.play();
         }*/
-        less = new ButtonLess(timeLine, this);
-        less.changeVelocity();
+       if (isPause.getValue() == Boolean.FALSE && isGameOver.getValue() == Boolean.FALSE){
+           less.changeVelocity(this);
+        }
+
     }
 
 
@@ -393,8 +397,11 @@ public class GuiController implements Initializable {
             timeLine.setCycleCount(Timeline.INDEFINITE);
             timeLine.play();
         }*/
-        more = new ButtonAdd(timeLine, this);
-        more.changeVelocity();
+
+        if (isPause.getValue() == Boolean.FALSE && isGameOver.getValue() == Boolean.FALSE){
+            more.changeVelocity(this);
+        }
+
     }
 
     public Timeline getTimeLine() {
