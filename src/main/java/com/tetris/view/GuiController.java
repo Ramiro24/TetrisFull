@@ -4,6 +4,7 @@ import com.tetris.controller.Strategy.ButtonAdd;
 import com.tetris.controller.Strategy.ButtonLess;
 import com.tetris.controller.Strategy.Buttons;
 import com.tetris.model.logic.DownData;
+import com.tetris.model.logic.SimpleBoard;
 import com.tetris.model.logic.ViewData;
 import com.tetris.model.music.ReproduceAudio;
 import com.tetris.model.music.ReproduceMusic;
@@ -47,10 +48,14 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.ResourceBundle;
 import java.util.Scanner;
+
 
 public class GuiController implements Initializable {
 
@@ -72,17 +77,17 @@ public class GuiController implements Initializable {
 	@FXML
 	private GridPane nextBrick;
 
-	@FXML
-	private GridPane brickPanel;
+    @FXML
+    private GridPane brickPanel;
 
-	@FXML
-	private ToggleButton pauseButton;
+    @FXML
+    private ToggleButton pauseButton;
 
-	@FXML
-	private GameOverPanel gameOverPanel;
+    @FXML
+    private GameOverPanel gameOverPanel;
 
-	@FXML
-	private HighScorePanel highScorePanel;
+    @FXML
+    private HighScorePanel highScorePanel;
 
 	private Stage puntuacion;
 
@@ -96,11 +101,11 @@ public class GuiController implements Initializable {
 
 	public double Dificultad;
 
-	// @FXML
-	// private MenuItem close; //
+    //@FXML
+    // private MenuItem close; //
 
-	// @FXML
-	// private Button estadistica; // agregado para agregar una nueva ventana
+    //@FXML
+    // private Button estadistica; // agregado para agregar una nueva ventana
 
 	private Rectangle[][] displayMatrix;
 
@@ -149,35 +154,35 @@ public class GuiController implements Initializable {
 					}
 				}
 
-				if (keyEvent.getCode() == KeyCode.N) {
-					newGame(null);
-				}
-				if (keyEvent.getCode() == KeyCode.P) {
-					pauseButton.selectedProperty().setValue(!pauseButton.selectedProperty().getValue());
-				}
-			}
-		});
-		gameOverPanel.setVisible(false);
-		highScorePanel.setVisible(false);
-		pauseButton.selectedProperty().bindBidirectional(isPause);
-		pauseButton.selectedProperty().addListener(new ChangeListener<Boolean>() {
-			@Override
-			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-				if (newValue) {
-					timeLine.pause();
-					pauseButton.setText("Resume");
-				} else {
-					timeLine.play();
-					pauseButton.setText("Pause");
-				}
-			}
-		});
-		final Reflection reflection = new Reflection();
-		reflection.setFraction(0.8);
-		reflection.setTopOpacity(0.9);
-		reflection.setTopOffset(-12);
-		scoreValue.setEffect(reflection);
-	}
+                if (keyEvent.getCode() == KeyCode.N) {
+                    newGame(null);
+                }
+                if (keyEvent.getCode() == KeyCode.P) {
+                    pauseButton.selectedProperty().setValue(!pauseButton.selectedProperty().getValue());
+                }
+            }
+        });
+        gameOverPanel.setVisible(false);
+        highScorePanel.setVisible(false);
+        pauseButton.selectedProperty().bindBidirectional(isPause);
+        pauseButton.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if (newValue) {
+                    timeLine.pause();
+                    pauseButton.setText("Reanudar");
+                } else {
+                    timeLine.play();
+                    pauseButton.setText("Pausa");
+                }
+            }
+        });
+        final Reflection reflection = new Reflection();
+        reflection.setFraction(0.8);
+        reflection.setTopOpacity(0.9);
+        reflection.setTopOffset(-12);
+        scoreValue.setEffect(reflection);
+    }
 
 	public void initGameView(int[][] boardMatrix, ViewData brick, int Dificultad) {
 
@@ -365,10 +370,9 @@ public class GuiController implements Initializable {
 		// eventListener.nuevaVentana();
 	}
 
-	public void Grafico(Stage g) {
-
-		grafico = g;
-	}
+    public void Grafico(Stage g) {
+        grafico = g;
+    }
 
 	@FXML
 	public void Puntuacion(ActionEvent event) {
@@ -500,5 +504,6 @@ public class GuiController implements Initializable {
 		Integer i = Collections.max(v);
 		return i;
 	}
+
 
 }

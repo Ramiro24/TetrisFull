@@ -1,55 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.tetris.view.HighScorePanel?>
-<?import com.tetris.view.GameOverPanel?>
-<?import javafx.scene.Group?>
-
+<?import com.tetris.view.GameOverPanel?> 
+<?import java.lang.*?>
 <?import java.net.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane prefHeight="588.0000999999975" prefWidth="638.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tetris.view.GuiController">
- 
-  <GridPane fx:id="brickPanel" hgap="1" vgap="1" />
+<Pane prefHeight="588.0000999999975" prefWidth="638.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.tetris.view.GuiController">
+  <GridPane fx:id="brickPanel" hgap="1.0" vgap="1.0" />
   <BorderPane fx:id="gameBoard" styleClass="gameBoard">
     <center>
       <GridPane fx:id="gamePanel" hgap="1.0" vgap="1.0" />
     </center>
   </BorderPane>
-  <VBox alignment="CENTER" layoutX="229.0" layoutY="12.0" prefHeight="403.0" styleClass="vbox">
-    <VBox alignment="CENTER">
-      <Label styleClass="scoreClass" text="Score:" />
-    </VBox>
-    <VBox alignment="CENTER">
-      <Label styleClass="nextBrickLabel" text="Next brick" />
-      <BorderPane maxWidth="100.0" prefHeight="70.0" prefWidth="100.0" styleClass="nextBrick">
-        <center>
-          <GridPane fx:id="nextBrick" alignment="CENTER" hgap="1.0" vgap="1.0" />
-        </center>
-      </BorderPane>
-    </VBox>
-    <Button onAction="#newGame" prefWidth="140.0" styleClass="ipad-dark-grey" text="New Game" />
-  
-    <ToggleButton fx:id="pauseButton" onAction="#pauseGame" prefWidth="140.0" styleClass="ipad-dark-grey" text="Pause" />
-    <VBox fx:id="helpBox">
-      <Text styleClass="helpInfo" wrappingWidth="150.0" />
-      <Text styleClass="helpInfo" wrappingWidth="150.0" />
-      <Text styleClass="helpInfo" wrappingWidth="150.0" />
-    </VBox>
-    <Text fx:id="scoreValue" styleClass="scoreClass" text="Text" />
-  </VBox>
-  <Button fx:id="Puntuacion" layoutX="379.0" layoutY="12.0" mnemonicParsing="false" onAction="#Puntuacion" prefHeight="46.0" prefWidth="126.0" text="Púntuacion" />
-  <Button fx:id="PuntuacionTotal" layoutX="379.0" layoutY="94.0" mnemonicParsing="false" onAction="#PuntuacionTotal" prefHeight="46.0" prefWidth="213.0" text="Puntuacion Total" />
-   <Button fx:id="velocityMore" layoutX="416.0" layoutY="168.0" mnemonicParsing="false" onAction="#velocityMore" text="Mas" />
-   <Button fx:id="velocityLess" layoutX="416.0" layoutY="221.0" mnemonicParsing="false" onAction="#velocityLess" text="Menos" />
-  <Group fx:id="groupNotification" layoutX="14" layoutY="203">
-    <VBox alignment="CENTER">
-      <GameOverPanel fx:id="gameOverPanel"/>
-      <HighScorePanel fx:id="highScorePanel"/>
-    </VBox>
-  </Group>
   <stylesheets>
     <URL value="@window_style.css" />
   </stylesheets>
+  <VBox alignment="CENTER" layoutX="229.0" layoutY="14.0" prefHeight="550.0" prefWidth="215.0" styleClass="vbox">
+    <Pane prefHeight="200.0" prefWidth="200.0">
+      <children>
+        <Label layoutX="52.0" layoutY="0.0" styleClass="scoreClass" text="Puntos:" />
+        <Text fx:id="scoreValue" layoutX="95.0" layoutY="85.0" styleClass="scoreClass" text="Text" />
+        <Pane layoutX="0.0" layoutY="95.0" prefHeight="200.0" prefWidth="200.0">
+          <children>
+            <Label layoutX="72.0" layoutY="0" styleClass="nextBrickLabel" text="Siguiente" />
+            <BorderPane layoutX="58.0" layoutY="42.0" maxWidth="101.9998779296875" prefHeight="47.0" prefWidth="101.9998779296875" styleClass="nextBrick">
+              <top>
+                <GridPane fx:id="nextBrick" alignment="CENTER" hgap="1.0" vgap="1.0" />
+              </top>
+            </BorderPane>
+            <Button layoutX="38.0" layoutY="114.0" onAction="#newGame" prefWidth="140.0" styleClass="ipad-dark-grey" text="Jugar" />
+          </children>
+        </Pane>
+      </children>
+    </Pane>
+    <VBox alignment="CENTER" prefHeight="106.0" prefWidth="150.0" />
+    <VBox alignment="CENTER" />
+    <ToggleButton fx:id="pauseButton" onAction="#pauseGame" prefWidth="140.0" styleClass="ipad-dark-grey" text="Pausa" />
+    <Button fx:id="Puntuacion" mnemonicParsing="false" onAction="#Puntuacion" prefHeight="46.0" prefWidth="145.0" styleClass="ipad-dark-grey" text="Puntuacion" />
+    <Pane prefHeight="200.0" prefWidth="200.0">
+      <children>
+        <Button fx:id="velocityLess" layoutX="65.0" layoutY="-9.0" mnemonicParsing="false" onAction="#velocityLess" styleClass="flecha" text="⇓" />
+        <Button fx:id="velocityMore" layoutX="120.0" layoutY="-9.0" mnemonicParsing="false" onAction="#velocityMore" styleClass="flecha" text="⇑" />
+        <Button fx:id="PuntuacionTotal" layoutX="49.0" layoutY="50.0" minHeight="42.0" mnemonicParsing="false" onAction="#PuntuacionTotal" prefHeight="42.0" prefWidth="118.0" styleClass="ipad-dark-grey" text="Total" />
+      </children>
+    </Pane>
+  </VBox>
+  <Group fx:id="groupNotification" layoutX="14.0" layoutY="203.0">
+    <VBox alignment="CENTER">
+      <GameOverPanel fx:id="gameOverPanel" />
+      <HighScorePanel fx:id="highScorePanel" />
+    </VBox>
+  </Group>
 </Pane>
