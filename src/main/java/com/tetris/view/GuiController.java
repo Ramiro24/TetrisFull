@@ -98,7 +98,7 @@ public class GuiController implements Initializable {
 	ReproduceAudio ruidos;
 
 	boolean bandera = false;
-
+/////////////////////////////////////////////////////////////////////////////////////
 	public double Dificultad;
 
     //@FXML
@@ -513,6 +513,11 @@ public class GuiController implements Initializable {
 	public int isMax(ArrayList<Integer> v) {
 		Integer i = Collections.max(v);
 		return i;
+	}
+	
+	public void AumentaDificultad(int Dificultad) {
+		 this.Dificultad =  this.Dificultad + Dificultad;
+		 System.out.println("estoy en:" + this.Dificultad);
 	}
 
 
