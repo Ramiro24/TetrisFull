@@ -100,7 +100,7 @@ public class Main extends Application {
 	    DatosObservados statObservador = new DatosObservados();                           
 	    GuiStatsObservador ObservadorDisplay = new GuiStatsObservador(statObservador, s); // le paso referencia a OBSERVADOR de la clase a observar y le paso su controlador para que lo agregue a la lista de observadores del observador 
 	    GameController ControladorTetris = new GameController(c,statObservador,ReproAudio);   
-	    c.setMusic(ReproMusic);
+	    c.setMusic(ReproMusic,ReproAudio);
       
        ////////////////////////////////////////////////////INTERFAZ AYUDA/////////////////////////////////////////////////////
      

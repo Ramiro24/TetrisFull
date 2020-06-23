@@ -60,7 +60,7 @@ public class GameController implements InputEventListener { //clase que envia ac
                 board.getScore().add(1);
                 // probando si cambia el estado en el que observa
                 observador.setEstado();
-                ReproAudio.Fx(5);
+                ReproAudio.Fx(5); //aca va el cinco
             }
         }
         return new DownData(clearRow, board.getViewData());

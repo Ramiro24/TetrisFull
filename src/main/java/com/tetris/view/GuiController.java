@@ -93,6 +93,8 @@ public class GuiController implements Initializable {
     
     ReproduceMusic audio;
     
+    ReproduceAudio ruidos;
+    
     boolean bandera = false;
 
 
@@ -354,17 +356,19 @@ public class GuiController implements Initializable {
     }
 
     public void Grafico(Stage g) {
+
         grafico = g;
     }
 
     @FXML
     public void Puntuacion(ActionEvent event) {
-
+        ruidos.Fx(4);
         grafico.show();
     }
 
     @FXML
     public void PuntuacionTotal(ActionEvent event) {
+    	   ruidos.Fx(4);
         puntuacion.show();
     }
 
@@ -384,7 +388,7 @@ public class GuiController implements Initializable {
     @FXML
     public void velocityLess() {
     	if(Dificultad <= 500) {
-
+        	ruidos.Fx(2);
     	
         timeLine.stop();
         Dificultad = Dificultad +20;
@@ -415,6 +419,7 @@ public class GuiController implements Initializable {
     @FXML
     public void velocityMore() {
     	if(Dificultad >= 40) {
+        ruidos.Fx(2);
         timeLine.stop();
         Dificultad = Dificultad - 20;
        
@@ -453,8 +458,9 @@ public class GuiController implements Initializable {
 
     }
     
-    public void setMusic(ReproduceMusic audio) {
+    public void setMusic(ReproduceMusic audio, ReproduceAudio ruidos) {
     	this.audio = audio;
+    	this.ruidos = ruidos;
     }
 
     public void saveData(String value) {

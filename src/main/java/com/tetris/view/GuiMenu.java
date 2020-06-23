@@ -67,7 +67,7 @@ public class GuiMenu implements Initializable {
 
     @FXML
     public void Comenzar(ActionEvent event) {
-  
+    	 audio.Fx(0);
     	gui.setDificultad(dificultad);
     	gui.newGame(event);
         stage.close();
@@ -124,7 +124,7 @@ public class GuiMenu implements Initializable {
     void Facil(ActionEvent event) {
     	dificultad = 400; 
     //	gui.setDificultad(dificultad);
-    	 audio.Fx(3);
+    	 audio.Fx(16);
     }
 
     @FXML

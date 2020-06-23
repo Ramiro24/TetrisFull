@@ -34,13 +34,13 @@ public class ReproduceAudio {
     public ReproduceAudio() {
     
         
-        IntroducirFx("Efecto0.wav");
-        IntroducirFx("Efecto1.wav");
-        IntroducirFx("Efecto2.wav");
-        IntroducirFx("Efecto3.wav");//si
-        IntroducirFx("Efecto4.wav");
-        IntroducirFx("Efecto5.wav");
-        IntroducirFx("Efecto6.wav");
+        IntroducirFx("Efecto0.wav");//comienco juego
+        IntroducirFx("Efecto1.wav");//cuando completas fila
+        IntroducirFx("Efecto2.wav");//botones velocidad
+        IntroducirFx("Efecto3.wav");//botones seleccion dificultad medio y alto
+        IntroducirFx("Efecto4.wav");// grafico y grafico total
+        IntroducirFx("Efecto5.wav");//cuenta score cuando bajas
+        IntroducirFx("Efecto6.wav");//game over
     
         
     }
