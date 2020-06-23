@@ -7,7 +7,7 @@ public class ButtonAdd extends Velocity {
     }
     
     @Override
-    void display() {
+    public void display() {
         System.out.println("I'm a real button duck");
     }
 }

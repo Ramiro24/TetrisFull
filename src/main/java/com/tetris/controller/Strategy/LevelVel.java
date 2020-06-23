@@ -6,7 +6,7 @@ public class LevelVel extends Velocity {
     }
 
     @Override
-    void display() {
+    public void display() {
 
     }
 }

@@ -5,9 +5,7 @@ import javafx.animation.Timeline;
 
 public abstract class Velocity {
 
-    GuiController guiController;
-    Timeline timeline;
-    VelocityInterface velocityInterface;
+    public VelocityInterface velocityInterface;
 
     public Velocity() {
 
@@ -17,7 +15,7 @@ public abstract class Velocity {
         this.velocityInterface = fb;
     }
 
-    abstract void display();
+    public abstract void display();
 
     public void changeVelocity(GuiController guiController) {
         velocityInterface.pushEvent(guiController);

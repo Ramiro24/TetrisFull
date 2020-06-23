@@ -9,7 +9,7 @@ public class ButtonLess extends Velocity {
     }
 
     @Override
-    void display() {
+    public void display() {
         System.out.println("I'm a real Mallard duck");
     }
 }
