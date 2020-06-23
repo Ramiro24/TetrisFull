@@ -18,33 +18,10 @@ import com.tetris.model.events.MoveEvent;
 
 
 public class GameController implements InputEventListener { //clase que envia actualizaciones a DatosObservados mediante el objeto observador
-    /*
-     * Posiblemente se crea en tiempo de ejecucion
-     * Este es el sujeto a observar deberia tener una lista de observadores
-     */
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//<<<<<<< HEAD
-//public class GameController implements InputEventListener{ //clase que envia actualizaciones a DatosObservados mediante el objeto observador
-/*
- * Posiblemente se crea en tiempo de ejecucion
- * Este es el sujeto a observar deberia tener una lista de observadores
- */
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
 	 private int Dificultad;
 	 DatosObservados observador;
 	
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//=======
-  
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//>>>>>>> f9e4a3f01ed480285b308815d74e304a2c33199a
 
     private Board board = new SimpleBoard(25, 10);
 
@@ -56,25 +33,9 @@ public class GameController implements InputEventListener { //clase que envia ac
         viewGuiController = c;
         board.createNewBrick();
         viewGuiController.setEventListener(this);
-//<<<<<<< HEAD
-        viewGuiController.initGameView(board.getBoardMatrix(), board.getViewData(),Dificultad);
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        viewGuiController.initGameView(board.getBoardMatrix(), board.getViewData(), Dificultad);
         viewGuiController.bindScore(board.getScore().scoreProperty());
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
- 
-//=======
- 
-
-
-    
-
-    /* public void inicia() {
-      viewGuiController.setEventListener(this);
-      viewGuiController.initGameView(board.getBoardMatrix(), board.getViewData(),Dificultad);
-      viewGuiController.bindScore(board.getScore().scoreProperty());
-     }*/
-//>>>>>>> f9e4a3f01ed480285b308815d74e304a2c33199a
     @Override
     public DownData onDownEvent(MoveEvent event) {
         boolean canMove = board.moveBrickDown();
