@@ -81,7 +81,7 @@ public class GuiController implements Initializable {
     @FXML
     private HighScorePanel highScorePanel;
 
-    
+
     private Stage puntuacion;
 
     public int Dificultad;
@@ -363,41 +363,34 @@ public class GuiController implements Initializable {
 
     @FXML
     public void velocityLess() {
-    	if(Dificultad <= 500) {
-
-    	
-        timeLine.stop();
-        Dificultad = Dificultad +20;
-        
-        
-
-        timeLine = new Timeline(new KeyFrame(
-                Duration.millis(Dificultad),
-                ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
-        ));
-        timeLine.setCycleCount(Timeline.INDEFINITE);
-        timeLine.play();
-    	}
+      /*  if (Dificultad <= 500) {
+            timeLine.stop();
+            Dificultad = Dificultad + 20;
+            timeLine = new Timeline(new KeyFrame(
+                    Duration.millis(Dificultad),
+                    ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
+            ));
+            timeLine.setCycleCount(Timeline.INDEFINITE);
+            timeLine.play();
+        }*/
     }
-    
+
 
     @FXML
     public void velocityMore() {
-    	if(Dificultad >= 40) {
-        timeLine.stop();
-        Dificultad = Dificultad - 20;
-       
-
-        timeLine = new Timeline(new KeyFrame(
-                Duration.millis(Dificultad),
-                ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
-        ));
-        timeLine.setCycleCount(Timeline.INDEFINITE);
-        timeLine.play();
-    	}
+       /* if (Dificultad >= 40) {
+            timeLine.stop();
+            Dificultad = Dificultad - 20;
+            timeLine = new Timeline(new KeyFrame(
+                    Duration.millis(Dificultad),
+                    ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
+            ));
+            timeLine.setCycleCount(Timeline.INDEFINITE);
+            timeLine.play();
+        }*/
     }
 
-    public Timeline getTimeLine(){
+    public Timeline getTimeLine() {
         return timeLine;
     }
 
