@@ -4,9 +4,9 @@ import com.tetris.view.GuiController;
 import javafx.animation.Timeline;
 
 public class ButtonAdd extends Buttons {
-    public ButtonAdd( GuiController guiController) {
+    public ButtonAdd( ) {
         velocityInterface=new VelocityMore();
-        this.guiController=guiController;
+
     }
     
     @Override
