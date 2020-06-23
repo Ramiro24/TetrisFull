@@ -14,7 +14,7 @@ public class ReproduceMusic {
     
     private final BasicPlayer Audio = new BasicPlayer();
     private ArrayList<File> Music = new ArrayList<>();
-    private float volumen=0.1f;
+    private float volumen=0.5f;
     private File file;
     private int Index;
     private boolean Repetir=true;

@@ -334,6 +334,11 @@ public class GuiController implements Initializable {
 
 	public void newGame(ActionEvent actionEvent) {
 		timeLine.stop();
+
+		timeLine = new Timeline(new KeyFrame(Duration.millis(Dificultad),
+				ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))));
+		timeLine.setCycleCount(Timeline.INDEFINITE);
+		
 		gameOverPanel.setVisible(false);
 		highScorePanel.setVisible(false);
 		eventListener.createNewGame();

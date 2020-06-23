@@ -33,7 +33,8 @@
                 <GridPane fx:id="nextBrick" alignment="CENTER" hgap="1.0" vgap="1.0" />
               </top>
             </BorderPane>
-            <Button layoutX="38.0" layoutY="114.0" onAction="#newGame" prefWidth="140.0" styleClass="ipad-dark-grey" text="Jugar" />
+          <!--   <Button fx:id="newGame" layoutX="38.0" layoutY="114.0" onAction="#newGame" prefWidth="140.0" styleClass="ipad-dark-grey" text="Jugar" />-->
+            <ToggleButton fx:id="newGame" onAction="#newGame"  prefWidth="38.0"  styleClass="ipad-dark-grey" text="jugar" />
           </children>
         </Pane>
       </children>
