@@ -81,7 +81,7 @@ public class GuiController implements Initializable {
     @FXML
     private HighScorePanel highScorePanel;
 
-
+    
     private Stage puntuacion;
 
     public int Dificultad;
@@ -363,10 +363,13 @@ public class GuiController implements Initializable {
 
     @FXML
     public void velocityLess() {
-        System.out.println("less");
+    	if(Dificultad <= 500) {
+
+    	
         timeLine.stop();
-        Dificultad = 1000;
-        System.out.println("la dificultad que manejo es: " + Dificultad);
+        Dificultad = Dificultad +20;
+        
+        
 
         timeLine = new Timeline(new KeyFrame(
                 Duration.millis(Dificultad),
@@ -374,14 +377,16 @@ public class GuiController implements Initializable {
         ));
         timeLine.setCycleCount(Timeline.INDEFINITE);
         timeLine.play();
+    	}
     }
+    
 
     @FXML
     public void velocityMore() {
-        System.out.println("more");
+    	if(Dificultad >= 40) {
         timeLine.stop();
-        Dificultad = 400;
-        System.out.println("la dificultad que manejo es: " + Dificultad);
+        Dificultad = Dificultad - 20;
+       
 
         timeLine = new Timeline(new KeyFrame(
                 Duration.millis(Dificultad),
@@ -389,7 +394,7 @@ public class GuiController implements Initializable {
         ));
         timeLine.setCycleCount(Timeline.INDEFINITE);
         timeLine.play();
-
+    	}
     }
 
     public Timeline getTimeLine(){
