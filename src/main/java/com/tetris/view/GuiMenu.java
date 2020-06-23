@@ -57,7 +57,8 @@ public class GuiMenu implements Initializable {
     
     ReproduceMusic ReproMusic;
     ReproduceAudio audio;
-    boolean bandera = true;
+    static  boolean bandera = true;
+    static  boolean BanderaExterna;
     
     
     @FXML
@@ -124,7 +125,7 @@ public class GuiMenu implements Initializable {
     void Facil(ActionEvent event) {
     	dificultad = 400; 
     //	gui.setDificultad(dificultad);
-    	 audio.Fx(16);
+    	 audio.Fx(3);
     }
 
     @FXML
@@ -134,7 +135,10 @@ public class GuiMenu implements Initializable {
     	 audio.Fx(3);
     }
    
+    public static boolean EstadoMusic() {
+    	
+    	BanderaExterna = !bandera;
+    	return BanderaExterna;
+    }
   
-  
-
-}
+ }

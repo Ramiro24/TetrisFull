@@ -26,23 +26,18 @@ import java.util.ResourceBundle;
 public class Main extends Application {
 	
 	 
-	private ReproduceMusic ReproMusic = new ReproduceMusic();//////////////////////////////////////////////////////////////////////////////////MUSICA
+	private ReproduceMusic ReproMusic = new ReproduceMusic();
 
-	 private ReproduceAudio ReproAudio = new ReproduceAudio();//////////////////////////////////////////////////////////////////////////////////MUSICA
+	 private ReproduceAudio ReproAudio = new ReproduceAudio();
 	
 	 public static void main(String[] args) {
 		 
 		
 	        launch(args);
 	    }
-	   Stage StageGrafico = new Stage();  
-	   //Stage StageTetris = new Stage();  
-	   Stage puntos = new Stage();
-	   Stage Stagehelp = new Stage();
-	  Stage StageMenu = new Stage();
 	
 	 @Override
-    public void start(Stage StageTetris) throws Exception { //comienza con stage de menu
+    public void start(Stage StageMenu) throws Exception { //comienza con stage de menu
 	
     	//Archivos FXML 
     	URL locationMenu = getClass().getClassLoader().getResource("Menu.fxml");
@@ -84,14 +79,15 @@ public class Main extends Application {
        	
        ////////////////////////////////////////////////INTERFAZ DE TETRIS////////////////////////////////////////////////////
        
-    //    Stage StageTetris = new Stage();                                       
+        Stage StageTetris = new Stage();                                       
         StageTetris.setTitle("TetrisFULL");
         Scene SceneTetris = new Scene(rootTetris, 800, 610);                    
         StageTetris.setScene(SceneTetris);                                       
         
        //////////////////////////////////////////////INTERFAZ GRAFICA (Observador)////////////////////////////////////////////
    
-     //   Stage StageGrafico = new Stage();                                         
+     //   Stage StageGrafico = new Stage();   
+ 	    Stage StageGrafico = new Stage();  
         StageGrafico.setTitle("Grafico de estadistica Tetris");
         Scene sceneGrafica = new Scene(rootGrafica, 620, 450);                   
         StageGrafico.setScene(sceneGrafica);                                       
@@ -104,7 +100,7 @@ public class Main extends Application {
       
        ////////////////////////////////////////////////////INTERFAZ AYUDA/////////////////////////////////////////////////////
      
-     //   Stage Stagehelp = new Stage();
+        Stage Stagehelp = new Stage();
         Stagehelp.setTitle("Ayuda");
         Stagehelp.setScene(new Scene(rootAyuda, 620, 450));
         
@@ -129,14 +125,6 @@ public class Main extends Application {
 	 @Override
 	 public void stop() {
 		 ReproMusic.DetenerMusica();
-	//	 StageGrafico.close();
-		// StageTetris.close();
-	//	 puntos.close();
-	//	 Stagehelp.close();
-		 
-		 
-	 }
- 
 
-
-}
+	}
+ }

@@ -10,22 +10,6 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-/**
- *
- * @author Yacoobs
- * Esta clase se encarga de Reproducir los efectos de audio almacenando los en un ArrayList las rutas
- * de ubicacion de cada uno de ellos y luego llamando a su metodo Fx() carga dicha ruta, reproduciendo
- * el audio con la interface Clip, pasando como argumento al metodo el indice de la ruta. 
- * 
- */
-/**
-*
-* @author Yacoobs
-* Martes 19 Diciembre del 2017 8:41AM 
-* ultima modificacion 18 Sabado Enero del 2020
-*/
-
-
 public class ReproduceAudio {
     
     

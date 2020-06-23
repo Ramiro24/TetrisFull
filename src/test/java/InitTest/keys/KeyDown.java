@@ -3,6 +3,7 @@ package InitTest.keys;
 import com.tetris.controller.GameController;
 import com.tetris.model.Observer.DatosObservados;
 import com.tetris.model.logic.SimpleBoard;
+import com.tetris.model.music.ReproduceAudio;
 import com.tetris.view.GuiController;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -42,7 +43,8 @@ public class KeyDown  extends ApplicationTest  {
         //controla el juego
         GuiController c = fxmlLoader.getController(); // no deberia ir esto aca
         DatosObservados statObservador = new DatosObservados();
-        GameController controladorTetris = new GameController(c, statObservador);
+        ReproduceAudio ReproAudio= new  ReproduceAudio();
+        GameController controladorTetris = new GameController(c, statObservador, ReproAudio);
         int[][] matrix = new int[][]{
                 {0,0,0,0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0,0,0,0},

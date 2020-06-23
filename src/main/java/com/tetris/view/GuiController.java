@@ -335,6 +335,8 @@ public class GuiController implements Initializable {
 
     public void pauseGame(ActionEvent actionEvent) {
         ///
+    	if(GuiMenu.EstadoMusic()) {
+    	
     	if(bandera) {
         	audio.ReproduceMusic(0);
     		bandera = false;}
@@ -343,7 +345,7 @@ public class GuiController implements Initializable {
     		audio.DetenerMusica();
     		bandera = true;}
         
-    	gamePanel.requestFocus();
+    	gamePanel.requestFocus();}
         
     }
 
