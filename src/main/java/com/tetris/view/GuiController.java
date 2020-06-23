@@ -290,13 +290,11 @@ public class GuiController implements Initializable {
         this.eventListener = eventListener;
     }
 
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void bindScore(IntegerProperty integerProperty) {
 
         scoreValue.textProperty().bind(integerProperty.asString());
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void gameOver() {
         timeLine.stop();
         gameOverPanel.setVisible(true);
@@ -364,12 +362,34 @@ public class GuiController implements Initializable {
     }
 
     @FXML
-    public void velocityLess(){
+    public void velocityLess() {
         System.out.println("less");
+        timeLine.stop();
+        Dificultad = 1000;
+        System.out.println("la dificultad que manejo es: " + Dificultad);
+
+        timeLine = new Timeline(new KeyFrame(
+                Duration.millis(Dificultad),
+                ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
+        ));
+        timeLine.setCycleCount(Timeline.INDEFINITE);
+        timeLine.play();
     }
+
     @FXML
-    public void velocityMore(){
+    public void velocityMore() {
         System.out.println("more");
+        timeLine.stop();
+        Dificultad = 400;
+        System.out.println("la dificultad que manejo es: " + Dificultad);
+
+        timeLine = new Timeline(new KeyFrame(
+                Duration.millis(Dificultad),
+                ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
+        ));
+        timeLine.setCycleCount(Timeline.INDEFINITE);
+        timeLine.play();
+
     }
 
     public void Puntuacion(Stage g) {
