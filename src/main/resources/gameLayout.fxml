@@ -10,6 +10,7 @@
 <?import javafx.scene.text.*?>
 
 <Pane prefHeight="588.0000999999975" prefWidth="638.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tetris.view.GuiController">
+ 
   <GridPane fx:id="brickPanel" hgap="1" vgap="1" />
   <BorderPane fx:id="gameBoard" styleClass="gameBoard">
     <center>
@@ -29,6 +30,7 @@
       </BorderPane>
     </VBox>
     <Button onAction="#newGame" prefWidth="140.0" styleClass="ipad-dark-grey" text="New Game" />
+  
     <ToggleButton fx:id="pauseButton" onAction="#pauseGame" prefWidth="140.0" styleClass="ipad-dark-grey" text="Pause" />
     <VBox fx:id="helpBox">
       <Text styleClass="helpInfo" wrappingWidth="150.0" />

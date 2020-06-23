@@ -2,10 +2,13 @@ package com.tetris.app;
 
 import com.tetris.view.GuiAyuda;
 import com.tetris.view.GuiMenu;
+import com.sun.glass.events.WindowEvent;
 import com.tetris.controller.GameController;
 import com.tetris.model.Observer.DatosObservados;
 import com.tetris.model.Observer.GuiPuntuacionTotalObservador;
 import com.tetris.model.Observer.GuiStatsObservador;
+import com.tetris.model.music.ReproduceAudio;
+import com.tetris.model.music.ReproduceMusic;
 import com.tetris.view.GuiController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,20 +16,34 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.awt.event.ActionEvent;
+import java.beans.EventHandler;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Main extends Application {
 
+
+public class Main extends Application {
+	
+	 
+	private ReproduceMusic ReproMusic = new ReproduceMusic();//////////////////////////////////////////////////////////////////////////////////MUSICA
+
+	 private ReproduceAudio ReproAudio = new ReproduceAudio();//////////////////////////////////////////////////////////////////////////////////MUSICA
 	
 	 public static void main(String[] args) {
+		 
+		
 	        launch(args);
 	    }
-	
+	   Stage StageGrafico = new Stage();  
+	   //Stage StageTetris = new Stage();  
+	   Stage puntos = new Stage();
+	   Stage Stagehelp = new Stage();
+	  Stage StageMenu = new Stage();
 	
 	 @Override
-    public void start(Stage StageMenu) throws Exception { //comienza con stage de menu
-    	
+    public void start(Stage StageTetris) throws Exception { //comienza con stage de menu
+	
     	//Archivos FXML 
     	URL locationMenu = getClass().getClassLoader().getResource("Menu.fxml");
     	URL locationTetris = getClass().getClassLoader().getResource("gameLayout.fxml");
@@ -56,6 +73,8 @@ public class Main extends Application {
         GuiAyuda ayuda = fxmlLoaderAyuda.getController();
         GuiPuntuacionTotalObservador puntuacion = fxmlLoaderPuntuacionTotal.getController();
         
+        
+        
         ///////////////////////////////////////////////INTERFAZ MENU////////////////////////////////////////////////////////
        
         StageMenu.setTitle("Menu");
@@ -65,14 +84,14 @@ public class Main extends Application {
        	
        ////////////////////////////////////////////////INTERFAZ DE TETRIS////////////////////////////////////////////////////
        
-        Stage StageTetris = new Stage();                                       
+    //    Stage StageTetris = new Stage();                                       
         StageTetris.setTitle("TetrisFULL");
         Scene SceneTetris = new Scene(rootTetris, 800, 610);                    
         StageTetris.setScene(SceneTetris);                                       
         
        //////////////////////////////////////////////INTERFAZ GRAFICA (Observador)////////////////////////////////////////////
    
-        Stage StageGrafico = new Stage();                                         
+     //   Stage StageGrafico = new Stage();                                         
         StageGrafico.setTitle("Grafico de estadistica Tetris");
         Scene sceneGrafica = new Scene(rootGrafica, 620, 450);                   
         StageGrafico.setScene(sceneGrafica);                                       
@@ -80,11 +99,12 @@ public class Main extends Application {
 	    c.Grafico(StageGrafico);
 	    DatosObservados statObservador = new DatosObservados();                           
 	    GuiStatsObservador ObservadorDisplay = new GuiStatsObservador(statObservador, s); // le paso referencia a OBSERVADOR de la clase a observar y le paso su controlador para que lo agregue a la lista de observadores del observador 
-	    GameController ControladorTetris = new GameController(c,statObservador);            
+	    GameController ControladorTetris = new GameController(c,statObservador,ReproAudio);   
+	    c.setMusic(ReproMusic);
       
        ////////////////////////////////////////////////////INTERFAZ AYUDA/////////////////////////////////////////////////////
      
-        Stage Stagehelp = new Stage();
+     //   Stage Stagehelp = new Stage();
         Stagehelp.setTitle("Ayuda");
         Stagehelp.setScene(new Scene(rootAyuda, 620, 450));
         
@@ -101,9 +121,21 @@ public class Main extends Application {
        //////////////////////////////////////////////////////INICIO MENU//////////////////////////////////////////////////////////
       
         
-        menu.GUI(c , StageMenu ,StageTetris, Stagehelp); // inicio menu con los stage que puede iniciar y el controller tetris
+        menu.GUI(c , StageMenu ,StageTetris, Stagehelp, ReproMusic, ReproAudio); // inicio menu con los stage que puede iniciar y el controller tetris
+       
+     
     }
-
+	
+	 @Override
+	 public void stop() {
+		 ReproMusic.DetenerMusica();
+	//	 StageGrafico.close();
+		// StageTetris.close();
+	//	 puntos.close();
+	//	 Stagehelp.close();
+		 
+		 
+	 }
  
 
 

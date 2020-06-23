@@ -1,11 +1,14 @@
 package com.tetris.view;
 
 
+import java.io.File;
 //import	com.quirko.gui.GuiController;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.tetris.controller.GameController;
+import com.tetris.model.music.ReproduceAudio;
+import com.tetris.model.music.ReproduceMusic;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -52,6 +55,9 @@ public class GuiMenu implements Initializable {
     
     private GameController game;
     
+    ReproduceMusic ReproMusic;
+    ReproduceAudio audio;
+    boolean bandera = true;
     
     
     @FXML
@@ -61,15 +67,11 @@ public class GuiMenu implements Initializable {
 
     @FXML
     public void Comenzar(ActionEvent event) {
-    //	game.setDificultad(dificultad);
+  
     	gui.setDificultad(dificultad);
     	gui.newGame(event);
-        
         stage.close();
-    	
-//1.-   game.inicia();
     	ayuda.close();
-//        GameController game = new GameController(gui);
     	primarystage.show();
 
     
@@ -77,16 +79,27 @@ public class GuiMenu implements Initializable {
 
     @FXML
     void Sonido(ActionEvent event) {
+    	
+    	if(bandera) {
+    		ReproMusic.ReproduceMusic(0);
+    		bandera = false;}
+    	    
+    	else {
+    		ReproMusic.DetenerMusica();
+    		bandera = true;}
+    	
     }
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
 	     
     }
-    public void GUI(GuiController c ,Stage stage1 ,Stage primaryStage ,Stage help  ) {
+    public void GUI(GuiController c ,Stage stage1 ,Stage primaryStage ,Stage help, ReproduceMusic ReproMusic, ReproduceAudio audio  ) {
     	gui= c;
       	stage = stage1;
         primarystage = primaryStage;
         ayuda = help;
+        this.ReproMusic = ReproMusic;
+        this.audio = audio;
         
     }
     
@@ -105,17 +118,20 @@ public class GuiMenu implements Initializable {
     void Dificil(ActionEvent event) {
          dificultad = 100;
      //    gui.setDificultad(dificultad);
+         audio.Fx(3);
     } 
     @FXML
     void Facil(ActionEvent event) {
     	dificultad = 400; 
     //	gui.setDificultad(dificultad);
+    	 audio.Fx(3);
     }
 
     @FXML
     void Medio(ActionEvent event) {
     	dificultad = 300; 
     //	gui.setDificultad(dificultad);
+    	 audio.Fx(3);
     }
    
   

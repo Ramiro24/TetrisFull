@@ -3,6 +3,8 @@ package com.tetris.view;
 import com.tetris.model.logic.DownData;
 import com.tetris.model.logic.SimpleBoard;
 import com.tetris.model.logic.ViewData;
+import com.tetris.model.music.ReproduceAudio;
+import com.tetris.model.music.ReproduceMusic;
 //import com.quirko.gui.GameOverPanel;
 //import com.quirko.gui.NotificationPanel;
 //import com.quirko.logic.events.EventSource;
@@ -38,6 +40,7 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.awt.Button;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -56,7 +59,9 @@ public class GuiController implements Initializable {
     private static final int BRICK_SIZE = 20;
 
     private static final Boolean Boolean = null;
-
+ /*   @FXML
+    public Button closeButton;
+*/
     @FXML
     private GridPane gamePanel;
 
@@ -85,6 +90,10 @@ public class GuiController implements Initializable {
     private Stage puntuacion;
 
     public int Dificultad;
+    
+    ReproduceMusic audio;
+    
+    boolean bandera = false;
 
 
     //@FXML
@@ -108,6 +117,8 @@ public class GuiController implements Initializable {
     private final BooleanProperty isGameOver = new SimpleBooleanProperty();
 
     private ArrayList<Integer> highScore = new ArrayList<Integer>();
+    
+ 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -322,7 +333,16 @@ public class GuiController implements Initializable {
 
     public void pauseGame(ActionEvent actionEvent) {
         ///
-        gamePanel.requestFocus();
+    	if(bandera) {
+        	audio.ReproduceMusic(0);
+    		bandera = false;}
+    	    
+    	else {
+    		audio.DetenerMusica();
+    		bandera = true;}
+        
+    	gamePanel.requestFocus();
+        
     }
 
     @FXML
@@ -380,6 +400,17 @@ public class GuiController implements Initializable {
     	}
     }
     
+ /*   @FXML
+    public void handleCloseButtonAction(ActionEvent event) {
+           Stage stage = (Stage) closeButton.getScene().getWindow();
+           stage.close();
+    }
+   */ 
+   /* @FXML
+    public void handleCloseButtonAction(ActionEvent event) {
+           ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+    }*/
+    
 
     @FXML
     public void velocityMore() {
@@ -420,6 +451,10 @@ public class GuiController implements Initializable {
     public void rightKey() {
         refreshBrick(eventListener.onRightEvent(new MoveEvent(EventType.RIGHT, EventSource.USER)));
 
+    }
+    
+    public void setMusic(ReproduceMusic audio) {
+    	this.audio = audio;
     }
 
     public void saveData(String value) {

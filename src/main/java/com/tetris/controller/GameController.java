@@ -2,6 +2,7 @@ package com.tetris.controller;
 
 import com.tetris.view.GuiController;
 import com.tetris.model.logic.*;
+import com.tetris.model.music.ReproduceAudio;
 
 import java.io.IOException;
 
@@ -21,15 +22,16 @@ public class GameController implements InputEventListener { //clase que envia ac
 
 	 private int Dificultad;
 	 DatosObservados observador;
-	
+	 ReproduceAudio ReproAudio;
 
     private Board board = new SimpleBoard(25, 10);
 
 
     private final GuiController viewGuiController;
 
-    public GameController(GuiController c, DatosObservados observador) {
-        this.observador = observador;
+    public GameController(GuiController c, DatosObservados observador,  ReproduceAudio ReproAudio) {
+        this.ReproAudio = ReproAudio;
+    	this.observador = observador;
         viewGuiController = c;
         board.createNewBrick();
         viewGuiController.setEventListener(this);
@@ -46,9 +48,11 @@ public class GameController implements InputEventListener { //clase que envia ac
             if (clearRow.getLinesRemoved() > 0) {
                 board.getScore().add(clearRow.getScoreBonus());
                 observador.setEstadoBonus(clearRow.getScoreBonus());
+                ReproAudio.Fx(1);
             }
             if (board.createNewBrick()) {
                 viewGuiController.gameOver();
+                ReproAudio.Fx(6);
             }
             viewGuiController.refreshGameBackground(board.getBoardMatrix());
         } else {
@@ -56,6 +60,7 @@ public class GameController implements InputEventListener { //clase que envia ac
                 board.getScore().add(1);
                 // probando si cambia el estado en el que observa
                 observador.setEstado();
+                ReproAudio.Fx(5);
             }
         }
         return new DownData(clearRow, board.getViewData());
