@@ -1,7 +1,9 @@
 package com.tetris.view;
 
+import com.tetris.controller.Strategy.ButtonAdd;
+import com.tetris.controller.Strategy.ButtonLess;
+import com.tetris.controller.Strategy.Buttons;
 import com.tetris.model.logic.DownData;
-import com.tetris.model.logic.SimpleBoard;
 import com.tetris.model.logic.ViewData;
 //import com.quirko.gui.GameOverPanel;
 //import com.quirko.gui.NotificationPanel;
@@ -42,12 +44,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.ResourceBundle;
 import java.util.Scanner;
 
 
@@ -84,7 +83,7 @@ public class GuiController implements Initializable {
 
     private Stage puntuacion;
 
-    public int Dificultad;
+    public double Dificultad;
 
 
     //@FXML
@@ -108,6 +107,9 @@ public class GuiController implements Initializable {
     private final BooleanProperty isGameOver = new SimpleBooleanProperty();
 
     private ArrayList<Integer> highScore = new ArrayList<Integer>();
+
+    private Buttons more;
+    private Buttons less;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -363,7 +365,8 @@ public class GuiController implements Initializable {
 
     @FXML
     public void velocityLess() {
-      /*  if (Dificultad <= 500) {
+
+      /* if (Dificultad <= 500) {
             timeLine.stop();
             Dificultad = Dificultad + 20;
             timeLine = new Timeline(new KeyFrame(
@@ -373,6 +376,8 @@ public class GuiController implements Initializable {
             timeLine.setCycleCount(Timeline.INDEFINITE);
             timeLine.play();
         }*/
+        less = new ButtonLess(timeLine, Dificultad, this);
+        less.changeVelocity();
     }
 
 
@@ -388,6 +393,8 @@ public class GuiController implements Initializable {
             timeLine.setCycleCount(Timeline.INDEFINITE);
             timeLine.play();
         }*/
+        more = new ButtonAdd(timeLine, Dificultad, this);
+        more.changeVelocity();
     }
 
     public Timeline getTimeLine() {

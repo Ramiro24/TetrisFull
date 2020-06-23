@@ -12,9 +12,9 @@ public class VelocityDecrease implements VelocityInterface {
 
 
 	@Override
-	public void pushEvent(Timeline timeline, int dificultad, GuiController guiController) {
+	public void pushEvent(Timeline timeLine, double dificultad, GuiController guiController) {
 		System.out.println("less");
-		timeline.stop();
+		/*timeline.stop();
 		dificultad = 200;
 		System.out.println("la dificultad que manejo es: " + dificultad);
 
@@ -23,7 +23,18 @@ public class VelocityDecrease implements VelocityInterface {
 				ae -> guiController.moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
 		));
 		timeline.setCycleCount(Timeline.INDEFINITE);
-		timeline.play();
+		timeline.play();*/
+
+		if (dificultad <= 500) {
+			timeLine.stop();
+			dificultad = dificultad + 20;
+			timeLine = new Timeline(new KeyFrame(
+					Duration.millis(dificultad),
+					ae -> guiController.moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
+			));
+			timeLine.setCycleCount(Timeline.INDEFINITE);
+			timeLine.play();
+		}
 
 	}
 }
