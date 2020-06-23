@@ -17,13 +17,13 @@ import javafx.util.Duration;
 public class NotificationPanel extends BorderPane {
 
     public NotificationPanel(String text) {
-        setMinHeight(200);
+        setMinHeight(1500);
         setMinWidth(220);
         final Label score = new Label(text);
         score.getStyleClass().add("bonusStyle");
         final Effect glow = new Glow(0.6);
         score.setEffect(glow);
-        score.setTextFill(Color.WHITE);
+        score.setTextFill(Color.RED);
         setCenter(score);
 
     }

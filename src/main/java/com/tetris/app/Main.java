@@ -17,6 +17,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Main extends Application {
+
 	
 	 public static void main(String[] args) {
 	        launch(args);
@@ -102,5 +103,8 @@ public class Main extends Application {
         
         menu.GUI(c , StageMenu ,StageTetris, Stagehelp); // inicio menu con los stage que puede iniciar y el controller tetris
     }
+
+ 
+
 
 }

@@ -1,6 +1,7 @@
 package com.tetris.view;
 
 import com.tetris.model.logic.DownData;
+import com.tetris.model.logic.SimpleBoard;
 import com.tetris.model.logic.ViewData;
 //import com.quirko.gui.GameOverPanel;
 //import com.quirko.gui.NotificationPanel;
@@ -54,7 +55,7 @@ public class GuiController implements Initializable {
 
     private static final int BRICK_SIZE = 20;
 
-	private static final Boolean Boolean = null;
+    private static final Boolean Boolean = null;
 
     @FXML
     private GridPane gamePanel;
@@ -76,13 +77,16 @@ public class GuiController implements Initializable {
 
     @FXML
     private GameOverPanel gameOverPanel;
-    
+
     @FXML
     private HighScorePanel highScorePanel;
 
-    
+
     private Stage puntuacion;
-    
+ 
+    public int Dificultad;
+
+
     //@FXML
   // private MenuItem close; //
     
@@ -96,15 +100,15 @@ public class GuiController implements Initializable {
     private Rectangle[][] rectangles;
 
     private Timeline timeLine;
-    
+
     private Stage grafico;
 
     private final BooleanProperty isPause = new SimpleBooleanProperty();
 
     private final BooleanProperty isGameOver = new SimpleBooleanProperty();
-    
-    private ArrayList<Integer> highScore = new ArrayList<Integer>(); 
-   
+
+    private ArrayList<Integer> highScore = new ArrayList<Integer>();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Font.loadFont(getClass().getClassLoader().getResource("digital.ttf").toExternalForm(), 38);
@@ -115,33 +119,30 @@ public class GuiController implements Initializable {
             public void handle(KeyEvent keyEvent){
                 if (isPause.getValue() == Boolean.FALSE && isGameOver.getValue() == Boolean.FALSE) {
                     if (keyEvent.getCode() == KeyCode.LEFT || keyEvent.getCode() == KeyCode.A) {
-                        refreshBrick(eventListener.onLeftEvent(new MoveEvent(EventType.LEFT, EventSource.USER)));
+                        leftKey();
                         keyEvent.consume();
                     }
                     if (keyEvent.getCode() == KeyCode.RIGHT || keyEvent.getCode() == KeyCode.D) {
-                        refreshBrick(eventListener.onRightEvent(new MoveEvent(EventType.RIGHT, EventSource.USER)));
+                        rightKey();
                         keyEvent.consume();
                     }
                     if (keyEvent.getCode() == KeyCode.UP || keyEvent.getCode() == KeyCode.W) {
-                        refreshBrick(eventListener.onRotateEvent(new MoveEvent(EventType.ROTATE, EventSource.USER)));
+                        upKey();
                         keyEvent.consume();
+
                     }
                     if (keyEvent.getCode() == KeyCode.DOWN || keyEvent.getCode() == KeyCode.S) {
-                        moveDown(new MoveEvent(EventType.DOWN, EventSource.USER));
+                        downKey();
                         keyEvent.consume();
                     }
                 }
-                
+
                 if (keyEvent.getCode() == KeyCode.N) {
                     newGame(null);
                 }
                 if (keyEvent.getCode() == KeyCode.P) {
                     pauseButton.selectedProperty().setValue(!pauseButton.selectedProperty().getValue());
                 }
-             //   if (keyEvent.getCode() == KeyCode.P) {
-               //     close.selectedProperty().setValue(!close.selectedProperty().getValue());
-                //}
-
             }
         });
         gameOverPanel.setVisible(false);
@@ -191,20 +192,20 @@ public class GuiController implements Initializable {
         brickPanel.setLayoutY(-42 + gamePanel.getLayoutY() + brick.getyPosition() * brickPanel.getHgap() + brick.getyPosition() * BRICK_SIZE);
 
         generatePreviewPanel(brick.getNextBrickData());
-       
+/////////////////////////////////////////////////////////////////////////////////// REEMPLAZADO
 // timeline crea una linea de tiempo 
         
-        timeLine = new Timeline(new KeyFrame(
+        /*timeLine = new Timeline(new KeyFrame(
                 Duration.millis(400),
                 ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
         ));
-/*Define el número de ciclos en esta animación. 
- * El cycleCount puede haber INDEFINITEpara las animaciones que se repiten indefinidamente, sino que debe ser de otro modo> 0.
- */
+        /*Define el número de ciclos en esta animación.
+         * El cycleCount puede haber INDEFINITEpara las animaciones que se repiten indefinidamente, sino que debe ser de otro modo> 0.
+       
         timeLine.setCycleCount(Timeline.INDEFINITE);
-        timeLine.play(); 
+        timeLine.play();*/
     }
-
+//////////////////////////////////////////////////////////////////////////////////////
     private Paint getFillColor(int i) {
         Paint returnPaint;
         switch (i) {
@@ -291,18 +292,19 @@ public class GuiController implements Initializable {
             }
             refreshBrick(downData.getViewData());
         }
-   //usado para poder mover el panel 
+        //usado para poder mover el panel
         gamePanel.requestFocus();
     }
 
     public void setEventListener(InputEventListener eventListener) {
         this.eventListener = eventListener;
     }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void bindScore(IntegerProperty integerProperty) {
-        scoreValue.textProperty().bind(integerProperty.asString());
+    	
+    	scoreValue.textProperty().bind(integerProperty.asString());
     }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void gameOver() {
         timeLine.stop();
         gameOverPanel.setVisible(true);
@@ -310,7 +312,7 @@ public class GuiController implements Initializable {
         int i = Integer.parseInt(scoreValue.textProperty().getValue());
         saveData(scoreValue.textProperty().getValue());
         readData();
-        isMax(highScore);        
+        isMax(highScore);
         if(i>=isMax(highScore)){
         	highScorePanel.setVisible(true);
         }
@@ -332,41 +334,65 @@ public class GuiController implements Initializable {
     	/// 
         gamePanel.requestFocus();
     }
+   
     @FXML
     public void close(ActionEvent actionEvent) throws IOException {
-    	/// 
-     //  System.exit(0);
-       isPause.setValue(Boolean.TRUE);
-       //eventListener.nuevaVentana();
+        ///
+        //  System.exit(0);
+        isPause.setValue(Boolean.TRUE);
+        //eventListener.nuevaVentana();
     }
-    //////////////////////////////////////////////////////////////////////////////////////////////
+
     public void Grafico(Stage g){
-    	grafico = g;
+        grafico = g;
+    }
+   
+    @FXML
+    public void Puntuacion(ActionEvent event) {
+
+        grafico.show();
     }
     @FXML
-   public void Puntuacion(ActionEvent event) {
-    grafico.show();
+    public void PuntuacionTotal(ActionEvent event) {
+        puntuacion.show();
     }
-
     @FXML
-   public void PuntuacionTotal(ActionEvent event) {
-    	puntuacion.show();
+    public void setDificultad(int dificultad) { //tomo evento de teclado para la dificultad
+        
+          Dificultad = dificultad;
+          System.out.println("la dificultad que manejo es: " + Dificultad);
+          
+          timeLine = new Timeline(new KeyFrame(
+                  Duration.millis(Dificultad),
+                  ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
+          ));
+          timeLine.setCycleCount(Timeline.INDEFINITE);
     }
 
-   public void setDificultad(int dificultad) {
-	//  System.out.println("setDificultada "+dificultad);
-	//  Dificultad = dificultad;
-	 
-	   
-   }
-   
-   public void Puntuacion(Stage g){
-       puntuacion= g;
-       }
-   
+    public void Puntuacion(Stage g){
+        puntuacion= g;
+    }
+
+    public void upKey() {
+        refreshBrick(eventListener.onRotateEvent(new MoveEvent(EventType.ROTATE, EventSource.USER)));}
 
 
-   public void saveData(String value) {
+    public void downKey() {
+        moveDown(new MoveEvent(EventType.DOWN, EventSource.USER));
+
+
+    }
+    public void leftKey() {
+        refreshBrick(eventListener.onLeftEvent(new MoveEvent(EventType.LEFT, EventSource.USER)));
+    }
+
+
+    public void rightKey() {
+        refreshBrick(eventListener.onRightEvent(new MoveEvent(EventType.RIGHT, EventSource.USER)));
+
+    }
+
+    public void saveData(String value) {
        String filepath = "log.txt";
        try {
            FileWriter fw = new FileWriter(filepath, true);
@@ -397,26 +423,26 @@ public class GuiController implements Initializable {
                StringBuffer cadena = new StringBuffer();
                for (int x=0;x<temp.length;x++){
                    cadena =cadena.append(temp[x]);
-               }               
+               }
                String str = cadena.toString();
                int i = Integer.parseInt(str);
                highScore.add(i);
-                          
-               
+
+
            }
            INPUT_STREAM.close();
        } catch (FileNotFoundException e) {
            e.printStackTrace();
        }
-       
-       
+
+
        return highScore;
    }
-   
+
    public int isMax(ArrayList<Integer> v) {
    	Integer i = Collections.max(v);
    	return i;
    }
 
-    
+
 }

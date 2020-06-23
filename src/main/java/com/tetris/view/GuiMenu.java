@@ -103,16 +103,19 @@ public class GuiMenu implements Initializable {
      }*/
     @FXML
     void Dificil(ActionEvent event) {
-         dificultad = 200;
+         dificultad = 100;
+     //    gui.setDificultad(dificultad);
     } 
     @FXML
     void Facil(ActionEvent event) {
     	dificultad = 400; 
+    //	gui.setDificultad(dificultad);
     }
 
     @FXML
     void Medio(ActionEvent event) {
     	dificultad = 300; 
+    //	gui.setDificultad(dificultad);
     }
    
   
