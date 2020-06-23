@@ -28,13 +28,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Ramiro/Desktop/Juego Tetris V_1_0 Eclipse/Game_Tetris_V_1_0/Librerias/AbsoluteLayout.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Ramiro/Desktop/Juego Tetris V_1_0 Eclipse/Game_Tetris_V_1_0/Librerias/basicplayer3.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Ramiro/Desktop/Juego Tetris V_1_0 Eclipse/Game_Tetris_V_1_0/Librerias/commons-logging-api.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Ramiro/Desktop/Juego Tetris V_1_0 Eclipse/Game_Tetris_V_1_0/Librerias/jaudiotagger-2.0.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Ramiro/Desktop/Juego Tetris V_1_0 Eclipse/Game_Tetris_V_1_0/Librerias/jl1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Ramiro/Desktop/Juego Tetris V_1_0 Eclipse/Game_Tetris_V_1_0/Librerias/mp3agic-0.8.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Ramiro/Desktop/Juego Tetris V_1_0 Eclipse/Game_Tetris_V_1_0/Librerias/mp3spi1.9.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Ramiro/Desktop/Juego Tetris V_1_0 Eclipse/Game_Tetris_V_1_0/Librerias/tritonus_share.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
