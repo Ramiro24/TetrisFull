@@ -272,7 +272,7 @@ public class GuiController implements Initializable {
         rectangle.setArcWidth(9);
     }
 
-    private void moveDown(MoveEvent event) {
+    public void moveDown(MoveEvent event) {
         if (isPause.getValue() == Boolean.FALSE) {
             DownData downData = eventListener.onDownEvent(event);
             if (downData.getClearRow() != null && downData.getClearRow().getLinesRemoved() > 0) {
@@ -391,6 +391,11 @@ public class GuiController implements Initializable {
         timeLine.play();
 
     }
+
+    public Timeline getTimeLine(){
+        return timeLine;
+    }
+
 
     public void Puntuacion(Stage g) {
         puntuacion = g;
