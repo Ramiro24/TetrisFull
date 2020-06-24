@@ -6,7 +6,9 @@
 
     <groupId>com.tetris</groupId>
     <artifactId>tetris</artifactId>
+    <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
+    <name>tetrisfull </name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
@@ -40,15 +42,12 @@
 			<artifactId>basicplayer</artifactId>
 			<version>3.0.0.0</version>
          </dependency>
-        
+
 		        <dependency>
 		    <groupId>org.slf4j</groupId>
 		    <artifactId>slf4j-simple</artifactId>
 		    <version>1.6.1</version>
 		</dependency>
-   
-
-        
         <dependency>
             <groupId>org.testfx</groupId>
             <artifactId>testfx-junit</artifactId>
@@ -56,15 +55,17 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
-                <configuration>
+            <!--    <configuration>
                     <release>11</release>
-                </configuration>
+                </configuration>-->
             </plugin>
             <plugin>
                 <groupId>org.openjfx</groupId>
@@ -72,6 +73,7 @@
                 <version>0.0.1</version>
                 <configuration>
                     <mainClass>com.tetris.app.Main</mainClass>
+
                 </configuration>
             </plugin>
         </plugins>

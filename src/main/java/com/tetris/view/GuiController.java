@@ -258,9 +258,6 @@ public class GuiController implements Initializable {
         }
     }
 
-    /*
-     * refresca el bloque en la nueva posicion
-     */
     private void refreshBrick(ViewData brick) {
         if (isPause.getValue() == Boolean.FALSE) {
             brickPanel.setLayoutX(gamePanel.getLayoutX() + brick.getxPosition() * brickPanel.getVgap()
@@ -301,7 +298,6 @@ public class GuiController implements Initializable {
             }
             refreshBrick(downData.getViewData());
         }
-        // usado para poder mover el panel
         gamePanel.requestFocus();
     }
 
@@ -372,10 +368,7 @@ public class GuiController implements Initializable {
 
     @FXML
     public void close(ActionEvent actionEvent) throws IOException {
-        ///
-        // System.exit(0);
         isPause.setValue(Boolean.TRUE);
-        // eventListener.nuevaVentana();
     }
 
     public void Grafico(Stage g) {
@@ -395,11 +388,9 @@ public class GuiController implements Initializable {
     }
 
     @FXML
-    public void setDifficult(int difficult) { // tomo evento de teclado para la dificultad
-
+    public void setDifficult(int difficult) {
         this.difficult = difficult;
         System.out.println("la dificultad que manejo es: " + this.difficult);
-
         timeLine = new Timeline(new KeyFrame(Duration.millis(this.difficult),
                 ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))));
         timeLine.setCycleCount(Timeline.INDEFINITE);
@@ -414,15 +405,6 @@ public class GuiController implements Initializable {
         }
 
     }
-
-    /*
-     * @FXML public void handleCloseButtonAction(ActionEvent event) { Stage stage =
-     * (Stage) closeButton.getScene().getWindow(); stage.close(); }
-     */
-    /*
-     * @FXML public void handleCloseButtonAction(ActionEvent event) {
-     * ((Stage)(((Button)event.getSource()).getScene().getWindow())).close(); }
-     */
 
     @FXML
     public void velocityMore() {
