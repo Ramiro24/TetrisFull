@@ -16,7 +16,7 @@ import org.testfx.framework.junit.ApplicationTest;
 import java.io.IOException;
 import java.net.URL;
 
-public class KeyDown  extends ApplicationTest  {
+public class KeyDown extends ApplicationTest {
 
     /*@Override public void start(Stage stage) throws IOException {
         URL location = getClass().getClassLoader().getResource("gameLayout.fxml"); //llama a gamelayut y guardar su direccion
@@ -43,40 +43,37 @@ public class KeyDown  extends ApplicationTest  {
         //controla el juego
         GuiController c = fxmlLoader.getController(); // no deberia ir esto aca
         DatosObservados statObservador = new DatosObservados();
-        ReproduceAudio ReproAudio= new  ReproduceAudio();
+        ReproduceAudio ReproAudio = new ReproduceAudio();
         GameController controladorTetris = new GameController(c, statObservador, ReproAudio);
         int[][] matrix = new int[][]{
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,1,1,1,1,0,0,0,0},
-                {0,0,1,0,0,1,0,0,0,0},
-                {0,0,1,0,0,1,0,0,0,0},
-                {0,0,1,1,1,1,0,0,0,0},
-                {0,0,1,0,0,0,0,0,0,0},
-                {0,0,1,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 1, 1, 1, 1, 0, 0, 0, 0},
+                {0, 0, 1, 0, 0, 1, 0, 0, 0, 0},
+                {0, 0, 1, 0, 0, 1, 0, 0, 0, 0},
+                {0, 0, 1, 1, 1, 1, 0, 0, 0, 0},
+                {0, 0, 1, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 1, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         };
         SimpleBoard.setCurrentStaticMatrix(matrix);
-
-
-
 
 
         c.downKey();
