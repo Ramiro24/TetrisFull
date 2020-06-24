@@ -177,6 +177,8 @@ buildNumber.properties
  tetris.iml
  
  log.txt
+ 
+ log1.txt 
 
 
 # End of https://www.gitignore.io/api/maven,eclipse,intellij
