@@ -67,7 +67,7 @@ public class GameController implements InputEventListener { //clase que envia ac
         } else {
             if (event.getEventSource() == EventSource.USER) {
                 board.getScore().add(1);
-                ReproAudio.Fx(5);
+                ReproAudio.Fx(5); 
             }
         }
         return new DownData(clearRow, board.getViewData());
