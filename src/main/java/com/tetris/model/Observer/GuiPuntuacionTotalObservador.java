@@ -124,13 +124,11 @@ public class GuiPuntuacionTotalObservador implements  Observer , Initializable{ 
 			//BufferedWriter bw = new BufferedWriter(fw);
 			File file = new File(filepath);
 		    file.delete();
-		    
-            File file1 = new File(filepath);
+		    File file1 = new File(filepath);
             FileWriter fw1 = new FileWriter(filepath, true);
 			BufferedWriter bw1 = new BufferedWriter(fw1);
 			PrintWriter pw1 = new PrintWriter(bw1);
 			for(int i=0;i<3;i++) {
-				
 			pw1.println(puntos.get(i));
 			pw1.flush();
 			}
@@ -146,7 +144,6 @@ public class GuiPuntuacionTotalObservador implements  Observer , Initializable{ 
 		
 		puntuacion = valor;
 		Controlar();
-		
 		System.out.println("valor");
 	}
 }
