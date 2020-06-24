@@ -211,8 +211,8 @@ public class GuiController implements Initializable {
 				+ brick.getyPosition() * BRICK_SIZE);
 
 		generatePreviewPanel(brick.getNextBrickData());
-		less = new ButtonLess(this);
-		more = new ButtonAdd(this);
+		less = new ButtonLess();
+		more = new ButtonAdd();
 	}
 
 	private Paint getFillColor(int i) {
@@ -334,6 +334,11 @@ public class GuiController implements Initializable {
 
 	public void newGame(ActionEvent actionEvent) {
 		timeLine.stop();
+
+		timeLine = new Timeline(new KeyFrame(Duration.millis(Dificultad),
+				ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))));
+		timeLine.setCycleCount(Timeline.INDEFINITE);
+		
 		gameOverPanel.setVisible(false);
 		highScorePanel.setVisible(false);
 		eventListener.createNewGame();

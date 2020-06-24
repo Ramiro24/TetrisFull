@@ -46,7 +46,7 @@ public class Main extends Application {
         URL locationAyuda = getClass().getClassLoader().getResource("Ayuda.fxml");
         URL locationPuntuacionTotal = getClass().getClassLoader().getResource("PuntuacionTotal.fxml");
         ResourceBundle resources = null; //recurso de lenguaje null para todos
-        
+        //
         //objetos FXML
         FXMLLoader fxmlLoaderMenu = new FXMLLoader(locationMenu, resources);
         FXMLLoader fxmlLoaderTetris = new FXMLLoader(locationTetris, resources);

@@ -5,10 +5,10 @@ import javafx.animation.Timeline;
 
 public class ButtonLess extends Buttons {
 
-    public ButtonLess( GuiController guiController) {
+    public ButtonLess( ) {
         velocityInterface = new VelocityDecrease();
         //this.timeline=timeline;
-        this.guiController=guiController;
+
     }
 
     @Override
