@@ -49,7 +49,7 @@ public class GuiMenu implements Initializable {
     
     private Stage primarystage;
     
-    private int dificultad;
+    private int dificultad=300;
     
     private Stage ayuda;
     

@@ -2,9 +2,12 @@ package com.tetris.controller;
 
 import com.tetris.controller.Strategy.Velocity;
 import com.tetris.controller.Strategy.LevelVel;
+import com.tetris.controller.Strategy.VelocityMore;
 import com.tetris.view.GuiController;
 import com.tetris.model.logic.*;
 import com.tetris.model.music.ReproduceAudio;
+
+import java.io.IOException;
 
 import com.tetris.model.Observer.DatosObservados;
 //import com.quirko.app.DatosObservados;
@@ -53,6 +56,7 @@ public class GameController implements InputEventListener { //clase que envia ac
                 observador.setEstadoBonus(clearRow.getScoreBonus());
                 viewGuiController.Dificultad -= 30;
                 velBonus.changeVelocity(viewGuiController);
+
                 ReproAudio.Fx(1);
             }
             if (board.createNewBrick()) {
@@ -63,9 +67,7 @@ public class GameController implements InputEventListener { //clase que envia ac
         } else {
             if (event.getEventSource() == EventSource.USER) {
                 board.getScore().add(1);
-                // probando si cambia el estado en el que observa
-                //  observador.setEstado();
-                ReproAudio.Fx(5); //aca va el cinco
+                ReproAudio.Fx(5);
             }
         }
         return new DownData(clearRow, board.getViewData());
@@ -89,48 +91,13 @@ public class GameController implements InputEventListener { //clase que envia ac
         return board.getViewData();
     }
 
-    //  @Override
-    //public void nuevaVentana() throws IOException {
     
-    
-    /*	 Parent root;
-        try {
-           
-        	root = FXMLLoader.load(getClass().getClassLoader().getResource("NuevaVentana.fxml"));
-        	ResourceBundle resources = null ;
-//---------------------------------------------------------------------------------
-            Stage stage = new Stage();
-            stage.setTitle("My New Stage Title");
-            stage.setScene(new Scene(root, 450, 450));
-            stage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }*/
-    //---------------------------------------------------------------------------------
-
-    // Set the persons into the controller.
-    //   BirthdayStatisticsController controller = Loader.getController();
-    //   controller.setPersonData(personData);
-
-    // Set the dialog icon.
-    //     dialogStage.getIcons().add(new Image("file:resources/images/calendar.png"));
-
-    //   dialogStage.show();
-
-      /*  } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-
-
-    // }
     public void setDificultad(int d) {
         Dificultad = d;
     }
 
     @Override
     public void createNewGame() {
-        //   	observador.BorrarEstado();
         board.newGame();
         viewGuiController.refreshGameBackground(board.getBoardMatrix());
     }

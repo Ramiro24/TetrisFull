@@ -4,6 +4,7 @@ import com.tetris.controller.Strategy.ButtonAdd;
 import com.tetris.controller.Strategy.ButtonLess;
 import com.tetris.controller.Strategy.Velocity;
 import com.tetris.model.logic.DownData;
+import com.tetris.model.logic.SimpleBoard;
 import com.tetris.model.logic.ViewData;
 import com.tetris.model.music.ReproduceAudio;
 import com.tetris.model.music.ReproduceMusic;
@@ -120,6 +121,7 @@ public class GuiController implements Initializable {
 
 	private Velocity more;
 	private Velocity less;
+	boolean flag = false;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -315,6 +317,7 @@ public class GuiController implements Initializable {
 
 	public void gameOver() {
 		timeLine.stop();
+		audio.DetenerMusica();
 		gameOverPanel.setVisible(true);
 		isGameOver.setValue(Boolean.TRUE);
 		int i = Integer.parseInt(scoreValue.textProperty().getValue());
@@ -329,6 +332,9 @@ public class GuiController implements Initializable {
 
 	public void newGame(ActionEvent actionEvent) {
 		timeLine.stop();
+
+		if(flag) {audio.ReproduceMusic(0);flag=false;}
+		if(!flag) {flag=true;}
 
 		timeLine = new Timeline(new KeyFrame(Duration.millis(Dificultad),
 				ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))));
@@ -505,5 +511,8 @@ public class GuiController implements Initializable {
 		return i;
 	}
 
-
+	public void AumentaDificultad(int Dificultad) {
+		 this.Dificultad =  this.Dificultad + Dificultad;
+		 System.out.println("estoy en:" + this.Dificultad);
+	}
 }
