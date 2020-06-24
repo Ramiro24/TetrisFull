@@ -1,8 +1,8 @@
 package com.tetris.view;
 
 
-import java.io.File;
 //import	com.quirko.gui.GuiController;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -19,126 +19,105 @@ import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
 
 public class GuiMenu implements Initializable {
-   @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private Button Ayuda;
-
-    @FXML
-    private Button Comenzar;
-
-    @FXML
-    private RadioButton Dificil;
-
-    @FXML
-    private RadioButton Facil;
-
-    @FXML
-    private RadioButton Medio;
-
-    @FXML
-    private ToggleButton Sonido;
-    // Metodos extras //
-    private GuiController gui ;
-    
-    private Stage stage; 
-    
-    private Stage primarystage;
-    
-    private int dificultad=300;
-    
-    private Stage ayuda;
-    
-    private GameController game;
-    
+    static boolean flag = true;
+    static boolean externFlag;
     ReproduceMusic ReproMusic;
     ReproduceAudio audio;
-    static  boolean bandera = true;
-    static  boolean BanderaExterna;
-    
-    
     @FXML
-    void Ayuda(ActionEvent event) {
-    	ayuda.show();
+    private ResourceBundle resources;
+    @FXML
+    private URL location;
+    @FXML
+    private Button helpButton;
+    @FXML
+    private Button startButtom;
+    @FXML
+    private RadioButton hardButton;
+    @FXML
+    private RadioButton easyButton;
+    @FXML
+    private RadioButton middleButton;
+    @FXML
+    private ToggleButton soundButton;
+    // Metodos extras //
+    private GuiController gui;
+    private Stage stage;
+    private Stage primaryStage;
+    private int difficult = 300;
+    private Stage help;
+    private GameController game;
+
+    public static boolean EstadoMusic() {
+
+        externFlag = !flag;
+        return externFlag;
     }
 
     @FXML
-    public void Comenzar(ActionEvent event) {
-    	 audio.Fx(3);
-    	gui.setDificultad(dificultad);
-    	gui.newGame(event);
+    void help(ActionEvent event) {
+        help.show();
+    }
+
+    @FXML
+    public void start(ActionEvent event) {
+        audio.Fx(3);
+        gui.setDifficult(difficult);
+        gui.newGame(event);
         stage.close();
-    	ayuda.close();
-    	primarystage.show();
+        help.close();
+        primaryStage.show();
 
-    
     }
 
     @FXML
-    void Sonido(ActionEvent event) {
-    	
-    	if(bandera) {
-    		ReproMusic.ReproduceMusic(0);
-    		bandera = false;}
-    	    
-    	else {
-    		ReproMusic.DetenerMusica();
-    		bandera = true;}
-    	
+    void sound(ActionEvent event) {
+
+        if (flag) {
+            ReproMusic.ReproduceMusic(0);
+            flag = false;
+        } else {
+            ReproMusic.stopMusic();
+            flag = true;
+        }
+
     }
+
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
-	     
+
     }
-    public void GUI(GuiController c ,Stage stage1 ,Stage primaryStage ,Stage help, ReproduceMusic ReproMusic, ReproduceAudio audio  ) {
-    	gui= c;
-      	stage = stage1;
-        primarystage = primaryStage;
-        ayuda = help;
-        this.ReproMusic = ReproMusic;
+
+    public void GUI(GuiController c, Stage stage1, Stage primaryStage, Stage help, ReproduceMusic reproMusic, ReproduceAudio audio) {
+        gui = c;
+        stage = stage1;
+        this.primaryStage = primaryStage;
+        this.help = help;
+        this.ReproMusic = reproMusic;
         this.audio = audio;
-        
+
     }
-    
-    public void Game(GameController juego) {
-    	game = juego;
+
+    public void Game(GameController game) {
+        this.game = game;
     }
-    /* public void dificultad(RadioButton Dificil ,RadioButton Medio,RadioButton Facil ) {
-    	 this.Dificil = Dificil;
-    	 this.Medio = Medio;
-    	 this.Facil = Facil;
-    	 if(Dificil==null) {
-    		 System.out.println("Dificil");
-    	 }
-     }*/
+
+
     @FXML
-    void Dificil(ActionEvent event) {
-         dificultad = 100;
-     //    gui.setDificultad(dificultad);
-         audio.Fx(3);
-    } 
-    @FXML
-    void Facil(ActionEvent event) {
-    	dificultad = 400; 
-    //	gui.setDificultad(dificultad);
-    	 audio.Fx(3);
+    void hard(ActionEvent event) {
+        difficult = 100;
+        audio.Fx(3);
     }
 
     @FXML
-    void Medio(ActionEvent event) {
-    	dificultad = 300; 
-    //	gui.setDificultad(dificultad);
-    	 audio.Fx(3);
+    void easy(ActionEvent event) {
+        difficult = 400;
+        audio.Fx(3);
     }
-   
-    public static boolean EstadoMusic() {
-    	
-    	BanderaExterna = !bandera;
-    	return BanderaExterna;
+
+    @FXML
+    void middle(ActionEvent event) {
+        difficult = 300;
+        audio.Fx(3);
     }
-  
- }
+
+}

@@ -13,11 +13,11 @@ public class VelocityDecrease implements VelocityInterface {
 
     @Override
     public void pushEvent(GuiController guiController) {
-        if (guiController.Dificultad <= 500) {
+        if (guiController.difficult <= 500) {
             guiController.timeLine.stop();
-            double dificultad = guiController.Dificultad + 20;
+            double temp = guiController.difficult + 20;
             guiController.timeLine = new Timeline(new KeyFrame(
-                    Duration.millis(dificultad),
+                    Duration.millis(temp),
                     ae -> guiController.moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
             ));
             guiController.timeLine.setCycleCount(Timeline.INDEFINITE);
