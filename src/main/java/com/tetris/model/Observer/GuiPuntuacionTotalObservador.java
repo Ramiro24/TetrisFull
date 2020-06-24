@@ -141,7 +141,6 @@ public class GuiPuntuacionTotalObservador implements  Observer , Initializable{ 
     //@Override
 	public void Update(int valor) {
 		// TODO Auto-generated method stub
-		
 		puntuacion = valor;
 		Controlar();
 		System.out.println("valor");
