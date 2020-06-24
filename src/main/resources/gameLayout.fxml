@@ -40,7 +40,7 @@
     <VBox alignment="CENTER" prefHeight="74.0" prefWidth="31.0" />
     <Button onAction="#newGame" prefWidth="140.0" styleClass="ipad-dark-grey" text="Jugar" />
     <ToggleButton fx:id="pauseButton" onAction="#pauseGame" prefWidth="140.0" styleClass="ipad-dark-grey" text="Pausa" />
-    <Button fx:id="Puntuacion" mnemonicParsing="false" onAction="#Puntuacion" prefHeight="46.0" prefWidth="145.0" styleClass="ipad-dark-grey" text="Puntuacion" />
+    <Button fx:id="Puntuacion" mnemonicParsing="false" onAction="#punctuationMethod" prefHeight="46.0" prefWidth="145.0" styleClass="ipad-dark-grey" text="Puntuacion" />
     <Pane prefHeight="200.0" prefWidth="200.0">
       <children>
         <Button fx:id="velocityLess" layoutX="65.0" layoutY="-9.0" mnemonicParsing="false" onAction="#velocityLess" styleClass="flecha" text="⇓" />

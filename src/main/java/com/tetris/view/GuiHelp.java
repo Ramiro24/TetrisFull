@@ -7,7 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 
 
-public class GuiAyuda implements Initializable{
+public class GuiHelp implements Initializable{
     @FXML
     private ResourceBundle resources;
 
@@ -15,7 +15,7 @@ public class GuiAyuda implements Initializable{
     private URL location;
 
     @FXML
-    private AnchorPane Ayuda;
+    private AnchorPane help;
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {

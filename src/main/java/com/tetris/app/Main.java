@@ -1,11 +1,10 @@
 package com.tetris.app;
-
-import com.tetris.view.GuiAyuda;
+import com.tetris.model.Observer.ObserverData;
+import com.tetris.view.GuiHelp;
 import com.tetris.view.GuiMenu;
-import com.sun.glass.events.WindowEvent;
+
 import com.tetris.controller.GameController;
-import com.tetris.model.Observer.DatosObservados;
-import com.tetris.model.Observer.GuiPuntuacionTotalObservador;
+import com.tetris.model.Observer.guiPuntuationObserver;
 import com.tetris.model.Observer.GuiStatsObservador;
 import com.tetris.model.music.ReproduceAudio;
 import com.tetris.model.music.ReproduceMusic;
@@ -17,8 +16,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
-import java.beans.EventHandler;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -38,15 +35,15 @@ public class Main extends Application {
 	    }
 	
 	 @Override
-    public void start(Stage StageMenu) throws Exception { //comienza con stage de menu
+    public void start(Stage StageMenu) throws Exception {
 	
     	//Archivos FXML 
-    	URL locationMenu = getClass().getClassLoader().getResource("Menu.fxml");
+    	URL locationMenu = getClass().getClassLoader().getResource("menuView.fxml");
     	URL locationTetris = getClass().getClassLoader().getResource("gameLayout.fxml");
-        URL locationGrafica = getClass().getClassLoader().getResource("NuevaVentana.fxml");
-        URL locationAyuda = getClass().getClassLoader().getResource("Ayuda.fxml");
-        URL locationPuntuacionTotal = getClass().getClassLoader().getResource("PuntuacionTotal.fxml");
-        ResourceBundle resources = null; //recurso de lenguaje null para todos
+        URL locationGrafica = getClass().getClassLoader().getResource("newView.fxml");
+        URL locationAyuda = getClass().getClassLoader().getResource("helpView.fxml");
+        URL locationPuntuacionTotal = getClass().getClassLoader().getResource("punctuationTotalView.fxml");
+        ResourceBundle resources = null;
         //
         //objetos FXML
         FXMLLoader fxmlLoaderMenu = new FXMLLoader(locationMenu, resources);
@@ -62,12 +59,11 @@ public class Main extends Application {
         Parent rootAyuda = fxmlLoaderAyuda.load();
         Parent rootPuntuacionTotal = fxmlLoaderPuntuacionTotal.load();
         
-        //Controladores de Fxml
         GuiMenu menu = fxmlLoaderMenu.getController();
         GuiController c = fxmlLoaderTetris.getController();                      
         GuiStatsObservador s = fxmlLoaderGrafica.getController();                   
-        GuiAyuda ayuda = fxmlLoaderAyuda.getController();
-        GuiPuntuacionTotalObservador puntuacion = fxmlLoaderPuntuacionTotal.getController();
+        GuiHelp help = fxmlLoaderAyuda.getController();
+        guiPuntuationObserver puntuacion = fxmlLoaderPuntuacionTotal.getController();
         
         
         
@@ -87,16 +83,16 @@ public class Main extends Application {
         
        //////////////////////////////////////////////INTERFAZ GRAFICA (Observador)////////////////////////////////////////////
    
-     //   Stage StageGrafico = new Stage();   
- 	    Stage StageGrafico = new Stage();  
-        StageGrafico.setTitle("Grafico de estadistica Tetris");
+     //   Stage StageGrafic = new Stage();
+ 	    Stage StageGrafic = new Stage();
+        StageGrafic.setTitle("Grafico de estadistica Tetris");
         Scene sceneGrafica = new Scene(rootGrafica, 620, 450);                   
-        StageGrafico.setScene(sceneGrafica);                                       
+        StageGrafic.setScene(sceneGrafica);
      
-	    c.Grafico(StageGrafico);
-	    DatosObservados statObservador = new DatosObservados();                           
-	    GuiStatsObservador ObservadorDisplay = new GuiStatsObservador(statObservador, s); // le paso referencia a OBSERVADOR de la clase a observar y le paso su controlador para que lo agregue a la lista de observadores del observador 
-	    GameController ControladorTetris = new GameController(c,statObservador,ReproAudio);   
+	    c.Grafico(StageGrafic);
+	    ObserverData statObservador = new ObserverData();
+	    GuiStatsObservador ObserverDisplay = new GuiStatsObservador(statObservador, s);
+	    GameController tetrisController = new GameController(c,statObservador,ReproAudio);
 	    c.setMusic(ReproMusic,ReproAudio);
       
        ////////////////////////////////////////////////////INTERFAZ AYUDA/////////////////////////////////////////////////////
@@ -108,12 +104,12 @@ public class Main extends Application {
         
         /////////////////////////////////////////////////INTERFAZ GRAFICA PUNTUACION (Observador)////////////////////////////////////
         
-        Stage puntos = new Stage();
-        puntos.setTitle("Puntuacion");
-        puntos.setScene(new Scene(rootPuntuacionTotal, 620, 450));
-        c.Puntuacion(puntos);  
+        Stage score = new Stage();
+        score.setTitle("Puntuacion");
+        score.setScene(new Scene(rootPuntuacionTotal, 620, 450));
+        c.punctuationMethod(score);
         
-        GuiPuntuacionTotalObservador ObservadorDisplayTotal = new  GuiPuntuacionTotalObservador(statObservador, puntuacion);
+        guiPuntuationObserver ObservadorDisplayTotal = new guiPuntuationObserver(statObservador, puntuacion);
         
        //////////////////////////////////////////////////////INICIO MENU//////////////////////////////////////////////////////////
       
@@ -125,7 +121,7 @@ public class Main extends Application {
 	
 	 @Override
 	 public void stop() {
-		 ReproMusic.DetenerMusica();
-		 GuiPuntuacionTotalObservador.saveData();
+		 ReproMusic.stopMusic();
+		 guiPuntuationObserver.saveData();
 	}
  }
