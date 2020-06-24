@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="help" minHeight="620.0" prefHeight="786.0" prefWidth="791.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.tetris.view.GuiHelp">
+  <!-- TODO Add Nodes -->
+  <children>
+    <TextArea layoutX="0.0" layoutY="0.0" prefHeight="786.0" prefWidth="798.0" text="------------------------------Manejo del juego-------------------------------------&#10;Para comenzar el juego seleccione la dificultad deseada, y haga click&#10;sobre el botón &quot;COMENZAR&quot;. &#10;Cuando comienzan a caer las piezas, las mismas se pueden cambiar de posición&#10;con las flechas &quot;izquierda&quot; o &quot;derecha&quot;, rotarlas con la flecha &quot;arriba&quot;,&#10;y aumentar la velocidad, a voluntad, con la flecha &quot;abajo&quot;.&#10;Debe ubicar las piezas de manera que se completen líneas horizontales, para&#10;que se puedan eliminar esas filas completas y, así, se incrementa el puntaje &#10;del jugador. Si al ubicar las piezas, resulta un hueco o más en la fila horizontal,&#10;ésta no se eliminará.&#10;Debe lograr eliminar todas las filas antes de que alguna pieza llegue al borde&#10;superior del tablero, de otro modo, el juego finalizará.&#10;Si desea poner el pausa el juego, haga click sobre el botón &quot;Pausa&quot;, y al momento &#10;de querer reiniciarlo, haga click sobre &quot;Reanudar&quot;.&#10;Puede seleccionar si desea Sonido o no, haciendo click, antes de comenzar el juego,&#10;sobre el botón con la nota musical.&#10;&#10;------------------------------Acerca del juego-------------------------------------&#10;Desarrollador: Flaggen Corp.&#10;Versión: 1.0&#10;&#10;------------------------------Reportar fallas--------------------------------------&#10;Reporte de fallas: flaggencorp@gmail.com " wrapText="true" />
+  </children>
+</AnchorPane>

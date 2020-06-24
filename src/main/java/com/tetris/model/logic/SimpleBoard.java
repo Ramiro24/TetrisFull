@@ -17,8 +17,7 @@ public class SimpleBoard implements Board {
     private final BrickGenerator brickGenerator;
     private final BrickRotator brickRotator;
     private static int[][] currentGameMatrix;
-    private Point
-            currentOffset;
+    private Point currentOffset;
     private final Score score;
 
     public SimpleBoard(int width, int height) {
@@ -133,6 +132,11 @@ public class SimpleBoard implements Board {
     public static void setCurrentStaticMatrix(int[][] now) {
         currentGameMatrix = now;
     }
+
+    public static void setBrick(int[][] now) {
+
+    }
+
 
     public static int[][] getBoardMatrix2() {
         return currentGameMatrix;

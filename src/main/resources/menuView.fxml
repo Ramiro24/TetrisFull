@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.net.URL?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Text?>
+
+<Pane prefHeight="493.0" prefWidth="625.0" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.tetris.view.GuiMenu">
+  <children>
+    <Button fx:id="helpButton" layoutX="528.0" layoutY="35.0" mnemonicParsing="false" onAction="#help" styleClass="a" text="Ayuda" />
+    <ToggleButton fx:id="soundButton" layoutX="23.0" layoutY="35.0" mnemonicParsing="false" onAction="#sound" styleClass="a" text="♫" />
+    <Button fx:id="startButtom" layoutX="195.0" layoutY="367.0" mnemonicParsing="false" onAction="#start" prefHeight="57.0" prefWidth="236.0" styleClass="a" text="COMENZAR" />
+    <Pane layoutX="213.0" layoutY="134.0" prefHeight="179.0" prefWidth="203.9998779296875" styleClass="a">
+      <children>
+        <RadioButton fx:id="easyButton" layoutX="45.0" layoutY="23.0" mnemonicParsing="false" onAction="#easy" styleClass="text" text="Facil" />
+        <RadioButton fx:id="middleButton" layoutX="45.0" layoutY="75.0" mnemonicParsing="false" onAction="#middle" styleClass="text" text="Medio" />
+        <RadioButton fx:id="hardButton" layoutX="45.0" layoutY="124.0" mnemonicParsing="false" onAction="#hard" styleClass="text" text="Dificil" />
+      </children>
+    </Pane>
+  </children>
+  <stylesheets>
+    <URL value="@menu_style.css" />
+  </stylesheets>
+</Pane>

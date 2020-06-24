@@ -13,9 +13,9 @@ public class VelocityMore implements VelocityInterface {
 
     @Override
     public void pushEvent(  GuiController guiController) {
-        if (guiController.Dificultad >= 40) {
+        if (guiController.difficult >= 40) {
             guiController.timeLine.stop();
-            double dificultad = guiController.Dificultad - 20;
+            double dificultad = guiController.difficult - 20;
             guiController.timeLine = new Timeline(new KeyFrame(
                     Duration.millis(dificultad),
                     ae -> guiController.moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))

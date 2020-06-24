@@ -1,16 +1,13 @@
 package com.tetris.controller;
 
-import com.tetris.controller.Strategy.Buttons;
+import com.tetris.controller.Strategy.Velocity;
 import com.tetris.controller.Strategy.LevelVel;
-import com.tetris.controller.Strategy.VelocityMore;
+import com.tetris.model.Observer.ObserverData;
 import com.tetris.view.GuiController;
 import com.tetris.model.logic.*;
 import com.tetris.model.music.ReproduceAudio;
 
-import java.io.IOException;
-
-import com.tetris.model.Observer.DatosObservados;
-//import com.quirko.app.DatosObservados;
+//import com.quirko.app.ObserverData;
 //import com.quirko.logic.Board;
 //import com.quirko.logic.ClearRow;
 //import com.quirko.logic.DownData;
@@ -21,25 +18,25 @@ import com.tetris.model.events.InputEventListener;
 import com.tetris.model.events.MoveEvent;
 
 
-public class GameController implements InputEventListener { //clase que envia actualizaciones a DatosObservados mediante el objeto observador
+public class GameController implements InputEventListener { //clase que envia actualizaciones a ObserverData mediante el objeto observador
 
-    private int Dificultad;
-    private DatosObservados observador;
-    private ReproduceAudio ReproAudio;
-    private Buttons velBonus;
+    private int difficultGameController;
+    private ObserverData observer;
+    private ReproduceAudio reproAudio;
+    private Velocity velBonus;
 
     private Board board = new SimpleBoard(25, 10);
 
 
     private final GuiController viewGuiController;
 
-    public GameController(GuiController c, DatosObservados observador, ReproduceAudio ReproAudio) {
-        this.ReproAudio = ReproAudio;
-        this.observador = observador;
+    public GameController(GuiController c, ObserverData observer, ReproduceAudio ReproAudio) {
+        this.reproAudio = ReproAudio;
+        this.observer = observer;
         viewGuiController = c;
         board.createNewBrick();
         viewGuiController.setEventListener(this);
-        viewGuiController.initGameView(board.getBoardMatrix(), board.getViewData(), Dificultad);
+        viewGuiController.initGameView(board.getBoardMatrix(), board.getViewData(), difficultGameController);
         viewGuiController.bindScore(board.getScore().scoreProperty());
         velBonus = new LevelVel();
     }
@@ -53,23 +50,21 @@ public class GameController implements InputEventListener { //clase que envia ac
             clearRow = board.clearRows();
             if (clearRow.getLinesRemoved() > 0) {
                 board.getScore().add(clearRow.getScoreBonus());
-                observador.setEstadoBonus(clearRow.getScoreBonus());
-                viewGuiController.Dificultad-=30;
+                observer.setStateBonus(clearRow.getScoreBonus());
+                viewGuiController.difficult -= 30;
                 velBonus.changeVelocity(viewGuiController);
 
-                ReproAudio.Fx(1);
+                reproAudio.Fx(1);
             }
             if (board.createNewBrick()) {
                 viewGuiController.gameOver();
-                ReproAudio.Fx(6);
+                reproAudio.Fx(6);
             }
             viewGuiController.refreshGameBackground(board.getBoardMatrix());
         } else {
             if (event.getEventSource() == EventSource.USER) {
                 board.getScore().add(1);
-                // probando si cambia el estado en el que observa
-              //  observador.setEstado();
-                ReproAudio.Fx(5); //aca va el cinco
+                reproAudio.Fx(5);
             }
         }
         return new DownData(clearRow, board.getViewData());
@@ -93,48 +88,13 @@ public class GameController implements InputEventListener { //clase que envia ac
         return board.getViewData();
     }
 
-    //  @Override
-    //public void nuevaVentana() throws IOException {
     
-    
-    /*	 Parent root;
-        try {
-           
-        	root = FXMLLoader.load(getClass().getClassLoader().getResource("NuevaVentana.fxml"));
-        	ResourceBundle resources = null ;
-//---------------------------------------------------------------------------------
-            Stage stage = new Stage();
-            stage.setTitle("My New Stage Title");
-            stage.setScene(new Scene(root, 450, 450));
-            stage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }*/
-    //---------------------------------------------------------------------------------
-
-    // Set the persons into the controller.
-    //   BirthdayStatisticsController controller = Loader.getController();
-    //   controller.setPersonData(personData);
-
-    // Set the dialog icon.
-    //     dialogStage.getIcons().add(new Image("file:resources/images/calendar.png"));
-
-    //   dialogStage.show();
-
-      /*  } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-
-
-    // }
-    public void setDificultad(int d) {
-        Dificultad = d;
+    public void setDifficultGameController(int d) {
+        difficultGameController = d;
     }
 
     @Override
     public void createNewGame() {
-        //   	observador.BorrarEstado();
         board.newGame();
         viewGuiController.refreshGameBackground(board.getBoardMatrix());
     }
