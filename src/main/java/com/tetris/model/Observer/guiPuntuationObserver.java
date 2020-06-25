@@ -62,15 +62,22 @@ public class guiPuntuationObserver implements Observer, Initializable { // OBSER
      * Comparar los valores
      */
     public void control() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < points.size(); i++) {
+try {
+    if (puntuacion > points.get(i)) {
+        System.out.println(points.size());
 
-            if (puntuacion > points.get(i)) {
-                points.set(i, puntuacion);
-                listView.getItems().clear();
-                Collections.sort(points);
-                Collections.reverse(points);
-                listView.getItems().addAll(points);
-            }
+        points.set(i, puntuacion);
+        listView.getItems().clear();
+        Collections.sort(points);
+        Collections.reverse(points);
+        listView.getItems().addAll(points);
+
+    }
+}catch (Exception e){
+    System.out.println("error del if");
+}
+
         }
 
        /* if (puntuacion > points.get(0)) {
@@ -139,7 +146,7 @@ public class guiPuntuationObserver implements Observer, Initializable { // OBSER
             FileWriter fw1 = new FileWriter(filepath, true);
             BufferedWriter bw1 = new BufferedWriter(fw1);
             PrintWriter pw1 = new PrintWriter(bw1);
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < points.size(); i++) {
                 pw1.println(points.get(i));
                 pw1.flush();
             }
@@ -155,15 +162,12 @@ public class guiPuntuationObserver implements Observer, Initializable { // OBSER
         // TODO Auto-generated method stub
 
         puntuacion = value;
-        control();
+        try {
+            control();
+        }catch (Exception e){
+            System.out.println("error en update");
+            e.printStackTrace();
+        }
         System.out.println("valor");
     }
 }
-	
-	
-	
-	
-	
-	
-
-
