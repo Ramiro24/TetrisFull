@@ -65,7 +65,7 @@ public class guiPuntuationObserver implements Observer, Initializable { // OBSER
         for (int i = 0; i < points.size(); i++) {
 try {
     if (puntuacion > points.get(i)) {
-        System.out.println(points.size());
+        
 
         points.set(i, puntuacion);
         listView.getItems().clear();
@@ -108,7 +108,7 @@ try {
 
         try {
 
-            File file = new File("log1.txt");
+            File file = new File("src/main/resources/log1.txt");
             INPUT_STREAM = new Scanner(file);
 
             while (INPUT_STREAM.hasNext()) {
@@ -133,7 +133,7 @@ try {
     }
 
     public static void saveData() {
-        String filepath = "log1.txt";
+        String filepath = "src/main/resources/log1.txt";
         String value = "";
 
         try {
@@ -168,6 +168,6 @@ try {
             System.out.println("error en update");
             e.printStackTrace();
         }
-        System.out.println("valor");
+        
     }
 }
