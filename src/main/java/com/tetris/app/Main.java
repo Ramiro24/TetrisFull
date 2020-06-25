@@ -14,10 +14,15 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import java.awt.event.ActionEvent;
+import java.beans.EventHandler;
+
 
 
 
@@ -44,6 +49,7 @@ public class Main extends Application {
         URL locationAyuda = getClass().getClassLoader().getResource("helpView.fxml");
         URL locationPuntuacionTotal = getClass().getClassLoader().getResource("punctuationTotalView.fxml");
         ResourceBundle resources = null;
+        Image ico = new Image("icon.png");
         //
         //objetos FXML
         FXMLLoader fxmlLoaderMenu = new FXMLLoader(locationMenu, resources);
@@ -73,14 +79,14 @@ public class Main extends Application {
         Scene sceneMenu = new Scene(rootMenu, 625, 493);
         StageMenu.setScene(sceneMenu);
         StageMenu.show();
-       	
+        StageMenu.getIcons().add(ico);
        ////////////////////////////////////////////////INTERFAZ DE TETRIS////////////////////////////////////////////////////
        
         Stage StageTetris = new Stage();                                       
         StageTetris.setTitle("TetrisFULL");
         Scene SceneTetris = new Scene(rootTetris, 420, 508);                    
         StageTetris.setScene(SceneTetris);                                       
-        
+        StageTetris.getIcons().add(ico);
        //////////////////////////////////////////////INTERFAZ GRAFICA (Observador)////////////////////////////////////////////
    
      //   Stage StageGrafic = new Stage();
@@ -88,7 +94,8 @@ public class Main extends Application {
         StageGrafic.setTitle("Grafico de estadistica Tetris");
         Scene sceneGrafica = new Scene(rootGrafica, 620, 450);                   
         StageGrafic.setScene(sceneGrafica);
-     
+        StageGrafic.getIcons().add(ico);
+        
 	    c.Grafico(StageGrafic);
 	    ObserverData statObservador = new ObserverData();
 	    GuiStatsObservador ObserverDisplay = new GuiStatsObservador(statObservador, s);
@@ -100,7 +107,7 @@ public class Main extends Application {
         Stage Stagehelp = new Stage();
         Stagehelp.setTitle("Ayuda");
         Stagehelp.setScene(new Scene(rootAyuda, 620, 450));
-        
+        Stagehelp.getIcons().add(ico);
         
         /////////////////////////////////////////////////INTERFAZ GRAFICA PUNTUACION (Observador)////////////////////////////////////
         
@@ -108,6 +115,7 @@ public class Main extends Application {
         score.setTitle("Puntuacion");
         score.setScene(new Scene(rootPuntuacionTotal, 620, 450));
         c.punctuationMethod(score);
+        score.getIcons().add(ico);
         
         guiPuntuationObserver ObservadorDisplayTotal = new guiPuntuationObserver(statObservador, puntuacion);
         
