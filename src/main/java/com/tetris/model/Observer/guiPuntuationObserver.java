@@ -62,46 +62,46 @@ public class guiPuntuationObserver implements Observer, Initializable { // OBSER
      * Comparar los valores
      */
     public void control() {
-        for (int i = 0; i < points.size(); i++) {
-try {
-    if (puntuacion > points.get(i)) {
-        
-
-        points.set(i, puntuacion);
-        listView.getItems().clear();
-        Collections.sort(points);
-        Collections.reverse(points);
-        listView.getItems().addAll(points);
-
-    }
-}catch (Exception e){
-    System.out.println("error del if");
-}
-
-        }
-
-       /* if (puntuacion > points.get(0)) {
-            points.set(0, puntuacion);
-            lista.getItems().clear();
-            Collections.sort(points);
-            Collections.reverse(points);
-            lista.getItems().addAll(points);
-        }
-        if (puntuacion > points.get(1)) {
-            points.set(1, puntuacion);
-            lista.getItems().clear();
-            Collections.sort(points);
-            Collections.reverse(points);
-            lista.getItems().addAll(points);
-        }
-        if (puntuacion > points.get(2)) {
-            points.set(2, puntuacion);
-            lista.getItems().clear();
-            Collections.sort(points);
-            Collections.reverse(points);
-            lista.getItems().addAll(points);
-        }*/
-    }
+	        for (int i = 0; i < points.size(); i++) {
+						try {
+						    if (puntuacion > points.get(i)) {
+						        
+						
+						        points.set(i, puntuacion);
+						        listView.getItems().clear();
+						        Collections.sort(points);
+						        Collections.reverse(points);
+						        listView.getItems().addAll(points);
+						
+						    }
+						}catch (Exception e){
+						    System.out.println("error del if");
+						}
+	
+	        }
+	
+	       /* if (puntuacion > points.get(0)) {
+	            points.set(0, puntuacion);
+	            lista.getItems().clear();
+	            Collections.sort(points);
+	            Collections.reverse(points);
+	            lista.getItems().addAll(points);
+	        }
+	        if (puntuacion > points.get(1)) {
+	            points.set(1, puntuacion);
+	            lista.getItems().clear();
+	            Collections.sort(points);
+	            Collections.reverse(points);
+	            lista.getItems().addAll(points);
+	        }
+	        if (puntuacion > points.get(2)) {
+	            points.set(2, puntuacion);
+	            lista.getItems().clear();
+	            Collections.sort(points);
+	            Collections.reverse(points);
+	            lista.getItems().addAll(points);
+	        }*/
+	    }
 
     public ArrayList<Integer> readData() {
         Scanner INPUT_STREAM;
