@@ -71,7 +71,7 @@ public class guiPuntuationObserver implements Observer, Initializable { // OBSER
 						        listView.getItems().clear();
 						        Collections.sort(points);
 						        Collections.reverse(points);
-						        listView.getItems().addAll(points);
+						        listView.getItems().addAll(points.get(i));
 						
 						    }
 						}catch (Exception e){
@@ -79,7 +79,9 @@ public class guiPuntuationObserver implements Observer, Initializable { // OBSER
 						}
 	
 	        }
-	
+	        
+	        
+	        
 	       /* if (puntuacion > points.get(0)) {
 	            points.set(0, puntuacion);
 	            lista.getItems().clear();
