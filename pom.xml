@@ -46,6 +46,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+
 			<groupId>com.googlecode.soundlibs</groupId>
 			<artifactId>basicplayer</artifactId>
 			<version>3.0.0.0</version>
@@ -77,7 +78,28 @@
 	 </dependency>
 	 </dependencies>
       <!--/////////////////////////////////////////////FIN DE DEPENDENCIAS////////////////////////////////////////////// -->
-    
+
+            <groupId>com.googlecode.soundlibs</groupId>
+            <artifactId>basicplayer</artifactId>
+            <version>3.0.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit</artifactId>
+            <version>4.0.15-alpha</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
     <build>
 
 	        <plugins>        

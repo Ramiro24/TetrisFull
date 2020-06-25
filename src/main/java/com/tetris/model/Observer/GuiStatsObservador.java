@@ -1,21 +1,14 @@
 package com.tetris.model.Observer;
 
 import java.net.URL;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.Axis;
-import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.chart.XYChart.Data;
-import javafx.scene.chart.XYChart.Series;
 
 public class GuiStatsObservador implements Observer, Initializable { //DISPLAY GRAFICO OBSERVADOR
 	
@@ -28,12 +21,12 @@ public class GuiStatsObservador implements Observer, Initializable { //DISPLAY G
 	 @FXML
 	  private NumberAxis yAxis;
 	
-	  private  Subject datosObservados;
+	  private  Subject observerDataInStats;
 	 
 	  public GuiStatsObservador() {}
 	  
 	  public GuiStatsObservador(Subject observerData, GuiStatsObservador s) {
-			 this.datosObservados = observerData;
+			 this.observerDataInStats = observerData;
 			 observerData.registerObserver((Observer)s); //agrego controlador a la lista del observable
 	  }
 	 

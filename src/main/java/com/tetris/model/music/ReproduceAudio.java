@@ -18,24 +18,24 @@ public class ReproduceAudio {
     public ReproduceAudio() {
 
 
-        IntroducirFx("Efecto0.wav");//comienco juego
-        IntroducirFx("Efecto1.wav");//cuando completas fila
-        IntroducirFx("Efecto2.wav");//botones velocidad
-        IntroducirFx("Efecto3.wav");//botones seleccion dificultad medio y alto
-        IntroducirFx("Efecto4.wav");// grafico y grafico total
-        IntroducirFx("Efecto5.wav");//cuenta score cuando bajas
-        IntroducirFx("Efecto6.wav");//game over
+        inputFx("Efecto0.wav");//comienco juego
+        inputFx("Efecto1.wav");//cuando completas fila
+        inputFx("Efecto2.wav");//botones velocidad
+        inputFx("Efecto3.wav");//botones seleccion dificultad medio y alto
+        inputFx("Efecto4.wav");// grafico y grafico total
+        inputFx("Efecto5.wav");//cuenta score cuando bajas
+        inputFx("Efecto6.wav");//game over
 
 
     }
 
-    public void IntroducirFx(String Ruta) {
+    public void inputFx(String Ruta) {
 
         try {
 
             File file = new File("").getAbsoluteFile();
 
-            String rutt = file + "/effects/" + Ruta;
+            String rutt = file + "/src/main/resources/effects/" + Ruta;
 
             file = new File(rutt);
 
@@ -48,11 +48,11 @@ public class ReproduceAudio {
 
     }
 
-    public void Fx(int indice) {
+    public void Fx(int index) {
 
         try {
 
-            File file = EFX.get(indice);
+            File file = EFX.get(index);
 
             // Se obtiene un Clip de sonido
             Clip sonido = AudioSystem.getClip();

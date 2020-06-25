@@ -90,17 +90,11 @@ public class GuiController implements Initializable {
 
     ReproduceMusic audio;
 
-    ReproduceAudio ruidos;
+    ReproduceAudio noise;
 
-    boolean bandera = false;
+    boolean flagInPause = false;
 
     public double difficult;
-
-    //@FXML
-    // private MenuItem close; //
-
-    //@FXML
-    // private Button estadistica; // agregado para agregar una nueva ventana
 
     private Rectangle[][] displayMatrix;
 
@@ -258,9 +252,6 @@ public class GuiController implements Initializable {
         }
     }
 
-    /*
-     * refresca el bloque en la nueva posicion
-     */
     private void refreshBrick(ViewData brick) {
         if (isPause.getValue() == Boolean.FALSE) {
             brickPanel.setLayoutX(gamePanel.getLayoutX() + brick.getxPosition() * brickPanel.getVgap()
@@ -301,7 +292,6 @@ public class GuiController implements Initializable {
             }
             refreshBrick(downData.getViewData());
         }
-        // usado para poder mover el panel
         gamePanel.requestFocus();
     }
 
@@ -357,49 +347,43 @@ public class GuiController implements Initializable {
         ///
         if (GuiMenu.EstadoMusic()) {
 
-            if (bandera) {
+            if (flagInPause) {
                 audio.ReproduceMusic(0);
-                bandera = false;
+                flagInPause = false;
             } else {
                 audio.stopMusic();
-                bandera = true;
+                flagInPause = true;
             }
 
             gamePanel.requestFocus();
         }
-
     }
 
     @FXML
     public void close(ActionEvent actionEvent) throws IOException {
-        ///
-        // System.exit(0);
         isPause.setValue(Boolean.TRUE);
-        // eventListener.nuevaVentana();
     }
 
-    public void Grafico(Stage g) {
+    public void graph(Stage g) {
         grafico = g;
     }
 
     @FXML
     public void punctuationMethod(ActionEvent event) {
-        ruidos.Fx(4);
+        noise.Fx(4);
         grafico.show();
     }
 
     @FXML
     public void PuntuacionTotal(ActionEvent event) {
-        ruidos.Fx(4);
+        noise.Fx(4);
         puntuacion.show();
     }
 
     @FXML
-    public void setDifficult(int difficult) { // tomo evento de teclado para la dificultad
-
+    public void setDifficult(int difficult) {
         this.difficult = difficult;
         System.out.println("la dificultad que manejo es: " + this.difficult);
-
         timeLine = new Timeline(new KeyFrame(Duration.millis(this.difficult),
                 ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))));
         timeLine.setCycleCount(Timeline.INDEFINITE);
@@ -407,7 +391,7 @@ public class GuiController implements Initializable {
 
     @FXML
     public void velocityLess() {
-        ruidos.Fx(5);
+        noise.Fx(5);
         difficult = difficult + 10;
         if (isPause.getValue() == Boolean.FALSE && isGameOver.getValue() == Boolean.FALSE) {
             less.changeVelocity(this);
@@ -415,18 +399,9 @@ public class GuiController implements Initializable {
 
     }
 
-    /*
-     * @FXML public void handleCloseButtonAction(ActionEvent event) { Stage stage =
-     * (Stage) closeButton.getScene().getWindow(); stage.close(); }
-     */
-    /*
-     * @FXML public void handleCloseButtonAction(ActionEvent event) {
-     * ((Stage)(((Button)event.getSource()).getScene().getWindow())).close(); }
-     */
-
     @FXML
     public void velocityMore() {
-        ruidos.Fx(5);
+        noise.Fx(5);
         difficult = difficult - 10;
         if (isPause.getValue() == Boolean.FALSE && isGameOver.getValue() == Boolean.FALSE) {
             more.changeVelocity(this);
@@ -461,11 +436,11 @@ public class GuiController implements Initializable {
 
     public void setMusic(ReproduceMusic audio, ReproduceAudio ruidos) {
         this.audio = audio;
-        this.ruidos = ruidos;
+        this.noise = ruidos;
     }
 
     public void saveData(String value) {
-        String filepath = "log.txt";
+        String filepath = "src/main/resources/log.txt";
         try {
             FileWriter fw = new FileWriter(filepath, true);
             BufferedWriter bw = new BufferedWriter(fw);
@@ -484,7 +459,7 @@ public class GuiController implements Initializable {
 
         try {
 
-            File file = new File("log.txt");
+            File file = new File("src/main/resources/log.txt");
             INPUT_STREAM = new Scanner(file);
 
             while (INPUT_STREAM.hasNext()) {
@@ -511,10 +486,5 @@ public class GuiController implements Initializable {
     public int isMax(ArrayList<Integer> v) {
         Integer i = Collections.max(v);
         return i;
-    }
-
-    public void AumentaDificultad(int Dificultad) {
-        this.difficult = this.difficult + Dificultad;
-        System.out.println("estoy en:" + this.difficult);
     }
 }
