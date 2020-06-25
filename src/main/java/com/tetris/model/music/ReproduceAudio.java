@@ -2,6 +2,9 @@ package com.tetris.model.music;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,41 +21,44 @@ public class ReproduceAudio {
     public ReproduceAudio() {
 
 
-        inputFx("Efecto0.wav");//comienco juego
-        inputFx("Efecto1.wav");//cuando completas fila
-        inputFx("Efecto2.wav");//botones velocidad
-        inputFx("Efecto3.wav");//botones seleccion dificultad medio y alto
-        inputFx("Efecto4.wav");// grafico y grafico total
-        inputFx("Efecto5.wav");//cuenta score cuando bajas
-        inputFx("Efecto6.wav");//game over
+        IntroducirFx("Efecto0.wav", 2);//comienco juego
+        IntroducirFx("Efecto1.wav", 3);//cuando completas fila
+        IntroducirFx("Efecto2.wav", 4);//botones velocidad
+        IntroducirFx("Efecto3.wav", 5);//botones seleccion dificultad medio y alto
+        IntroducirFx("Efecto4.wav", 6);// grafico y grafico total
+        IntroducirFx("Efecto5.wav", 7);//cuenta score cuando bajas
+        IntroducirFx("Efecto6.wav",8);//game over
 
 
     }
 
-    public void inputFx(String Ruta) {
+    public void IntroducirFx(String Ruta, int i) {
 
+    	
+    	InputStream inputStream = this.getClass().getResourceAsStream("/effects/" + Ruta);
+        File targetFile = new File(System.getProperty("user.home") + "/targetFile"+i+".tmp");
+
+        
         try {
+            Files.copy(
+                    inputStream,
+                    targetFile.toPath(),
+                    StandardCopyOption.REPLACE_EXISTING);
 
-            File file = new File("").getAbsoluteFile();
+            EFX.add(targetFile);
 
-            String rutt = file + "/src/main/resources/effects/" + Ruta;
-
-            file = new File(rutt);
-
-            EFX.add(file);
-
-        } catch (NullPointerException e2) {
+        } catch (NullPointerException | IOException e2) {
             System.out.println("Error la ruta o archivo no encontrado de audio....");
         }
 
 
     }
 
-    public void Fx(int index) {
+    public void Fx(int indice) {
 
         try {
 
-            File file = EFX.get(index);
+            File file = EFX.get(indice);
 
             // Se obtiene un Clip de sonido
             Clip sonido = AudioSystem.getClip();
