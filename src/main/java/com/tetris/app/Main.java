@@ -110,7 +110,7 @@ public class Main extends Application {
 
         Stage score = new Stage();
         score.setTitle("Puntuacion");
-        score.setScene(new Scene(rootPuntuacionTotal, 620, 450));
+        score.setScene(new Scene(rootPuntuacionTotal, 400, 200));
         c.punctuationMethod(score);
         score.getIcons().add(ico);
 
