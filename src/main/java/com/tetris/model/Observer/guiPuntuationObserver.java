@@ -62,7 +62,7 @@ public class guiPuntuationObserver implements Observer, Initializable { // OBSER
      * Comparar los valores
      */
     public void control() {
-	        for (int i = 0; i < points.size(); i++) {
+	        for (int i = 0; i < 1; i++) {
 						try {
 						    if (puntuacion > points.get(i)) {
 						        
