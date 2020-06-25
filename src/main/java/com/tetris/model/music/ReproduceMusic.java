@@ -1,6 +1,10 @@
 package com.tetris.model.music;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Level;
@@ -103,19 +107,21 @@ public class ReproduceMusic {
 
 
     public void introduceFx(String Ruta) {
+        InputStream inputStream = this.getClass().getResourceAsStream("/effects/" + Ruta);
+        File targetFile = new File(System.getProperty("user.home") + "/targetFile.tmp");
 
         try {
+            Files.copy(
+                    inputStream,
+                    targetFile.toPath(),
+                    StandardCopyOption.REPLACE_EXISTING);
 
-            file = new File("").getAbsoluteFile();
-
-            String rutt = file + "/effects/" + Ruta;
-
-            file = new File(rutt);
-
-            Music.add(file);
+            Music.add(targetFile);
 
         } catch (NullPointerException e2) {
             System.out.println("Error la ruta o archivo no encontrado de audio....");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
