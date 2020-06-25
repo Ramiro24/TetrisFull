@@ -94,7 +94,7 @@ public class GuiMenu implements Initializable {
         this.help = help;
         this.ReproMusic = reproMusic;
         this.audio = audio;
-
+        easyButton.setSelected(true);
     }
 
     public void Game(GameController game) {
@@ -106,18 +106,27 @@ public class GuiMenu implements Initializable {
     void hard(ActionEvent event) {
         difficult = 100;
         audio.Fx(3);
+        	easyButton.setSelected(false);
+        	middleButton.setSelected(false);
     }
 
     @FXML
     void easy(ActionEvent event) {
         difficult = 400;
         audio.Fx(3);
+        hardButton.setSelected(false);
+    	middleButton.setSelected(false);
+       
     }
 
     @FXML
     void middle(ActionEvent event) {
         difficult = 300;
         audio.Fx(3);
+        easyButton.setSelected(false);
+    	hardButton.setSelected(false);
     }
+    
+
 
 }
