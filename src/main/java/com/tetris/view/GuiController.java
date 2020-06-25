@@ -465,7 +465,7 @@ public class GuiController implements Initializable {
     }
 
     public void saveData(String value) {
-        String filepath = "log.txt";
+        String filepath = "src/main/resources/log.txt";
         try {
             FileWriter fw = new FileWriter(filepath, true);
             BufferedWriter bw = new BufferedWriter(fw);
@@ -484,7 +484,7 @@ public class GuiController implements Initializable {
 
         try {
 
-            File file = new File("log.txt");
+            File file = new File("src/main/resources/log.txt");
             INPUT_STREAM = new Scanner(file);
 
             while (INPUT_STREAM.hasNext()) {

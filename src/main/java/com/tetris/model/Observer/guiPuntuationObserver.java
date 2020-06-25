@@ -62,7 +62,7 @@ public class guiPuntuationObserver implements Observer, Initializable { // OBSER
      * Comparar los valores
      */
     public void control() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i <points.size(); i++) {
 
             if (puntuacion > points.get(i)) {
                 points.set(i, puntuacion);
@@ -71,29 +71,29 @@ public class guiPuntuationObserver implements Observer, Initializable { // OBSER
                 Collections.reverse(points);
                 listView.getItems().addAll(points);
             }
+         /*   if (puntuacion > points.get(0)) {
+                points.set(0, puntuacion);
+                listView.getItems().clear();
+                Collections.sort(points);
+                Collections.reverse(points);
+                listView.getItems().addAll(points);
+            }
+            if (puntuacion > points.get(1)) {
+                points.set(1, puntuacion);
+                listView.getItems().clear();
+                Collections.sort(points);
+                Collections.reverse(points);
+                listView.getItems().addAll(points);
+            }
+            if (puntuacion > points.get(2)) {
+                points.set(2, puntuacion);
+                listView.getItems().clear();
+                Collections.sort(points);
+                Collections.reverse(points);
+                listView.getItems().addAll(points);
+            }*/
         }
 
-       /* if (puntuacion > points.get(0)) {
-            points.set(0, puntuacion);
-            lista.getItems().clear();
-            Collections.sort(points);
-            Collections.reverse(points);
-            lista.getItems().addAll(points);
-        }
-        if (puntuacion > points.get(1)) {
-            points.set(1, puntuacion);
-            lista.getItems().clear();
-            Collections.sort(points);
-            Collections.reverse(points);
-            lista.getItems().addAll(points);
-        }
-        if (puntuacion > points.get(2)) {
-            points.set(2, puntuacion);
-            lista.getItems().clear();
-            Collections.sort(points);
-            Collections.reverse(points);
-            lista.getItems().addAll(points);
-        }*/
     }
 
     public ArrayList<Integer> readData() {
@@ -140,7 +140,7 @@ public class guiPuntuationObserver implements Observer, Initializable { // OBSER
             BufferedWriter bw1 = new BufferedWriter(fw1);
             PrintWriter pw1 = new PrintWriter(bw1);
             for (int i = 0; i < 3; i++) {
-                pw1.println(points.get(i));
+                //pw1.println(points.get(i));
                 pw1.flush();
             }
 
@@ -159,9 +159,6 @@ public class guiPuntuationObserver implements Observer, Initializable { // OBSER
         System.out.println("valor");
     }
 }
-	
-	
-	
 	
 	
 	

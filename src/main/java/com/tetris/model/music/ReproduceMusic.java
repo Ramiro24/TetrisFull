@@ -108,7 +108,7 @@ public class ReproduceMusic {
 
             file = new File("").getAbsoluteFile();
 
-            String rutt = file + "/effects/" + Ruta;
+            String rutt = file + "/src/main/resources/effects/" + Ruta;
 
             file = new File(rutt);
 
