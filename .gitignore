@@ -184,3 +184,5 @@ buildNumber.properties
 # End of https://www.gitignore.io/api/maven,eclipse,intellij
 /log.txt
 /log1.txt
+/src/main/resources/log1.txt
+/src/main/resources/log.txt
