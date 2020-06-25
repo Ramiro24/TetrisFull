@@ -96,7 +96,7 @@ public class Main extends Application {
         Scene sceneGrafica = new Scene(rootGrafica, 620, 450);
         StageGrafic.setScene(sceneGrafica);
 
-	    c.Grafico(StageGrafic);
+	    c.graph(StageGrafic);
 	    ObserverData statObservador = new ObserverData();
 	    GuiStatsObservador ObserverDisplay = new GuiStatsObservador(statObservador, s);
 	    GameController tetrisController = new GameController(c,statObservador,ReproAudio);

@@ -20,7 +20,5 @@ public class GuiHelp implements Initializable{
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
 	}
-    
-   
 
 }

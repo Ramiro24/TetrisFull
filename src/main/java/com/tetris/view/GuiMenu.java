@@ -1,8 +1,5 @@
 package com.tetris.view;
 
-
-//import	com.quirko.gui.GuiController;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -39,7 +36,7 @@ public class GuiMenu implements Initializable {
     private RadioButton middleButton;
     @FXML
     private ToggleButton soundButton;
-    // Metodos extras //
+
     private GuiController gui;
     private Stage stage;
     private Stage primaryStage;

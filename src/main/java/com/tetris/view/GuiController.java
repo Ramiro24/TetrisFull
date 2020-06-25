@@ -90,17 +90,11 @@ public class GuiController implements Initializable {
 
     ReproduceMusic audio;
 
-    ReproduceAudio ruidos;
+    ReproduceAudio noise;
 
-    boolean bandera = false;
+    boolean flagInPause = false;
 
     public double difficult;
-
-    //@FXML
-    // private MenuItem close; //
-
-    //@FXML
-    // private Button estadistica; // agregado para agregar una nueva ventana
 
     private Rectangle[][] displayMatrix;
 
@@ -353,17 +347,16 @@ public class GuiController implements Initializable {
         ///
         if (GuiMenu.EstadoMusic()) {
 
-            if (bandera) {
+            if (flagInPause) {
                 audio.ReproduceMusic(0);
-                bandera = false;
+                flagInPause = false;
             } else {
                 audio.stopMusic();
-                bandera = true;
+                flagInPause = true;
             }
 
             gamePanel.requestFocus();
         }
-
     }
 
     @FXML
@@ -371,19 +364,19 @@ public class GuiController implements Initializable {
         isPause.setValue(Boolean.TRUE);
     }
 
-    public void Grafico(Stage g) {
+    public void graph(Stage g) {
         grafico = g;
     }
 
     @FXML
     public void punctuationMethod(ActionEvent event) {
-        ruidos.Fx(4);
+        noise.Fx(4);
         grafico.show();
     }
 
     @FXML
     public void PuntuacionTotal(ActionEvent event) {
-        ruidos.Fx(4);
+        noise.Fx(4);
         puntuacion.show();
     }
 
@@ -398,7 +391,7 @@ public class GuiController implements Initializable {
 
     @FXML
     public void velocityLess() {
-        ruidos.Fx(5);
+        noise.Fx(5);
         difficult = difficult + 10;
         if (isPause.getValue() == Boolean.FALSE && isGameOver.getValue() == Boolean.FALSE) {
             less.changeVelocity(this);
@@ -408,7 +401,7 @@ public class GuiController implements Initializable {
 
     @FXML
     public void velocityMore() {
-        ruidos.Fx(5);
+        noise.Fx(5);
         difficult = difficult - 10;
         if (isPause.getValue() == Boolean.FALSE && isGameOver.getValue() == Boolean.FALSE) {
             more.changeVelocity(this);
@@ -443,7 +436,7 @@ public class GuiController implements Initializable {
 
     public void setMusic(ReproduceMusic audio, ReproduceAudio ruidos) {
         this.audio = audio;
-        this.ruidos = ruidos;
+        this.noise = ruidos;
     }
 
     public void saveData(String value) {
@@ -493,10 +486,5 @@ public class GuiController implements Initializable {
     public int isMax(ArrayList<Integer> v) {
         Integer i = Collections.max(v);
         return i;
-    }
-
-    public void AumentaDificultad(int Dificultad) {
-        this.difficult = this.difficult + Dificultad;
-        System.out.println("estoy en:" + this.difficult);
     }
 }
